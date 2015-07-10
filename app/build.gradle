@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "io.github.hanihashemi.bolbol"
+        applicationId "io.github.hanihashemi.bulbul"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
