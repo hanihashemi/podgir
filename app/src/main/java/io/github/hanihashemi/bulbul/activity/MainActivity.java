@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul;
+package io.github.hanihashemi.bulbul.activity;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
@@ -13,19 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import io.github.hanihashemi.bulbul.fragment.NavigationDrawerFragment;
+import io.github.hanihashemi.bulbul.R;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
 
     @Override
@@ -37,7 +32,6 @@ public class MainActivity extends ActionBarActivity
                 getSupportFragmentManager().findFragmentById(io.github.hanihashemi.bulbul.R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 io.github.hanihashemi.bulbul.R.id.navigation_drawer,
                 (DrawerLayout) findViewById(io.github.hanihashemi.bulbul.R.id.drawer_layout));
@@ -55,13 +49,16 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(io.github.hanihashemi.bulbul.R.string.title_section1);
+                mTitle = getString(R.string.navigation_podcasts);
                 break;
             case 2:
-                mTitle = getString(io.github.hanihashemi.bulbul.R.string.title_section2);
+                mTitle = getString(R.string.navigation_audio);
                 break;
             case 3:
-                mTitle = getString(io.github.hanihashemi.bulbul.R.string.title_section3);
+                mTitle = getString(R.string.navigation_downloading);
+                break;
+            case 4:
+                mTitle = getString(R.string.navigation_settings);
                 break;
         }
     }
@@ -79,9 +76,6 @@ public class MainActivity extends ActionBarActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
             getMenuInflater().inflate(io.github.hanihashemi.bulbul.R.menu.main, menu);
             restoreActionBar();
             return true;
@@ -91,9 +85,6 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -142,5 +133,4 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
 }

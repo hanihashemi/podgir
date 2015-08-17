@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <item name="primary" type="color">#673AB7</item>
+    <item name="primary_dark" type="color">#512DA8</item>
+    <item name="accent" type="color">#FF4081</item>
+    <item name="text_primary" type="color">#212121</item>
+    <item name="text_secondary" type="color">#727272</item>
+    <item name="text_third" type="color">#FFFFFF</item>
+    <item name="primary_light" type="color">#D1C4E9</item>
+    <item name="divider_color" type="color">#B6B6B6</item>
+</resources>

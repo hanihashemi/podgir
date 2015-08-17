@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul;
+package io.github.hanihashemi.bulbul.fragment;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -21,6 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import io.github.hanihashemi.bulbul.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -97,14 +99,15 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+        mDrawerListView.setAdapter(new ArrayAdapter<>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
-                        getString(io.github.hanihashemi.bulbul.R.string.title_section1),
-                        getString(io.github.hanihashemi.bulbul.R.string.title_section2),
-                        getString(io.github.hanihashemi.bulbul.R.string.title_section3),
+                        getString(R.string.navigation_podcasts),
+                        getString(R.string.navigation_audio),
+                        getString(R.string.navigation_downloading),
+                        getString(R.string.navigation_settings)
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
