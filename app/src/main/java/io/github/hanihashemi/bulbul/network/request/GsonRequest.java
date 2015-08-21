@@ -1,5 +1,6 @@
-package io.github.hanihashemi.bulbul.networklayer;
+package io.github.hanihashemi.bulbul.network.request;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
@@ -10,11 +11,14 @@ import com.google.gson.JsonSyntaxException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by hani on 8/19/15.
  */
-public class GsonRequest<T> extends JsonRequest<T> {
+public class GsonRequest<T> extends BaseRequest<T> {
 
     private Class<T> responseClass;
 
@@ -32,6 +36,7 @@ public class GsonRequest<T> extends JsonRequest<T> {
 
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
+        super.parseNetworkResponse(response);
         try {
             String json = new String(
                     response.data, HttpHeaderParser.parseCharset(response.headers));

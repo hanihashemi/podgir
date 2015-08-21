@@ -12,4 +12,14 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
+
+    <!--Errors Messages-->
+    <string name="no_internet_error">No internet connection.</string>
+    <string name="server_response_problem">Server problem</string>
+    <string name="server_timeout_error">Timeout trying to reach server.</string>
+    <string name="token_expired">Token is expired, please login again.</string>
+    <string name="error_max_item_selected">You should remove at least one item to add new one.</string>
+    <string name="error_dialog_title">Error</string>
+    <string name="could_not_reach_server">Could not reach server.</string>
+
 </resources>

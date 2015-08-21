@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.networklayer;
+package io.github.hanihashemi.bulbul.network.request;
 
 import com.google.gson.Gson;
 

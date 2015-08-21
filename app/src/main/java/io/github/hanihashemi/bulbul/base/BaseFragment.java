@@ -7,12 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
 import butterknife.ButterKnife;
+import io.github.hanihashemi.bulbul.network.tool.VolleyErrorHandler;
 
 /**
  * Created by hani on 8/17/15.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements Response.ErrorListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,4 +31,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract int getLayoutResource();
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        VolleyErrorHandler.getInstance().handle(getActivity(), error);
+    }
 }

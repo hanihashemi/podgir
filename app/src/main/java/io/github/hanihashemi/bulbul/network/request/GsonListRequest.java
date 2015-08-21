@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.networklayer;
+package io.github.hanihashemi.bulbul.network.request;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -15,7 +15,7 @@ import java.lang.reflect.Type;
 /**
  * Created by hani on 8/19/15.
  */
-public class GsonListRequest<T> extends JsonRequest<T> {
+public class GsonListRequest<T> extends BaseRequest<T> {
 
     private final Type mType;
 
@@ -26,6 +26,7 @@ public class GsonListRequest<T> extends JsonRequest<T> {
 
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
+        super.parseNetworkResponse(response);
         try {
             String jsonString =
                     new String(response.data, HttpHeaderParser.parseCharset(response.headers));
@@ -38,4 +39,6 @@ public class GsonListRequest<T> extends JsonRequest<T> {
             return Response.error(new ParseError(je));
         }
     }
+
+
 }
