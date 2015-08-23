@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.adapter;
+package io.github.hanihashemi.podgir.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import io.github.hanihashemi.bulbul.R;
-import io.github.hanihashemi.bulbul.adapter.viewholder.PodcastViewHolder;
-import io.github.hanihashemi.bulbul.model.Podcast;
+import io.github.hanihashemi.podgir.R;
+import io.github.hanihashemi.podgir.adapter.viewholder.PodcastViewHolder;
+import io.github.hanihashemi.podgir.model.Podcast;
 
 /**
  * Created by hani on 8/18/15.

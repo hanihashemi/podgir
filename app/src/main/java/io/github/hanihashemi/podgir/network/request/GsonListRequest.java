@@ -1,10 +1,9 @@
-package io.github.hanihashemi.bulbul.network.request;
+package io.github.hanihashemi.podgir.network.request;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.JsonSyntaxException;
 
 import org.json.JSONObject;

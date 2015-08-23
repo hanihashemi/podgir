@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.network.request;
+package io.github.hanihashemi.podgir.network.request;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;

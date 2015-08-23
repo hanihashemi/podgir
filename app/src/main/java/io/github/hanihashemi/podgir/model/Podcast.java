@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.model;
+package io.github.hanihashemi.podgir.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import io.github.hanihashemi.bulbul.network.request.GsonListRequest;
+import io.github.hanihashemi.podgir.network.request.GsonListRequest;
 
 /**
  * Created by hani on 8/18/15.

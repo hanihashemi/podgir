@@ -1,22 +1,14 @@
-package io.github.hanihashemi.bulbul.activity;
+package io.github.hanihashemi.podgir.activity;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import io.github.hanihashemi.bulbul.base.BaseActivity;
-import io.github.hanihashemi.bulbul.fragment.NavigationDrawerFragment;
-import io.github.hanihashemi.bulbul.R;
-import io.github.hanihashemi.bulbul.fragment.PodcastsFragment;
+import io.github.hanihashemi.podgir.base.BaseActivity;
+import io.github.hanihashemi.podgir.fragment.NavigationDrawerFragment;
+import io.github.hanihashemi.podgir.fragment.PodcastsFragment;
 
 public class MainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -26,7 +18,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public int getLayoutResource() {
-        return io.github.hanihashemi.bulbul.R.layout.activity_main;
+        return io.github.hanihashemi.podgir.R.layout.activity_main;
     }
 
     @Override
@@ -34,12 +26,12 @@ public class MainActivity extends BaseActivity
         super.customizeUI();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(io.github.hanihashemi.bulbul.R.id.navigation_drawer);
+                getSupportFragmentManager().findFragmentById(io.github.hanihashemi.podgir.R.id.navigation_drawer);
         mTitle = getTitle();
 
         mNavigationDrawerFragment.setUp(
-                io.github.hanihashemi.bulbul.R.id.navigation_drawer,
-                (DrawerLayout) findViewById(io.github.hanihashemi.bulbul.R.id.drawer_layout));
+                io.github.hanihashemi.podgir.R.id.navigation_drawer,
+                (DrawerLayout) findViewById(io.github.hanihashemi.podgir.R.id.drawer_layout));
     }
 
     @Override
@@ -49,7 +41,7 @@ public class MainActivity extends BaseActivity
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
-                        .replace(io.github.hanihashemi.bulbul.R.id.container, new PodcastsFragment())
+                        .replace(io.github.hanihashemi.podgir.R.id.container, new PodcastsFragment())
                         .commit();
                 break;
         }
@@ -69,7 +61,7 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            getMenuInflater().inflate(io.github.hanihashemi.bulbul.R.menu.main, menu);
+            getMenuInflater().inflate(io.github.hanihashemi.podgir.R.menu.main, menu);
             restoreActionBar();
             return true;
         }
@@ -81,7 +73,7 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == io.github.hanihashemi.bulbul.R.id.action_settings) {
+        if (id == io.github.hanihashemi.podgir.R.id.action_settings) {
             return true;
         }
 

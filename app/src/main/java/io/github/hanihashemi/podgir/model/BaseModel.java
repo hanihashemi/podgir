@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.model;
+package io.github.hanihashemi.podgir.model;
 
 /**
  * Created by hani on 8/22/15.

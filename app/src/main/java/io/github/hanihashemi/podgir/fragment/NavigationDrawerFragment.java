@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.fragment;
+package io.github.hanihashemi.podgir.fragment;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -22,7 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import io.github.hanihashemi.bulbul.R;
+import io.github.hanihashemi.podgir.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -92,7 +92,7 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
-                io.github.hanihashemi.bulbul.R.layout.fragment_main_navigation_drawer, container, false);
+                io.github.hanihashemi.podgir.R.layout.fragment_main_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,7 +128,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(io.github.hanihashemi.bulbul.R.drawable.drawer_shadow, GravityCompat.START);
+        mDrawerLayout.setDrawerShadow(io.github.hanihashemi.podgir.R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
         ActionBar actionBar = getActionBar();
@@ -140,9 +140,9 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerToggle = new ActionBarDrawerToggle(
                 getActivity(),                    /* host Activity */
                 mDrawerLayout,                    /* DrawerLayout object */
-                io.github.hanihashemi.bulbul.R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
-                io.github.hanihashemi.bulbul.R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
-                io.github.hanihashemi.bulbul.R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
+                io.github.hanihashemi.podgir.R.drawable.ic_drawer,             /* nav drawer image to replace 'Up' caret */
+                io.github.hanihashemi.podgir.R.string.navigation_drawer_open,  /* "open drawer" description for accessibility */
+                io.github.hanihashemi.podgir.R.string.navigation_drawer_close  /* "close drawer" description for accessibility */
         ) {
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -238,7 +238,7 @@ public class NavigationDrawerFragment extends Fragment {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(io.github.hanihashemi.bulbul.R.menu.global, menu);
+            inflater.inflate(io.github.hanihashemi.podgir.R.menu.global, menu);
             showGlobalContextActionBar();
         }
         super.onCreateOptionsMenu(menu, inflater);
@@ -250,7 +250,7 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == io.github.hanihashemi.bulbul.R.id.action_example) {
+        if (item.getItemId() == io.github.hanihashemi.podgir.R.id.action_example) {
             Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -266,7 +266,7 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(io.github.hanihashemi.bulbul.R.string.app_name);
+        actionBar.setTitle(io.github.hanihashemi.podgir.R.string.app_name);
     }
 
     private ActionBar getActionBar() {

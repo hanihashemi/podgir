@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul;
+package io.github.hanihashemi.podgir;
 
 import android.app.Application;
 import android.util.Log;
@@ -7,7 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import io.github.hanihashemi.bulbul.network.request.BaseRequest;
+import io.github.hanihashemi.podgir.network.request.BaseRequest;
 import timber.log.Timber;
 
 /**

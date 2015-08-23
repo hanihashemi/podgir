@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/navigation_drawer"
-        android:name="io.github.hanihashemi.bulbul.fragment.NavigationDrawerFragment"
+        android:name="io.github.hanihashemi.podgir.fragment.NavigationDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.base;
+package io.github.hanihashemi.podgir.base;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

@@ -1,8 +1,8 @@
-package io.github.hanihashemi.bulbul.base;
+package io.github.hanihashemi.podgir.base;
 
 import android.support.v4.app.Fragment;
 
-import io.github.hanihashemi.bulbul.R;
+import io.github.hanihashemi.podgir.R;
 
 /**
  * Created by hani on 8/19/15.

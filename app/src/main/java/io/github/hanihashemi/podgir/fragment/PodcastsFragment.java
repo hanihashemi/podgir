@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.fragment;
+package io.github.hanihashemi.podgir.fragment;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import io.github.hanihashemi.bulbul.App;
-import io.github.hanihashemi.bulbul.R;
-import io.github.hanihashemi.bulbul.adapter.PodcastsRecyclerView;
-import io.github.hanihashemi.bulbul.base.BaseFragment;
-import io.github.hanihashemi.bulbul.model.Podcast;
+import io.github.hanihashemi.podgir.App;
+import io.github.hanihashemi.podgir.R;
+import io.github.hanihashemi.podgir.adapter.PodcastsRecyclerView;
+import io.github.hanihashemi.podgir.base.BaseFragment;
+import io.github.hanihashemi.podgir.model.Podcast;
 
 /**
  * Created by hani on 8/18/15.

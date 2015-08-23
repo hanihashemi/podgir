@@ -1,4 +1,4 @@
-package io.github.hanihashemi.bulbul.base;
+package io.github.hanihashemi.podgir.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -1,9 +1,8 @@
-package io.github.hanihashemi.bulbul.activity;
+package io.github.hanihashemi.podgir.activity;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 
-import io.github.hanihashemi.bulbul.base.BaseActivityWithSingleFragment;
+import io.github.hanihashemi.podgir.base.BaseActivityWithSingleFragment;
 
 /**
  * Created by hani on 8/18/15.

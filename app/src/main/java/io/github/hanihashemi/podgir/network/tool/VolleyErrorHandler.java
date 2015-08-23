@@ -1,10 +1,9 @@
-package io.github.hanihashemi.bulbul.network.tool;
+package io.github.hanihashemi.podgir.network.tool;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ServerError;
@@ -13,7 +12,7 @@ import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 
-import io.github.hanihashemi.bulbul.R;
+import io.github.hanihashemi.podgir.R;
 import timber.log.Timber;
 
 /**
