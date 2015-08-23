@@ -23,6 +23,7 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
     protected RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private List<Podcast> podcasts;
 
     @Override
     protected int getLayoutResource() {
@@ -39,8 +40,11 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
         layoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(layoutManager);
 
-//        adapter = new PodcastsRecyclerView(podcasts);
+        podcasts = new ArrayList<>();
+        adapter = new PodcastsRecyclerView(podcasts);
         recyclerView.setAdapter(adapter);
+
+        fetchData();
     }
 
     private void fetchData() {
@@ -49,6 +53,8 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
 
     @Override
     public void onResponse(List<Podcast> response) {
-
+        podcasts.clear();
+        podcasts.addAll(response);
+        adapter.notifyDataSetChanged();
     }
 }

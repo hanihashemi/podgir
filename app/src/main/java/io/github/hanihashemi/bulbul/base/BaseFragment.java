@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import butterknife.ButterKnife;
+import io.github.hanihashemi.bulbul.App;
 import io.github.hanihashemi.bulbul.network.tool.VolleyErrorHandler;
 
 /**
@@ -35,5 +36,11 @@ public abstract class BaseFragment extends Fragment implements Response.ErrorLis
     @Override
     public void onErrorResponse(VolleyError error) {
         VolleyErrorHandler.getInstance().handle(getActivity(), error);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        App.getInstance().cancelRequest(this);
     }
 }
