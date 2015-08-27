@@ -15,15 +15,17 @@ import io.github.hanihashemi.podgir.model.Podcast;
  */
 public class PodcastsRecyclerView extends RecyclerView.Adapter<PodcastViewHolder> {
 
-    List<Podcast> podcasts;
+    private List<Podcast> podcasts;
+    private PodcastViewHolder.OnClick podcastOnClick;
 
-    public PodcastsRecyclerView(List<Podcast> podcasts) {
+    public PodcastsRecyclerView(List<Podcast> podcasts, PodcastViewHolder.OnClick podcastOnClick) {
         this.podcasts = podcasts;
+        this.podcastOnClick = podcastOnClick;
     }
 
     @Override
     public PodcastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new PodcastViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_podcast, parent, false));
+        return new PodcastViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder_podcast, parent, false), podcastOnClick);
     }
 
     @Override

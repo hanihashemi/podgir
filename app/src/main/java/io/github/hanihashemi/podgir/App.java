@@ -45,7 +45,7 @@ public class App extends Application {
     public void addRequestToQueue(BaseRequest request, Object owner) {
         request.setTag(owner);
         getRequestQueue().add(request);
-        Timber.d("Adding request to queue: %S", request.getUrl());
+        Timber.d("Adding request to queue: %s", request.getUrl());
     }
 
     public RequestQueue getRequestQueue() {

@@ -7,5 +7,5 @@
     <item name="text_secondary" type="color">#727272</item>
     <item name="text_third" type="color">#FFFFFF</item>
     <item name="primary_light" type="color">#D1C4E9</item>
-    <item name="divider_color" type="color">#B6B6B6</item>
+    <item name="divider" type="color">#B6B6B6</item>
 </resources>

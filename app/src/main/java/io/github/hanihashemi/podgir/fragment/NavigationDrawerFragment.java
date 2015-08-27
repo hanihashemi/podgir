@@ -1,16 +1,16 @@
 package io.github.hanihashemi.podgir.fragment;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,9 +20,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import io.github.hanihashemi.podgir.R;
+import io.github.hanihashemi.podgir.util.DownloadFile;
+import io.github.hanihashemi.podgir.util.Notification;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -105,9 +106,7 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.navigation_podcasts),
-                        getString(R.string.navigation_audio),
-                        getString(R.string.navigation_downloading),
-                        getString(R.string.navigation_settings)
+                        getString(R.string.navigation_downloaded)
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -251,7 +250,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == io.github.hanihashemi.podgir.R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+
             return true;
         }
 

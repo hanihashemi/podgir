@@ -2,9 +2,7 @@
     <string name="app_name">Podgir</string>
 
     <string name="navigation_podcasts">Podcasts</string>
-    <string name="navigation_audio">Audio</string>
-    <string name="navigation_downloading">Downloading</string>
-    <string name="navigation_settings">Settings</string>
+    <string name="navigation_downloaded">Downloaded</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,5 +19,10 @@
     <string name="error_max_item_selected">You should remove at least one item to add new one.</string>
     <string name="error_dialog_title">Error</string>
     <string name="could_not_reach_server">Could not reach server.</string>
+    <string name="notification_download_title" formatted="false">Download %s - %s</string>
+    <string name="notification_download_text">Wait to start …</string>
+
+    <string name="podcast_detail_feed_downloaded">Play</string>
+    <string name="podcast_detail_feed_not_download">Download</string>
 
 </resources>

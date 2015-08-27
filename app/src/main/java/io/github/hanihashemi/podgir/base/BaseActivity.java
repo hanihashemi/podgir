@@ -13,10 +13,15 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
+        gatherArguments(getIntent().getExtras());
         customizeUI();
     }
 
-    public void customizeUI() {
+    protected void customizeUI() {
+
+    }
+
+    protected void gatherArguments(Bundle bundle) {
 
     }
 
