@@ -13,15 +13,21 @@ import io.github.hanihashemi.podgir.model.Podcast;
  * Created by hani on 8/18/15.
  */
 @SuppressWarnings("deprecation")
-public class PodcastDetail extends BaseActivityWithSingleFragment {
+public class PodcastDetailActivity extends BaseActivityWithSingleFragment {
 
     public static final String ARG_PODCAST = "podcast";
     private Podcast podcast;
 
     public static Intent getIntent(Context context, Podcast podcast) {
-        Intent intent = new Intent(context, PodcastDetail.class);
+        Intent intent = new Intent(context, PodcastDetailActivity.class);
         intent.putExtra(ARG_PODCAST, podcast);
         return intent;
+    }
+
+    @Override
+    public void customizeUI() {
+        super.customizeUI();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

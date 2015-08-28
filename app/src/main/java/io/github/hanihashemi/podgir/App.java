@@ -1,11 +1,11 @@
 package io.github.hanihashemi.podgir;
 
-import android.app.Application;
 import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.orm.SugarApp;
 
 import io.github.hanihashemi.podgir.network.request.BaseRequest;
 import timber.log.Timber;
@@ -13,7 +13,7 @@ import timber.log.Timber;
 /**
  * Created by hani on 7/19/15.
  */
-public class App extends Application {
+public class App extends SugarApp {
 
     private static App app;
     RequestQueue requestQueue;
@@ -31,15 +31,6 @@ public class App extends Application {
             Timber.plant(new Timber.DebugTree());
         else
             Timber.plant(new CrashReportingTree());
-    }
-
-    private static class CrashReportingTree extends Timber.Tree {
-        @Override
-        protected void log(int priority, String tag, String message, Throwable t) {
-            if (priority == Log.VERBOSE || priority == Log.DEBUG) {
-                return;
-            }
-        }
     }
 
     public void addRequestToQueue(BaseRequest request, Object owner) {
@@ -67,6 +58,15 @@ public class App extends Application {
                 return request.getTag().equals(simpleName);
             }
         });
+    }
+
+    private static class CrashReportingTree extends Timber.Tree {
+        @Override
+        protected void log(int priority, String tag, String message, Throwable t) {
+            if (priority == Log.VERBOSE || priority == Log.DEBUG) {
+                return;
+            }
+        }
     }
 
 }

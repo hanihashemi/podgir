@@ -11,7 +11,7 @@ import io.github.hanihashemi.podgir.network.request.GsonListRequest;
 /**
  * Created by hani on 8/18/15.
  */
-public class Podcast extends BaseModel implements Parcelable {
+public class Podcast extends BaseModel<Podcast> implements Parcelable {
     public static final Creator<Podcast> CREATOR = new Creator<Podcast>() {
         public Podcast createFromParcel(Parcel source) {
             return new Podcast(source);

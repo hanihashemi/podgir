@@ -11,7 +11,8 @@ import java.net.URLConnection;
 
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
-import timber.log.Timber;
+import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Podcast;
 
 /**
  * Created by hani on 8/27/15.
@@ -21,12 +22,12 @@ public class DownloadFile extends AsyncTask<String, Long, Boolean> {
     private static final int CONNECT_TIMEOUT = 8000;
     private static final int READ_TIMEOUT = 8000;
     private Notification notification;
-    private String podcastId;
-    private String feedId;
+    private Podcast podcast;
+    private Feed feed;
 
-    public DownloadFile(String podcastId, String feedId) {
-        this.feedId = feedId;
-        this.podcastId = podcastId;
+    public DownloadFile(Podcast podcast, Feed feed) {
+        this.feed = feed;
+        this.podcast = podcast;
     }
 
     @Override
@@ -40,7 +41,7 @@ public class DownloadFile extends AsyncTask<String, Long, Boolean> {
 
             int totalBytesFile = connection.getContentLength();
             InputStream input = new BufferedInputStream(url.openStream(), 4096);
-            String outputFile = Directory.getInstance().getNewFile(podcastId, feedId).getAbsolutePath();
+            String outputFile = Directory.getInstance().getNewFile(podcast.getObjectId(), feed.getObjectId()).getAbsolutePath();
             OutputStream output = new FileOutputStream(outputFile);
 
             byte data[] = new byte[4096];
@@ -52,12 +53,9 @@ public class DownloadFile extends AsyncTask<String, Long, Boolean> {
                 totalBytesWrite += count;
                 output.write(data, 0, count);
 
-                Timber.d("update notification:%s", updateNotification);
-
-                if (updateNotification == 2500) {
-                    Timber.d("update notification ===========");
-                    onProgressUpdate(totalBytesWrite, (long) totalBytesFile);
-                    updateNotification = 0;
+                if (updateNotification == 50 || updateNotification == 0) {
+                    onProgressUpdate((long) totalBytesFile, totalBytesWrite);
+                    updateNotification = 1;
                 } else {
                     updateNotification++;
                 }
@@ -79,16 +77,19 @@ public class DownloadFile extends AsyncTask<String, Long, Boolean> {
         super.onPreExecute();
         notification = new Notification();
         notification.show(String.format(App.getInstance().getApplicationContext().getString(R.string.notification_download_title)
-                , podcastId, feedId), App.getInstance().getApplicationContext().getString(R.string.notification_download_text));
+                , podcast.getName(), feed.getTitle()), App.getInstance().getApplicationContext().getString(R.string.notification_download_text));
     }
 
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
-        if (result)
+        if (result) {
             notification.complete();
-        else
+            feed.save();
+            podcast.save();
+        } else {
             notification.failed();
+        }
     }
 
     @Override

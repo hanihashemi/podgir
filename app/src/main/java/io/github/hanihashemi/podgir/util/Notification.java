@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 
 import io.github.hanihashemi.podgir.App;
+import timber.log.Timber;
 
 /**
  * Created by hani on 8/27/15.
@@ -28,6 +29,7 @@ public class Notification {
     }
 
     public void updateProgress(int percent) {
+        Timber.d("percent: %s", percent);
         builder.setProgress(100, percent, false);
         fire();
     }

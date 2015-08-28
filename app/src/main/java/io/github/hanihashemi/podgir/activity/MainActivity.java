@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import io.github.hanihashemi.podgir.base.BaseActivity;
 import io.github.hanihashemi.podgir.fragment.NavigationDrawerFragment;
 import io.github.hanihashemi.podgir.fragment.PodcastsFragment;
-import io.github.hanihashemi.podgir.util.Directory;
 
 public class MainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {

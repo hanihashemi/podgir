@@ -38,7 +38,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         @Override
         public void onDownload(int position) {
             Feed feed = feeds.get(position - 1);
-            new DownloadFile(podcast.getObjectId(), feed.getObjectId()).execute(feed.getUrl());
+            new DownloadFile(podcast, feed).execute(feed.getUrl());
         }
     };
 
@@ -82,12 +82,11 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         feeds.addAll(response.getFeeds());
 
         checkIsFileDownloaded();
-
         adapter.notifyDataSetChanged();
     }
 
     private void checkIsFileDownloaded() {
         for (Feed feed : feeds)
-            feed.setDownloaded(Directory.getInstance().isFileThere(podcast.getObjectId(), feed.getObjectId()));
+            feed.setDownloaded(Feed.find(Feed.class, "OBJECT_ID=?", feed.getObjectId()) != null && Directory.getInstance().isFileThere(podcast.getObjectId(), feed.getObjectId()));
     }
 }

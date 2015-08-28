@@ -2,18 +2,20 @@ package io.github.hanihashemi.podgir.model;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.orm.dsl.Ignore;
 
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
 
 /**
  * Created by hani on 8/21/15.
  */
-public class Feed extends BaseModel {
+public class Feed extends BaseModel<Feed> {
     private String objectId;
     private String parent;
     private String title;
     private String url;
     private String summary;
+    @Ignore
     private boolean downloaded;
 
     public GsonRequest<FeedResultResponse> findAll(String parent, Response.Listener<FeedResultResponse> onSuccess, Response.ErrorListener onFailed) {

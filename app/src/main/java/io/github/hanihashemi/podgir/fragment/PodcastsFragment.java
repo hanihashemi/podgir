@@ -11,7 +11,7 @@ import java.util.List;
 import butterknife.Bind;
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.activity.PodcastDetail;
+import io.github.hanihashemi.podgir.activity.PodcastDetailActivity;
 import io.github.hanihashemi.podgir.adapter.PodcastsRecyclerView;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastViewHolder;
 import io.github.hanihashemi.podgir.base.BaseFragment;
@@ -61,6 +61,6 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
 
     @Override
     public void onImageView(int position) {
-        startActivity(PodcastDetail.getIntent(getActivity(), podcasts.get(position)));
+        startActivity(PodcastDetailActivity.getIntent(getActivity(), podcasts.get(position)));
     }
 }
