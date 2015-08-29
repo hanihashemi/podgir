@@ -11,7 +11,7 @@ import io.github.hanihashemi.podgir.base.BaseViewHolder;
 /**
  * Created by hani on 8/25/15.
  */
-public class FeedViewHolder extends BaseViewHolder {
+public class FeedInPodcastDetailViewHolder extends BaseViewHolder {
     @Bind(R.id.name)
     public TextView name;
     @Bind(R.id.button)
@@ -19,7 +19,7 @@ public class FeedViewHolder extends BaseViewHolder {
 
     private OnClick onClick;
 
-    public FeedViewHolder(View itemView, OnClick onClick) {
+    public FeedInPodcastDetailViewHolder(View itemView, OnClick onClick) {
         super(itemView);
         this.onClick = onClick;
     }

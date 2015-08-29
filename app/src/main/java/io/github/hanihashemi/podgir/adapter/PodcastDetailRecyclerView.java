@@ -8,7 +8,7 @@ import java.util.List;
 
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.adapter.viewholder.FeedViewHolder;
+import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.model.Feed;
 import io.github.hanihashemi.podgir.model.Podcast;
@@ -22,9 +22,9 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
     private static final int VIEW_HOLDER_FEEDS = 1;
     private Podcast podcast;
     private List<Feed> feeds;
-    private FeedViewHolder.OnClick feedOnClick;
+    private FeedInPodcastDetailViewHolder.OnClick feedOnClick;
 
-    public PodcastDetailRecyclerView(Podcast podcast, List<Feed> feeds, FeedViewHolder.OnClick feedOnClick) {
+    public PodcastDetailRecyclerView(Podcast podcast, List<Feed> feeds, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
         this.podcast = podcast;
         this.feeds = feeds;
         this.feedOnClick = feedOnClick;
@@ -34,7 +34,7 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_HOLDER_FEEDS:
-                return new FeedViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder_feed, parent, false), feedOnClick);
+                return new FeedInPodcastDetailViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder_feed_in_podcast_detail, parent, false), feedOnClick);
             case VIEW_HOLDER_PODCAST_DETAIL:
                 return new PodcastDetailViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder_podcast_detail, parent, false));
         }
@@ -49,7 +49,7 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
                 podcastHolder.name.setText(podcast.getName());
                 break;
             case VIEW_HOLDER_FEEDS:
-                FeedViewHolder feedHolder = (FeedViewHolder) holder;
+                FeedInPodcastDetailViewHolder feedHolder = (FeedInPodcastDetailViewHolder) holder;
                 Feed feed = feeds.get(position - 1);
                 feedHolder.name.setText(feed.getTitle());
                 feedHolder.download.setText(feed.isDownloaded() ? App.getInstance().getString(R.string.podcast_detail_feed_downloaded) : App.getInstance().getString(R.string.podcast_detail_feed_not_download));

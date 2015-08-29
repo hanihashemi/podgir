@@ -6,7 +6,9 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseActivity;
+import io.github.hanihashemi.podgir.fragment.DownloadedFragment;
 import io.github.hanihashemi.podgir.fragment.NavigationDrawerFragment;
 import io.github.hanihashemi.podgir.fragment.PodcastsFragment;
 
@@ -44,6 +46,10 @@ public class MainActivity extends BaseActivity
                         .replace(io.github.hanihashemi.podgir.R.id.container, new PodcastsFragment())
                         .commit();
                 break;
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, new DownloadedFragment())
+                        .commit();
         }
     }
 

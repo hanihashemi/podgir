@@ -13,7 +13,7 @@ import butterknife.Bind;
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.adapter.PodcastDetailRecyclerView;
-import io.github.hanihashemi.podgir.adapter.viewholder.FeedViewHolder;
+import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.base.BaseFragment;
 import io.github.hanihashemi.podgir.model.Feed;
 import io.github.hanihashemi.podgir.model.FeedResultResponse;
@@ -34,7 +34,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     private Podcast podcast;
     private List<Feed> feeds;
 
-    private FeedViewHolder.OnClick feedOnClick = new FeedViewHolder.OnClick() {
+    private FeedInPodcastDetailViewHolder.OnClick feedOnClick = new FeedInPodcastDetailViewHolder.OnClick() {
         @Override
         public void onDownload(int position) {
             Feed feed = feeds.get(position - 1);
@@ -52,7 +52,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_podcast_detail;
+        return R.layout.fragment_recycler;
     }
 
     @Override
