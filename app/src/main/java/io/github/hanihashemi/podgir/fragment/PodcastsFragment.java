@@ -30,7 +30,7 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_podcasts;
+        return R.layout.fragment_recycler;
     }
 
     @Override

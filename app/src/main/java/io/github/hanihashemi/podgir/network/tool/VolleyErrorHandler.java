@@ -19,8 +19,8 @@ import timber.log.Timber;
  * Created by hani on 8/21/15.
  */
 public class VolleyErrorHandler {
-    ArrayList<ErrorModel> showingErrors = new ArrayList<>();
     private static VolleyErrorHandler volleyErrorHandler;
+    ArrayList<ErrorModel> showingErrors = new ArrayList<>();
 
     public static VolleyErrorHandler getInstance() {
         if (volleyErrorHandler == null)

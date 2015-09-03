@@ -38,7 +38,12 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         @Override
         public void onDownload(int position) {
             Feed feed = feeds.get(position - 1);
-            new DownloadFile(podcast, feed).execute(feed.getUrl());
+
+            if (!feed.isDownloaded())
+                new DownloadFile(podcast, feed).execute(feed.getUrl());
+            else {
+
+            }
         }
     };
 

@@ -21,11 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.List;
-
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.model.Feed;
-import timber.log.Timber;
+import io.github.hanihashemi.podgir.activity.PlayerActivity;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -252,9 +249,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == io.github.hanihashemi.podgir.R.id.action_example) {
-            List<Feed> feeds = Feed.find(Feed.class, "OBJECT_ID=?", "3XcPPiSfP8");
-            Timber.d(feeds.size() + "");
-            Timber.d(feeds.get(0).getTitle());
+            startActivity(PlayerActivity.getIntent(getActivity()));
             return true;
         }
 
