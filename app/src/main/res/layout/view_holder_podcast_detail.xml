@@ -10,8 +10,7 @@
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_image" />
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/name"

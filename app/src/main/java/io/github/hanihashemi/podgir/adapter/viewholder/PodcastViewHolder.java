@@ -13,7 +13,7 @@ import io.github.hanihashemi.podgir.base.BaseViewHolder;
 public class PodcastViewHolder extends BaseViewHolder {
 
     @Bind(R.id.imageView)
-    ImageView imageView;
+    public ImageView imageView;
 
     private OnClick onClick;
 

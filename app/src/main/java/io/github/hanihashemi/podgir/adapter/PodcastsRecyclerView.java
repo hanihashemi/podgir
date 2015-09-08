@@ -1,8 +1,11 @@
 package io.github.hanihashemi.podgir.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -17,10 +20,12 @@ public class PodcastsRecyclerView extends RecyclerView.Adapter<PodcastViewHolder
 
     private List<Podcast> podcasts;
     private PodcastViewHolder.OnClick podcastOnClick;
+    private Context context;
 
-    public PodcastsRecyclerView(List<Podcast> podcasts, PodcastViewHolder.OnClick podcastOnClick) {
+    public PodcastsRecyclerView(Context context, List<Podcast> podcasts, PodcastViewHolder.OnClick podcastOnClick) {
         this.podcasts = podcasts;
         this.podcastOnClick = podcastOnClick;
+        this.context = context;
     }
 
     @Override
@@ -30,7 +35,9 @@ public class PodcastsRecyclerView extends RecyclerView.Adapter<PodcastViewHolder
 
     @Override
     public void onBindViewHolder(PodcastViewHolder holder, int position) {
-
+        Picasso picasso = Picasso.with(context);
+        picasso.setIndicatorsEnabled(true);
+        picasso.load(podcasts.get(position).getImageUrl()).into(holder.imageView);
     }
 
     @Override

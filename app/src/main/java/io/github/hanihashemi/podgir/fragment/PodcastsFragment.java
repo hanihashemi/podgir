@@ -51,7 +51,7 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
         recyclerView.setLayoutManager(layoutManager);
 
         podcasts = new ArrayList<>();
-        adapter = new PodcastsRecyclerView(podcasts, this);
+        adapter = new PodcastsRecyclerView(getActivity(), podcasts, this);
         recyclerView.setAdapter(adapter);
 
         fetchData();
