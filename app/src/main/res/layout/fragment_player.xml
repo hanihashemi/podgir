@@ -13,7 +13,7 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <Button
+        <io.github.hanihashemi.podgir.widget.AppButton
             android:id="@+id/back_15"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
@@ -22,7 +22,7 @@
             android:background="@drawable/button_back_15"
             android:text="15 Back" />
 
-        <Button
+        <io.github.hanihashemi.podgir.widget.AppButton
             android:id="@+id/play"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
@@ -41,7 +41,7 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="64dp" />
 
-    <TextView
+    <io.github.hanihashemi.podgir.widget.AppTextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:text="01:12/05:15"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
+    <io.github.hanihashemi.podgir.widget.AppTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         android:text="Dar kenare gol neshastan ha"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
+    <io.github.hanihashemi.podgir.widget.AppTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,12 +73,13 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/player_feed_image" />
 
 </RelativeLayout>

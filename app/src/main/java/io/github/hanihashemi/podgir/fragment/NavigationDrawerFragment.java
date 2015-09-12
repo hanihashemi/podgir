@@ -249,7 +249,6 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == io.github.hanihashemi.podgir.R.id.action_example) {
-            startActivity(PlayerActivity.getIntent(getActivity()));
             return true;
         }
 

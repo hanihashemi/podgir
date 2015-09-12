@@ -61,6 +61,8 @@ public class DownloadFile extends AsyncTask<String, Long, Boolean> {
                 }
             }
 
+            onProgressUpdate(100L, 100L);
+
             output.flush();
             output.close();
             input.close();

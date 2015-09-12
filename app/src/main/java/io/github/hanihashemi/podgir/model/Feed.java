@@ -7,21 +7,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.orm.dsl.Ignore;
 
+import java.util.List;
+
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
 
 /**
  * Created by hani on 8/21/15.
  */
 public class Feed extends BaseModel<Feed> implements Parcelable {
-    public static final Parcelable.Creator<Feed> CREATOR = new Parcelable.Creator<Feed>() {
-        public Feed createFromParcel(Parcel source) {
-            return new Feed(source);
-        }
-
-        public Feed[] newArray(int size) {
-            return new Feed[size];
-        }
-    };
     private String objectId;
     private String parent;
     private String title;
@@ -33,16 +26,20 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
     public Feed() {
     }
 
-    protected Feed(Parcel in) {
-        this.objectId = in.readString();
-        this.parent = in.readString();
-        this.title = in.readString();
-        this.url = in.readString();
-        this.summary = in.readString();
-        this.downloaded = in.readByte() != 0;
+    public String getPodcastName() {
+        List<Podcast> podcasts = Podcast.find(Podcast.class, "OBJECT_ID=?", parent);
+        if (podcasts != null && podcasts.size() == 1)
+            return podcasts.get(0).getName();
+        return "";
     }
 
-    public GsonRequest<FeedResultResponse> findAll(String parent, Response.Listener<FeedResultResponse> onSuccess, Response.ErrorListener onFailed) {
+    public boolean isThereInDB() {
+        List<Feed> feeds = Feed.find(Feed.class, "OBJECT_ID=?", objectId);
+        setDownloaded(feeds != null && feeds.size() > 0);
+        return isDownloaded();
+    }
+
+    public GsonRequest<FeedResultResponse> remoteFindAll(String parent, Response.Listener<FeedResultResponse> onSuccess, Response.ErrorListener onFailed) {
         String argument = "{\"parent\":\"" + parent + "\"}";
 
         return new GsonRequest<>(
@@ -118,4 +115,23 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
         dest.writeString(this.summary);
         dest.writeByte(downloaded ? (byte) 1 : (byte) 0);
     }
+
+    protected Feed(Parcel in) {
+        this.objectId = in.readString();
+        this.parent = in.readString();
+        this.title = in.readString();
+        this.url = in.readString();
+        this.summary = in.readString();
+        this.downloaded = in.readByte() != 0;
+    }
+
+    public static final Creator<Feed> CREATOR = new Creator<Feed>() {
+        public Feed createFromParcel(Parcel source) {
+            return new Feed(source);
+        }
+
+        public Feed[] newArray(int size) {
+            return new Feed[size];
+        }
+    };
 }

@@ -1,6 +1,5 @@
 package io.github.hanihashemi.podgir.adapter.viewholder;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,10 +25,10 @@ public class FeedInDownloadedViewHolder extends BaseViewHolder {
 
     @butterknife.OnClick(R.id.button)
     protected void onPlay() {
-        onClick.onPlay();
+        onClick.onPlay(getPosition());
     }
 
     public interface OnClick {
-        void onPlay();
+        void onPlay(int position);
     }
 }

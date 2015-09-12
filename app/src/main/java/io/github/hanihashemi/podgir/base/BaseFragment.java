@@ -27,6 +27,12 @@ public abstract class BaseFragment extends Fragment implements Response.ErrorLis
         return view;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        gatherArguments(getArguments());
+    }
+
     protected void customizeUI() {
 
     }
@@ -42,5 +48,9 @@ public abstract class BaseFragment extends Fragment implements Response.ErrorLis
     public void onStop() {
         super.onStop();
         App.getInstance().cancelRequest(this);
+    }
+
+    protected void gatherArguments(Bundle bundle) {
+
     }
 }

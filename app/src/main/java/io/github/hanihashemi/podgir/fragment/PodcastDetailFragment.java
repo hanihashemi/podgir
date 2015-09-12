@@ -12,6 +12,7 @@ import java.util.List;
 import butterknife.Bind;
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
+import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.adapter.PodcastDetailRecyclerView;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.base.BaseFragment;
@@ -30,7 +31,6 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     @Bind(R.id.recycler_view)
     protected RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private Podcast podcast;
     private List<Feed> feeds;
 
@@ -39,10 +39,15 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         public void onDownload(int position) {
             Feed feed = feeds.get(position - 1);
 
-            if (!feed.isDownloaded())
-                new DownloadFile(podcast, feed).execute(feed.getUrl());
-            else {
-
+            if (!feed.isDownloaded()) {
+                if (Directory.getInstance().isFileThere(podcast.getObjectId(), feed.getObjectId())) {
+                    feed.save();
+                    feed.setDownloaded(true);
+                    adapter.notifyItemChanged(position);
+                } else
+                    new DownloadFile(podcast, feed).execute(feed.getUrl());
+            } else {
+                startActivity(PlayerActivity.getIntent(PodcastDetailFragment.this.getActivity(), feed));
             }
         }
     };
@@ -64,9 +69,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     protected void customizeUI() {
         super.customizeUI();
 
-        podcast = getArguments().getParcelable(ARG_PODCAST);
-
-        layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         feeds = new ArrayList<>();
@@ -77,7 +80,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     }
 
     private void fetchData() {
-        GsonRequest<FeedResultResponse> request = new Feed().findAll(podcast.getObjectId(), this, this);
+        GsonRequest<FeedResultResponse> request = new Feed().remoteFindAll(podcast.getObjectId(), this, this);
         App.getInstance().addRequestToQueue(request, this);
     }
 
@@ -92,6 +95,12 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
 
     private void checkIsFileDownloaded() {
         for (Feed feed : feeds)
-            feed.setDownloaded(Feed.find(Feed.class, "OBJECT_ID=?", feed.getObjectId()) != null && Directory.getInstance().isFileThere(podcast.getObjectId(), feed.getObjectId()));
+            feed.isThereInDB();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        podcast = getArguments().getParcelable(ARG_PODCAST);
     }
 }
