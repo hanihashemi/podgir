@@ -20,7 +20,6 @@ import io.github.hanihashemi.podgir.model.Feed;
 import io.github.hanihashemi.podgir.model.FeedResultResponse;
 import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
-import io.github.hanihashemi.podgir.util.Directory;
 import io.github.hanihashemi.podgir.util.DownloadFile;
 
 /**
@@ -40,12 +39,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
             Feed feed = feeds.get(position - 1);
 
             if (!feed.isDownloaded()) {
-                if (Directory.getInstance().isFileThere(podcast.getObjectId(), feed.getObjectId())) {
-                    feed.save();
-                    feed.setDownloaded(true);
-                    adapter.notifyItemChanged(position);
-                } else
-                    new DownloadFile(podcast, feed).execute(feed.getUrl());
+                new DownloadFile(podcast, feed).execute(feed.getUrl());
             } else {
                 startActivity(PlayerActivity.getIntent(PodcastDetailFragment.this.getActivity(), feed));
             }
@@ -95,7 +89,8 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
 
     private void checkIsFileDownloaded() {
         for (Feed feed : feeds)
-            feed.isThereInDB();
+            feed.setDownloaded(feed.isThere());
+
     }
 
     @Override

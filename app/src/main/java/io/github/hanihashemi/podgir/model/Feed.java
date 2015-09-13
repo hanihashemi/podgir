@@ -5,25 +5,42 @@ import android.os.Parcelable;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.orm.dsl.Ignore;
 
 import java.util.List;
 
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
+import io.github.hanihashemi.podgir.util.Directory;
 
 /**
  * Created by hani on 8/21/15.
  */
 public class Feed extends BaseModel<Feed> implements Parcelable {
+    public static final Creator<Feed> CREATOR = new Creator<Feed>() {
+        public Feed createFromParcel(Parcel source) {
+            return new Feed(source);
+        }
+
+        public Feed[] newArray(int size) {
+            return new Feed[size];
+        }
+    };
     private String objectId;
     private String parent;
     private String title;
     private String url;
     private String summary;
-    @Ignore
     private boolean downloaded;
 
     public Feed() {
+    }
+
+    protected Feed(Parcel in) {
+        this.objectId = in.readString();
+        this.parent = in.readString();
+        this.title = in.readString();
+        this.url = in.readString();
+        this.summary = in.readString();
+        this.downloaded = in.readByte() != 0;
     }
 
     public String getPodcastName() {
@@ -33,10 +50,25 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
         return "";
     }
 
-    public boolean isThereInDB() {
+    private Feed getObjectDB() {
         List<Feed> feeds = Feed.find(Feed.class, "OBJECT_ID=?", objectId);
-        setDownloaded(feeds != null && feeds.size() > 0);
-        return isDownloaded();
+        return feeds != null && feeds.size() == 1 ? feeds.get(0) : null;
+    }
+
+    private boolean isThereFile() {
+        return Directory.getInstance().isFileThere(parent, getObjectId());
+    }
+
+    public boolean isThere() {
+        Feed feedDB = getObjectDB();
+
+        if (isThereFile()) {
+            if (feedDB == null)
+                this.save();
+            return true;
+        } else if (feedDB != null)
+            feedDB.delete();
+        return false;
     }
 
     public GsonRequest<FeedResultResponse> remoteFindAll(String parent, Response.Listener<FeedResultResponse> onSuccess, Response.ErrorListener onFailed) {
@@ -115,23 +147,4 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
         dest.writeString(this.summary);
         dest.writeByte(downloaded ? (byte) 1 : (byte) 0);
     }
-
-    protected Feed(Parcel in) {
-        this.objectId = in.readString();
-        this.parent = in.readString();
-        this.title = in.readString();
-        this.url = in.readString();
-        this.summary = in.readString();
-        this.downloaded = in.readByte() != 0;
-    }
-
-    public static final Creator<Feed> CREATOR = new Creator<Feed>() {
-        public Feed createFromParcel(Parcel source) {
-            return new Feed(source);
-        }
-
-        public Feed[] newArray(int size) {
-            return new Feed[size];
-        }
-    };
 }
