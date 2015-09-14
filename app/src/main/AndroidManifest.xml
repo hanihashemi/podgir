@@ -44,9 +44,11 @@
             android:name=".activity.PodcastDetailActivity"
             android:parentActivityName=".activity.MainActivity" />
 
-        <activity
-            android:name=".activity.PlayerActivity"
-            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.PlayerActivity" />
+
+        <service
+            android:name=".service.MediaPlayerService"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -3,9 +3,11 @@ package io.github.hanihashemi.podgir.fragment;
 import android.os.Bundle;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseFragment;
 import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.service.MediaPlayerService;
 import io.github.hanihashemi.podgir.widget.AppTextView;
 
 /**
@@ -44,5 +46,10 @@ public class PlayerFragment extends BaseFragment {
         super.customizeUI();
         name.setText(feed.getPodcastName());
         title.setText(feed.getTitle());
+    }
+
+    @OnClick(R.id.play)
+    protected void onClickedPlay() {
+        getActivity().startService(MediaPlayerService.getIntent(getActivity(), feed));
     }
 }

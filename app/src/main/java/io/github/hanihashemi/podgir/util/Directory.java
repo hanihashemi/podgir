@@ -21,7 +21,7 @@ public class Directory {
     }
 
     public File getNewFile(String directory, String fileName) {
-        getPodgirDir();
+        getRootDir();
 
         File podcastDir = new File(podgirDir.getAbsolutePath(), directory);
         if (!podcastDir.exists())
@@ -32,14 +32,14 @@ public class Directory {
         return file;
     }
 
-    public boolean isFileThere(String directory, String fileName) {
-        getPodgirDir();
+    public File getFile(String directory, String fileName) {
+        getRootDir();
 
         File podcastDir = new File(podgirDir.getAbsolutePath(), directory);
-        return new File(podcastDir.getAbsolutePath(), fileName).exists();
+        return new File(podcastDir.getAbsolutePath(), fileName);
     }
 
-    private void getPodgirDir() {
+    private void getRootDir() {
         if (podgirDir == null) {
             File sdDir = Environment.getExternalStorageDirectory();
             podgirDir = new File(sdDir.getAbsolutePath(), BASE_DIRECTORY);

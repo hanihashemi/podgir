@@ -5,7 +5,9 @@ import android.os.Parcelable;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.orm.dsl.Ignore;
 
+import java.io.File;
 import java.util.List;
 
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
@@ -29,6 +31,7 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
     private String title;
     private String url;
     private String summary;
+    @Ignore
     private boolean downloaded;
 
     public Feed() {
@@ -55,8 +58,16 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
         return feeds != null && feeds.size() == 1 ? feeds.get(0) : null;
     }
 
+    private File getFile() {
+        return Directory.getInstance().getFile(parent, getObjectId());
+    }
+
     private boolean isThereFile() {
-        return Directory.getInstance().isFileThere(parent, getObjectId());
+        return getFile().exists();
+    }
+
+    public String getFilePath() {
+        return getFile().getAbsolutePath();
     }
 
     public boolean isThere() {

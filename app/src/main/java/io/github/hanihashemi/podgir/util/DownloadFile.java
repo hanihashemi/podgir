@@ -13,13 +13,14 @@ import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.model.Feed;
 import io.github.hanihashemi.podgir.model.Podcast;
+import timber.log.Timber;
 
 /**
  * Created by hani on 8/27/15.
  */
 public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
 
-    private Notification notification;
+    private NotificationUtils notificationUtils;
     private Podcast podcast;
     private Feed feed;
 
@@ -62,26 +63,26 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        notification = new Notification();
-        notification.show(String.format(App.getInstance().getApplicationContext().getString(R.string.notification_download_title)
-                , podcast.getName(), feed.getTitle()), App.getInstance().getApplicationContext().getString(R.string.notification_download_text));
+        notificationUtils = new NotificationUtils(120);
+        notificationUtils.initProgress(String.format(App.getInstance().getApplicationContext().getString(R.string.notification_download_title), podcast.getName(), feed.getTitle()), App.getInstance().getApplicationContext().getString(R.string.notification_download_text));
     }
 
     @Override
     protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         if (result) {
-            notification.complete();
+            notificationUtils.completeProgress();
             feed.save();
             podcast.save();
         } else {
-            notification.failed();
+            notificationUtils.failedProgress();
         }
     }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
-        notification.updateProgress(values[0]);
+        Timber.d(values[0] + "");
+        notificationUtils.updateProgress(values[0]);
     }
 }

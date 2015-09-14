@@ -250,7 +250,6 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == io.github.hanihashemi.podgir.R.id.action_example) {
-            getActivity().startService(MediaPlayerService.getIntent(getActivity()));
             return true;
         }
 
