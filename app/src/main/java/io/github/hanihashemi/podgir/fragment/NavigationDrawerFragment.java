@@ -11,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.activity.PlayerActivity;
+import io.github.hanihashemi.podgir.service.MediaPlayerService;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -249,6 +250,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == io.github.hanihashemi.podgir.R.id.action_example) {
+            getActivity().startService(MediaPlayerService.getIntent(getActivity()));
             return true;
         }
 
@@ -267,7 +269,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private ActionBar getActionBar() {
-        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     /**
