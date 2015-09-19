@@ -12,7 +12,7 @@ import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.adapter.DownloadedRecyclerView;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInDownloadedViewHolder;
 import io.github.hanihashemi.podgir.base.BaseFragment;
-import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Episode;
 
 /**
  * Created by hani on 8/28/15.
@@ -22,11 +22,11 @@ public class DownloadedFragment extends BaseFragment {
     @Bind(R.id.recycler_view)
     protected RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<Feed> feeds;
+    private List<Episode> episodes;
     FeedInDownloadedViewHolder.OnClick feedOnClick = new FeedInDownloadedViewHolder.OnClick() {
         @Override
         public void onPlay(int position) {
-            startActivity(PlayerActivity.getIntent(DownloadedFragment.this.getActivity(), feeds.get(position)));
+            startActivity(PlayerActivity.getIntent(DownloadedFragment.this.getActivity(), episodes.get(position)));
         }
     };
 
@@ -37,8 +37,8 @@ public class DownloadedFragment extends BaseFragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        feeds = new ArrayList<>();
-        adapter = new DownloadedRecyclerView(feeds, feedOnClick);
+        episodes = new ArrayList<>();
+        adapter = new DownloadedRecyclerView(episodes, feedOnClick);
         recyclerView.setAdapter(adapter);
 
         fetchData();
@@ -50,7 +50,7 @@ public class DownloadedFragment extends BaseFragment {
     }
 
     private void fetchData() {
-        feeds.addAll(Feed.listAll(Feed.class));
+        episodes.addAll(Episode.listAll(Episode.class));
         adapter.notifyDataSetChanged();
     }
 }

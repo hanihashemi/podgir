@@ -11,7 +11,7 @@ import java.net.URLConnection;
 
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.model.Podcast;
 import timber.log.Timber;
 
@@ -22,10 +22,10 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
 
     private NotificationUtils notificationUtils;
     private Podcast podcast;
-    private Feed feed;
+    private Episode episode;
 
-    public DownloadFile(Podcast podcast, Feed feed) {
-        this.feed = feed;
+    public DownloadFile(Podcast podcast, Episode episode) {
+        this.episode = episode;
         this.podcast = podcast;
     }
 
@@ -38,7 +38,7 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
 
             int lenghtOfFile = conection.getContentLength();
             InputStream input = new BufferedInputStream(url.openStream(), 8192);
-            OutputStream output = new FileOutputStream(Directory.getInstance().getNewFile(podcast.getObjectId(), feed.getObjectId()).getAbsolutePath());
+            OutputStream output = new FileOutputStream(Directory.getInstance().getNewFile(podcast.getObjectId(), episode.getObjectId()).getAbsolutePath());
 
             byte data[] = new byte[1024];
             long total = 0;
@@ -64,7 +64,7 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
     protected void onPreExecute() {
         super.onPreExecute();
         notificationUtils = new NotificationUtils(120);
-        notificationUtils.initProgress(String.format(App.getInstance().getApplicationContext().getString(R.string.notification_download_title), podcast.getName(), feed.getTitle()), App.getInstance().getApplicationContext().getString(R.string.notification_download_text));
+        notificationUtils.initProgress(String.format(App.getInstance().getApplicationContext().getString(R.string.notification_download_title), podcast.getName(), episode.getTitle()), App.getInstance().getApplicationContext().getString(R.string.notification_download_text));
     }
 
     @Override
@@ -72,7 +72,7 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
         super.onPostExecute(result);
         if (result) {
             notificationUtils.completeProgress();
-            feed.save();
+            episode.save();
             podcast.save();
         } else {
             notificationUtils.failedProgress();

@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.activity.PlayerActivity;
-import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.util.NotificationUtils;
 
 /**
@@ -23,16 +23,16 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
     private static final String ARG_FEED = "feed_model";
     private MediaPlayer mediaPlayer;
 
-    public static Intent getIntent(Context context, Feed feed) {
+    public static Intent getIntent(Context context, Episode episode) {
         Intent intent = new Intent(context, MediaPlayerService.class);
-        intent.putExtra(ARG_FEED, feed);
+        intent.putExtra(ARG_FEED, episode);
         return intent;
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Feed feed = intent.getExtras().getParcelable(ARG_FEED);
+        Episode episode = intent.getExtras().getParcelable(ARG_FEED);
 
-        Uri myUri = Uri.parse(feed.getFilePath());
+        Uri myUri = Uri.parse(episode.getFilePath());
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {

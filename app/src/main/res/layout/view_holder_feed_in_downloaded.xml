@@ -23,7 +23,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/feed"
+            android:id="@+id/episode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"

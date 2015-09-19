@@ -14,7 +14,7 @@ public class FeedInDownloadedViewHolder extends BaseViewHolder {
 
     @Bind(R.id.name)
     public TextView name;
-    @Bind(R.id.feed)
+    @Bind(R.id.episode)
     public TextView feed;
     private OnClick onClick;
 

@@ -16,14 +16,14 @@ import io.github.hanihashemi.podgir.util.Directory;
 /**
  * Created by hani on 8/21/15.
  */
-public class Feed extends BaseModel<Feed> implements Parcelable {
-    public static final Creator<Feed> CREATOR = new Creator<Feed>() {
-        public Feed createFromParcel(Parcel source) {
-            return new Feed(source);
+public class Episode extends BaseModel<Episode> implements Parcelable {
+    public static final Creator<Episode> CREATOR = new Creator<Episode>() {
+        public Episode createFromParcel(Parcel source) {
+            return new Episode(source);
         }
 
-        public Feed[] newArray(int size) {
-            return new Feed[size];
+        public Episode[] newArray(int size) {
+            return new Episode[size];
         }
     };
     private String objectId;
@@ -34,10 +34,10 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
     @Ignore
     private boolean downloaded;
 
-    public Feed() {
+    public Episode() {
     }
 
-    protected Feed(Parcel in) {
+    protected Episode(Parcel in) {
         this.objectId = in.readString();
         this.parent = in.readString();
         this.title = in.readString();
@@ -53,9 +53,9 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
         return "";
     }
 
-    private Feed getObjectDB() {
-        List<Feed> feeds = Feed.find(Feed.class, "OBJECT_ID=?", objectId);
-        return feeds != null && feeds.size() == 1 ? feeds.get(0) : null;
+    private Episode getObjectDB() {
+        List<Episode> episodes = Episode.find(Episode.class, "OBJECT_ID=?", objectId);
+        return episodes != null && episodes.size() == 1 ? episodes.get(0) : null;
     }
 
     private File getFile() {
@@ -71,14 +71,14 @@ public class Feed extends BaseModel<Feed> implements Parcelable {
     }
 
     public boolean isThere() {
-        Feed feedDB = getObjectDB();
+        Episode episodeDB = getObjectDB();
 
         if (isThereFile()) {
-            if (feedDB == null)
+            if (episodeDB == null)
                 this.save();
             return true;
-        } else if (feedDB != null)
-            feedDB.delete();
+        } else if (episodeDB != null)
+            episodeDB.delete();
         return false;
     }
 

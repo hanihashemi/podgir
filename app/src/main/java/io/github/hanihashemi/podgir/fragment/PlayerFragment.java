@@ -12,7 +12,7 @@ import butterknife.Bind;
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseFragment;
-import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.widget.AppPlayButton;
 import io.github.hanihashemi.podgir.widget.AppTextView;
 import timber.log.Timber;
@@ -22,7 +22,7 @@ import timber.log.Timber;
  */
 public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayListener {
 
-    public static final String ARG_FEED = "feed";
+    public static final String ARG_FEED = "episode";
     @Bind(R.id.name)
     AppTextView name;
     @Bind(R.id.title)
@@ -32,12 +32,12 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     @Bind(R.id.back_ten_seconds)
     ImageButton backTenSeconds;
 
-    private Feed feed;
+    private Episode episode;
 
 
-    public static PlayerFragment getInstance(Feed feed) {
+    public static PlayerFragment getInstance(Episode episode) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(ARG_FEED, feed);
+        bundle.putParcelable(ARG_FEED, episode);
         PlayerFragment playerFragment = new PlayerFragment();
         playerFragment.setArguments(bundle);
         return playerFragment;
@@ -46,7 +46,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     @Override
     protected void gatherArguments(Bundle bundle) {
         super.gatherArguments(bundle);
-        feed = bundle.getParcelable(ARG_FEED);
+        episode = bundle.getParcelable(ARG_FEED);
     }
 
     @Override
@@ -58,15 +58,15 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     protected void customizeUI() {
         super.customizeUI();
         setRetainInstance(true);
-        name.setText(feed.getPodcastName());
-        title.setText(feed.getTitle());
+        name.setText(episode.getPodcastName());
+        title.setText(episode.getTitle());
         play.setPlayListener(this);
         backTenSeconds.setImageDrawable(new IconicsDrawable(getContext()).icon(GoogleMaterial.Icon.gmd_replay_10)
                 .color(Color.WHITE)
                 .sizeDp(50));
     }
 
-//        getActivity().startService(MediaPlayerService.getIntent(getActivity(), feed));
+//        getActivity().startService(MediaPlayerService.getIntent(getActivity(), episode));
 
     @Override
     public void onResume() {

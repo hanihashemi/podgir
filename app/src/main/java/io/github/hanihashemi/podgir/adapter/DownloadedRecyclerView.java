@@ -8,7 +8,7 @@ import java.util.List;
 
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInDownloadedViewHolder;
-import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Episode;
 
 /**
  * Created by hani on 8/28/15.
@@ -16,11 +16,11 @@ import io.github.hanihashemi.podgir.model.Feed;
 public class DownloadedRecyclerView extends RecyclerView.Adapter<FeedInDownloadedViewHolder> {
 
     private FeedInDownloadedViewHolder.OnClick feedOnClick;
-    private List<Feed> feeds;
+    private List<Episode> episodes;
 
-    public DownloadedRecyclerView(List<Feed> feeds, FeedInDownloadedViewHolder.OnClick feedOnClick) {
+    public DownloadedRecyclerView(List<Episode> episodes, FeedInDownloadedViewHolder.OnClick feedOnClick) {
         this.feedOnClick = feedOnClick;
-        this.feeds = feeds;
+        this.episodes = episodes;
     }
 
     @Override
@@ -30,13 +30,13 @@ public class DownloadedRecyclerView extends RecyclerView.Adapter<FeedInDownloade
 
     @Override
     public void onBindViewHolder(FeedInDownloadedViewHolder holder, int position) {
-        Feed feed = feeds.get(position);
-        holder.name.setText(feed.getTitle() != null ? feed.getTitle() : "");
-        holder.feed.setText(feed.getSummary() != null ? feed.getSummary() : "");
+        Episode episode = episodes.get(position);
+        holder.name.setText(episode.getTitle() != null ? episode.getTitle() : "");
+        holder.feed.setText(episode.getSummary() != null ? episode.getSummary() : "");
     }
 
     @Override
     public int getItemCount() {
-        return feeds.size();
+        return episodes.size();
     }
 }

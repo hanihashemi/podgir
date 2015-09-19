@@ -16,7 +16,7 @@ import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.adapter.PodcastDetailRecyclerView;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.base.BaseFragment;
-import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.model.FeedResultResponse;
 import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
@@ -31,17 +31,17 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     protected RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private Podcast podcast;
-    private List<Feed> feeds;
+    private List<Episode> episodes;
 
     private FeedInPodcastDetailViewHolder.OnClick feedOnClick = new FeedInPodcastDetailViewHolder.OnClick() {
         @Override
         public void onDownload(int position) {
-            Feed feed = feeds.get(position - 1);
+            Episode episode = episodes.get(position - 1);
 
-            if (!feed.isDownloaded()) {
-                new DownloadFile(podcast, feed).execute(feed.getUrl());
+            if (!episode.isDownloaded()) {
+                new DownloadFile(podcast, episode).execute(episode.getUrl());
             } else {
-                startActivity(PlayerActivity.getIntent(PodcastDetailFragment.this.getActivity(), feed));
+                startActivity(PlayerActivity.getIntent(PodcastDetailFragment.this.getActivity(), episode));
             }
         }
     };
@@ -66,30 +66,30 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        feeds = new ArrayList<>();
-        adapter = new PodcastDetailRecyclerView(podcast, feeds, feedOnClick);
+        episodes = new ArrayList<>();
+        adapter = new PodcastDetailRecyclerView(podcast, episodes, feedOnClick);
         recyclerView.setAdapter(adapter);
 
         fetchData();
     }
 
     private void fetchData() {
-        GsonRequest<FeedResultResponse> request = new Feed().remoteFindAll(podcast.getObjectId(), this, this);
+        GsonRequest<FeedResultResponse> request = new Episode().remoteFindAll(podcast.getObjectId(), this, this);
         App.getInstance().addRequestToQueue(request, this);
     }
 
     @Override
     public void onResponse(FeedResultResponse response) {
-        feeds.clear();
-        feeds.addAll(response.getFeeds());
+        episodes.clear();
+        episodes.addAll(response.getEpisodes());
 
         checkIsFileDownloaded();
         adapter.notifyDataSetChanged();
     }
 
     private void checkIsFileDownloaded() {
-        for (Feed feed : feeds)
-            feed.setDownloaded(feed.isThere());
+        for (Episode episode : episodes)
+            episode.setDownloaded(episode.isThere());
 
     }
 

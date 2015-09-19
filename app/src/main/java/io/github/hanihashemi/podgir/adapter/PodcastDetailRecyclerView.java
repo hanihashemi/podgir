@@ -10,7 +10,7 @@ import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastDetailViewHolder;
-import io.github.hanihashemi.podgir.model.Feed;
+import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.model.Podcast;
 
 /**
@@ -21,12 +21,12 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
     private static final int VIEW_HOLDER_PODCAST_DETAIL = 0;
     private static final int VIEW_HOLDER_FEEDS = 1;
     private Podcast podcast;
-    private List<Feed> feeds;
+    private List<Episode> episodes;
     private FeedInPodcastDetailViewHolder.OnClick feedOnClick;
 
-    public PodcastDetailRecyclerView(Podcast podcast, List<Feed> feeds, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
+    public PodcastDetailRecyclerView(Podcast podcast, List<Episode> episodes, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
         this.podcast = podcast;
-        this.feeds = feeds;
+        this.episodes = episodes;
         this.feedOnClick = feedOnClick;
     }
 
@@ -50,9 +50,9 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
                 break;
             case VIEW_HOLDER_FEEDS:
                 FeedInPodcastDetailViewHolder feedHolder = (FeedInPodcastDetailViewHolder) holder;
-                Feed feed = feeds.get(position - 1);
-                feedHolder.name.setText(feed.getTitle());
-                feedHolder.download.setText(feed.isDownloaded() ? App.getInstance().getString(R.string.podcast_detail_feed_downloaded) : App.getInstance().getString(R.string.podcast_detail_feed_not_download));
+                Episode episode = episodes.get(position - 1);
+                feedHolder.name.setText(episode.getTitle());
+                feedHolder.download.setText(episode.isDownloaded() ? App.getInstance().getString(R.string.podcast_detail_feed_downloaded) : App.getInstance().getString(R.string.podcast_detail_feed_not_download));
                 break;
         }
     }
@@ -66,7 +66,7 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public int getItemCount() {
-        return feeds.size() + 1;
+        return episodes.size() + 1;
     }
 }
 

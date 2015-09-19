@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class FeedResultResponse {
     @SerializedName("results")
-    private List<Feed> feeds;
+    private List<Episode> episodes;
 
-    public List<Feed> getFeeds() {
-        return feeds;
+    public List<Episode> getEpisodes() {
+        return episodes;
     }
 
-    public void setFeeds(List<Feed> podcasts) {
-        this.feeds = feeds;
+    public void setEpisodes(List<Episode> podcasts) {
+        this.episodes = episodes;
     }
 }
