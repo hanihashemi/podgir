@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.service.MediaPlayerService;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -237,7 +235,6 @@ public class NavigationDrawerFragment extends Fragment {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(io.github.hanihashemi.podgir.R.menu.global, menu);
             showGlobalContextActionBar();
         }
         super.onCreateOptionsMenu(menu, inflater);
@@ -246,10 +243,6 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        if (item.getItemId() == io.github.hanihashemi.podgir.R.id.action_example) {
             return true;
         }
 
