@@ -6,6 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.orm.SugarApp;
+import com.squareup.otto.Bus;
 
 import io.github.hanihashemi.podgir.network.request.BaseRequest;
 import timber.log.Timber;
@@ -16,6 +17,7 @@ import timber.log.Timber;
 public class App extends SugarApp {
 
     private static App app;
+    private static Bus bus;
     RequestQueue requestQueue;
 
     public static App getInstance() {
@@ -58,6 +60,12 @@ public class App extends SugarApp {
                 return request.getTag().equals(simpleName);
             }
         });
+    }
+
+    public Bus getBus() {
+        if (bus == null)
+            bus = new Bus();
+        return bus;
     }
 
     private static class CrashReportingTree extends Timber.Tree {

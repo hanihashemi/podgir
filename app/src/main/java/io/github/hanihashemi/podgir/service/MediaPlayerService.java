@@ -51,6 +51,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
     }
 
     public void onPrepared(MediaPlayer player) {
+        App.getInstance().getBus().post(new String("Play"));
         player.start();
     }
 
