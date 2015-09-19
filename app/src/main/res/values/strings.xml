@@ -27,5 +27,6 @@
     <string name="fragment_recycler_error_message">Check your connection and try again.</string>
     <string name="fragment_recycler_button_retry">Retry</string>
     <string name="player_feed_image">Feed image</string>
+    <string name="player_button_back_ten_seconds_description">back 10 seconds</string>
 
 </resources>
