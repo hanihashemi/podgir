@@ -14,7 +14,7 @@
         android:weightSum="2">
 
         <ImageButton
-            android:id="@+id/back_ten_seconds"
+            android:id="@+id/back_fifteen_seconds"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -36,6 +36,7 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout"
+        android:clickable="false"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="64dp" />
@@ -47,7 +48,6 @@
         android:layout_above="@+id/seekBar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:text="01:12/05:15"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <io.github.hanihashemi.podgir.widget.AppTextView

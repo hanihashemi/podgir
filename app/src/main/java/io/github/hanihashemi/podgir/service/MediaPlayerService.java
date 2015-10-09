@@ -9,10 +9,13 @@ import android.net.Uri;
 import android.os.IBinder;
 import android.os.PowerManager;
 
+import com.squareup.otto.Produce;
+
 import java.io.IOException;
 
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.activity.PlayerActivity;
+import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
 import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.util.NotificationUtils;
 
@@ -45,14 +48,28 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
             startForeground(2, new NotificationUtils(210).initService("title", "text", PlayerActivity.class));
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            App.getInstance().getBus().register(this);
         }
 
         return START_NOT_STICKY;
     }
 
+    @Override
     public void onPrepared(MediaPlayer player) {
-        App.getInstance().getBus().post(new String("Play"));
         player.start();
+
+        MediaPlayerStatus mediaPlayerStatus = new MediaPlayerStatus();
+        mediaPlayerStatus.setPlay(player.isPlaying());
+
+        App.getInstance().getBus().post(mediaPlayerStatus);
+    }
+
+    @Produce
+    public MediaPlayerStatus produceAnswer() {
+        MediaPlayerStatus mediaPlayerStatus = new MediaPlayerStatus();
+        mediaPlayerStatus.setPlay(false);
+        return mediaPlayerStatus;
     }
 
     @Override
@@ -63,6 +80,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
 
     @Override
     public void onDestroy() {
+        App.getInstance().getBus().unregister(this);
         if (mediaPlayer != null) mediaPlayer.release();
     }
 
