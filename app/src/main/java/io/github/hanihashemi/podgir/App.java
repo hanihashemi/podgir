@@ -5,6 +5,8 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orm.SugarApp;
 import com.squareup.otto.Bus;
 
@@ -29,10 +31,20 @@ public class App extends SugarApp {
         super.onCreate();
         app = this;
 
+        timberConfig();
+        UniversalImageLoaderConfig();
+    }
+
+    private void timberConfig() {
         if (BuildConfig.DEBUG)
             Timber.plant(new Timber.DebugTree());
         else
             Timber.plant(new CrashReportingTree());
+    }
+
+    private void UniversalImageLoaderConfig() {
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
     }
 
     public void addRequestToQueue(BaseRequest request, Object owner) {
