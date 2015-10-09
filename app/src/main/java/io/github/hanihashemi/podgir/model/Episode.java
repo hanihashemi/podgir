@@ -2,6 +2,7 @@ package io.github.hanihashemi.podgir.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -47,10 +48,20 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     }
 
     public String getPodcastName() {
+        Podcast parent = getParent();
+        return parent != null ? parent.getName() : "";
+    }
+
+    @Nullable
+    public Podcast getParent() {
         List<Podcast> podcasts = Podcast.find(Podcast.class, "OBJECT_ID=?", parent);
         if (podcasts != null && podcasts.size() == 1)
-            return podcasts.get(0).getName();
-        return "";
+            return podcasts.get(0);
+        return null;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
     }
 
     private Episode getObjectDB() {
@@ -102,14 +113,6 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
-    }
-
-    public String getParent() {
-        return parent;
-    }
-
-    public void setParent(String parent) {
-        this.parent = parent;
     }
 
     public String getTitle() {
