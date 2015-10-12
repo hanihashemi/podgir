@@ -111,10 +111,6 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         return objectId;
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -127,16 +123,8 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getSummary() {
         return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
     }
 
     public boolean isDownloaded() {

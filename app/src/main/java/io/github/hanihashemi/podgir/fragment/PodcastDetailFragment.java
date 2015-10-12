@@ -17,7 +17,7 @@ import io.github.hanihashemi.podgir.adapter.PodcastDetailRecyclerView;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.base.BaseFragment;
 import io.github.hanihashemi.podgir.model.Episode;
-import io.github.hanihashemi.podgir.model.FeedResultResponse;
+import io.github.hanihashemi.podgir.model.EpisodeResultResponse;
 import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
 import io.github.hanihashemi.podgir.util.DownloadFile;
@@ -25,7 +25,7 @@ import io.github.hanihashemi.podgir.util.DownloadFile;
 /**
  * Created by hani on 8/24/15.
  */
-public class PodcastDetailFragment extends BaseFragment implements Response.Listener<FeedResultResponse> {
+public class PodcastDetailFragment extends BaseFragment implements Response.Listener<EpisodeResultResponse> {
     public static final String ARG_PODCAST = "arg_podcast";
     @Bind(R.id.recycler_view)
     protected RecyclerView recyclerView;
@@ -74,14 +74,14 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     }
 
     private void fetchData() {
-        GsonRequest<FeedResultResponse> request = new Episode().remoteFindAll(podcast.getObjectId(), this, this);
+        GsonRequest<EpisodeResultResponse> request = new Episode().remoteFindAll(podcast.getObjectId(), this, this);
         App.getInstance().addRequestToQueue(request, this);
     }
 
     @Override
-    public void onResponse(FeedResultResponse response) {
+    public void onResponse(EpisodeResultResponse response) {
         episodes.clear();
-        episodes.addAll(response.getEpisodes());
+        episodes.addAll(response.getResults());
 
         checkIsFileDownloaded();
         adapter.notifyDataSetChanged();

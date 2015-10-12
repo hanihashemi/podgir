@@ -34,7 +34,7 @@ public class Podcast extends BaseModel<Podcast> implements Parcelable {
         this.imageUrl = in.readString();
     }
 
-    public GsonListRequest<PodcastResultResponse> findAll(Response.Listener<PodcastResultResponse> onSuccess, Response.ErrorListener onFailed) {
+    public GsonListRequest<PodcastResultResponse> reqFindAll(Response.Listener<PodcastResultResponse> onSuccess, Response.ErrorListener onFailed) {
         return new GsonListRequest<>(
                 Request.Method.GET,
                 getHostUrl("classes/podcast"),

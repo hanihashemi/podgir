@@ -61,15 +61,16 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
     protected void fetchData() {
         this.error.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
-        App.getInstance().addRequestToQueue(new Podcast().findAll(this, this), this);
+        App.getInstance().addRequestToQueue(new Podcast().reqFindAll(this, this), this);
     }
 
     @Override
     public void onResponse(PodcastResultResponse response) {
-        progressBar.setVisibility(View.GONE);
+        Podcast.saveResults(Podcast.class, response);
         podcasts.clear();
-        podcasts.addAll(response.getPodcasts());
-        adapter.notifyItemRangeInserted(0, podcasts.size());
+        podcasts.addAll(Podcast.findAllAsList(Podcast.class));
+        progressBar.setVisibility(View.GONE);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
