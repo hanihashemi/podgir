@@ -49,10 +49,6 @@ public class Podcast extends BaseModel<Podcast> implements Parcelable {
         return objectId;
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
-
     public String getName() {
         return name;
     }
@@ -63,10 +59,6 @@ public class Podcast extends BaseModel<Podcast> implements Parcelable {
 
     public String getImageUrl() {
         return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     @Override

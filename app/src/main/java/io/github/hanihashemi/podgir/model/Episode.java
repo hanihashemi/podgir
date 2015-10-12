@@ -93,7 +93,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         return false;
     }
 
-    public GsonRequest<FeedResultResponse> remoteFindAll(String parent, Response.Listener<FeedResultResponse> onSuccess, Response.ErrorListener onFailed) {
+    public GsonRequest<EpisodeResultResponse> remoteFindAll(String parent, Response.Listener<EpisodeResultResponse> onSuccess, Response.ErrorListener onFailed) {
         String argument = "{\"parent\":\"" + parent + "\"}";
 
         return new GsonRequest<>(
@@ -101,7 +101,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
                 getHostUrl("classes/feed?where=" +
                         argument),
                 null,
-                FeedResultResponse.class,
+                EpisodeResultResponse.class,
                 onSuccess,
                 onFailed
         );
