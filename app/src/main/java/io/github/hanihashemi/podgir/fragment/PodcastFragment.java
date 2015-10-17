@@ -26,7 +26,7 @@ import io.github.hanihashemi.podgir.model.PodcastResultResponse;
 /**
  * Created by hani on 8/18/15.
  */
-public class PodcastsFragment extends BaseFragment implements Response.Listener<PodcastResultResponse>, PodcastViewHolder.OnClick {
+public class PodcastFragment extends BaseFragment implements Response.Listener<PodcastResultResponse>, PodcastViewHolder.OnClick {
     @Bind(R.id.recycler_view)
     protected RecyclerView recyclerView;
     @Bind(R.id.error)
