@@ -80,17 +80,17 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
 
     @Override
     public void onResponse(EpisodeResultResponse response) {
-        episodes.clear();
-        episodes.addAll(response.getResults());
+        Episode.saveResults(Episode.class, response);
 
-        checkIsFileDownloaded();
+        episodes.clear();
+        episodes.addAll(Episode.findAllAsList(Episode.class));
+//        checkIsFileDownloaded();
         adapter.notifyDataSetChanged();
     }
 
     private void checkIsFileDownloaded() {
         for (Episode episode : episodes)
             episode.setDownloaded(episode.isThere());
-
     }
 
     @Override

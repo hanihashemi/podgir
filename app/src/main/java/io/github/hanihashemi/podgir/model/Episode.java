@@ -2,7 +2,6 @@ package io.github.hanihashemi.podgir.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -11,6 +10,7 @@ import com.orm.dsl.Ignore;
 import java.io.File;
 import java.util.List;
 
+import io.github.hanihashemi.podgir.annotate.Exclude;
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
 import io.github.hanihashemi.podgir.util.Directory;
 
@@ -28,36 +28,37 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         }
     };
     private String objectId;
-    private String parent;
     private String title;
     private String url;
     private String summary;
     @Ignore
     private boolean downloaded;
+    private String parent;
+    @Ignore
+    @Exclude
+    private Podcast podcast;
 
     public Episode() {
     }
 
     protected Episode(Parcel in) {
         this.objectId = in.readString();
-        this.parent = in.readString();
         this.title = in.readString();
         this.url = in.readString();
         this.summary = in.readString();
         this.downloaded = in.readByte() != 0;
+        this.parent = in.readString();
+        this.podcast = in.readParcelable(Podcast.class.getClassLoader());
     }
 
-    public String getPodcastName() {
-        Podcast parent = getParent();
-        return parent != null ? parent.getName() : "";
-    }
-
-    @Nullable
     public Podcast getParent() {
+        if (podcast != null)
+            return podcast;
+
         List<Podcast> podcasts = Podcast.find(Podcast.class, "OBJECT_ID=?", parent);
         if (podcasts != null && podcasts.size() == 1)
-            return podcasts.get(0);
-        return null;
+            podcast = podcasts.get(0);
+        return podcast;
     }
 
     public void setParent(String parent) {
@@ -70,7 +71,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     }
 
     private File getFile() {
-        return Directory.getInstance().getFile(parent, getObjectId());
+        return Directory.getInstance().getFile(getParent().getObjectId(), getObjectId());
     }
 
     private boolean isThereFile() {
@@ -143,10 +144,11 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.objectId);
-        dest.writeString(this.parent);
         dest.writeString(this.title);
         dest.writeString(this.url);
         dest.writeString(this.summary);
         dest.writeByte(downloaded ? (byte) 1 : (byte) 0);
+        dest.writeString(this.parent);
+        dest.writeParcelable(this.podcast, 0);
     }
 }

@@ -18,7 +18,6 @@ import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseFragment;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
 import io.github.hanihashemi.podgir.model.Episode;
-import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.service.MediaPlayerService;
 import io.github.hanihashemi.podgir.widget.AppPlayButton;
 import io.github.hanihashemi.podgir.widget.AppTextView;
@@ -68,7 +67,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     protected void customizeUI() {
         super.customizeUI();
         setRetainInstance(true);
-        name.setText(episode.getPodcastName());
+        name.setText(episode.getParent().getName());
         title.setText(episode.getTitle());
         seekBar.setEnabled(false);
         backFifteenSeconds.setEnabled(false);
@@ -77,9 +76,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     }
 
     private void loadImageArt() {
-        Podcast podcast = episode.getParent();
-        if (podcast != null)
-            ImageLoader.getInstance().displayImage(podcast.getImageUrl(), imageView);
+        ImageLoader.getInstance().displayImage(episode.getParent().getImageUrl(), imageView);
     }
 
     @Override

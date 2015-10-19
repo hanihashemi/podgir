@@ -67,6 +67,7 @@ public class PodcastFragment extends BaseFragment implements Response.Listener<P
     @Override
     public void onResponse(PodcastResultResponse response) {
         Podcast.saveResults(Podcast.class, response);
+
         podcasts.clear();
         podcasts.addAll(Podcast.findAllAsList(Podcast.class));
         progressBar.setVisibility(View.GONE);
