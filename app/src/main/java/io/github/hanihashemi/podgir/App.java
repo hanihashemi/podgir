@@ -5,8 +5,7 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.orm.SugarApp;
 import com.squareup.otto.Bus;
 
@@ -32,7 +31,7 @@ public class App extends SugarApp {
         app = this;
 
         timberConfig();
-        UniversalImageLoaderConfig();
+        Fresco.initialize(this);
     }
 
     private void timberConfig() {
@@ -40,11 +39,6 @@ public class App extends SugarApp {
             Timber.plant(new Timber.DebugTree());
         else
             Timber.plant(new CrashReportingTree());
-    }
-
-    private void UniversalImageLoaderConfig() {
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
     }
 
     public void addRequestToQueue(BaseRequest request, Object owner) {

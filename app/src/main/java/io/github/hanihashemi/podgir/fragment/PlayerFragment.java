@@ -1,14 +1,13 @@
 package io.github.hanihashemi.podgir.fragment;
 
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.otto.Subscribe;
 
 import butterknife.Bind;
@@ -18,8 +17,8 @@ import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseFragment;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
 import io.github.hanihashemi.podgir.model.Episode;
-import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.service.MediaPlayerService;
+import io.github.hanihashemi.podgir.widget.AppImageView;
 import io.github.hanihashemi.podgir.widget.AppPlayButton;
 import io.github.hanihashemi.podgir.widget.AppTextView;
 import timber.log.Timber;
@@ -41,7 +40,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     @Bind(R.id.seekBar)
     SeekBar seekBar;
     @Bind(R.id.image)
-    ImageView imageView;
+    AppImageView imageView;
 
     private Episode episode;
 
@@ -77,9 +76,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     }
 
     private void loadImageArt() {
-        Podcast podcast = episode.getParent();
-        if (podcast != null)
-            ImageLoader.getInstance().displayImage(podcast.getImageUrl(), imageView);
+        imageView.setImageURI(Uri.parse(episode.getParent().getImageUrl()));
     }
 
     @Override
