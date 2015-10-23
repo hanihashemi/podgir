@@ -67,7 +67,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     protected void customizeUI() {
         super.customizeUI();
         setRetainInstance(true);
-        name.setText(episode.getPodcastName());
+        name.setText(episode.getParent().getName());
         title.setText(episode.getTitle());
         seekBar.setEnabled(false);
         backFifteenSeconds.setEnabled(false);

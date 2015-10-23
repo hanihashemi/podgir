@@ -26,7 +26,7 @@ import io.github.hanihashemi.podgir.model.PodcastResultResponse;
 /**
  * Created by hani on 8/18/15.
  */
-public class PodcastsFragment extends BaseFragment implements Response.Listener<PodcastResultResponse>, PodcastViewHolder.OnClick {
+public class PodcastFragment extends BaseFragment implements Response.Listener<PodcastResultResponse>, PodcastViewHolder.OnClick {
     @Bind(R.id.recycler_view)
     protected RecyclerView recyclerView;
     @Bind(R.id.error)
@@ -67,6 +67,7 @@ public class PodcastsFragment extends BaseFragment implements Response.Listener<
     @Override
     public void onResponse(PodcastResultResponse response) {
         Podcast.saveResults(Podcast.class, response);
+
         podcasts.clear();
         podcasts.addAll(Podcast.findAllAsList(Podcast.class));
         progressBar.setVisibility(View.GONE);

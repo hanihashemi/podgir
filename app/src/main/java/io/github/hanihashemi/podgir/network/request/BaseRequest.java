@@ -27,7 +27,6 @@ public abstract class BaseRequest<T> extends JsonRequest<T> {
         try {
             String json = new String(
                     response.data, HttpHeaderParser.parseCharset(response.headers));
-            
             Timber.d(json);
         } catch (UnsupportedEncodingException e) {
             Timber.e(e, "baseRequest");

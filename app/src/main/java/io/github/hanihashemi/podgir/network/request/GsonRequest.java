@@ -38,8 +38,10 @@ public class GsonRequest<T> extends BaseRequest<T> {
             return Response.success(
                     GsonProvider.getGson().fromJson(json, responseClass), HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
+            e.printStackTrace();
             return Response.error(new ParseError(e));
         }
     }
