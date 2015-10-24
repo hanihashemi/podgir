@@ -15,7 +15,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="DATABASE"
             android:value="podgir.db" />
@@ -30,25 +29,27 @@
             android:value="io.github.hanihashemi.podgir" />
 
         <activity
-            android:name="io.github.hanihashemi.podgir.activity.MainActivity"
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.PodcastDetailActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.PlayerActivity" />
 
-            android:label="@string/app_name">
+        <service
+            android:name=".service.MediaPlayerService"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.NewMainActivity"
+            android:label="@string/title_activity_new_main"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".activity.PodcastDetailActivity"
-            android:parentActivityName=".activity.MainActivity" />
-
-        <activity android:name=".activity.PlayerActivity" />
-
-        <service
-            android:name=".service.MediaPlayerService"
-            android:exported="false" />
     </application>
 
 </manifest>

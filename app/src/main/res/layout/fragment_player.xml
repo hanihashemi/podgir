@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:background="@drawable/button_back_ten_seconds"
             android:contentDescription="@string/player_button_back_ten_seconds_description"
-            android:padding="@dimen/player_button_padding" />
+            android:padding="40dp" />
 
         <io.github.hanihashemi.podgir.widget.AppPlayButton
             android:id="@+id/play"
@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_play"
-            android:padding="@dimen/player_button_padding" />
+            android:padding="40dp" />
     </LinearLayout>
 
     <SeekBar
