@@ -15,31 +15,24 @@ public class Directory {
     private File podgirDir;
 
     public static Directory getInstance() {
-        if (directory == null)
+        if (directory == null) {
             directory = new Directory();
+            directory.initRootDir();
+        }
         return directory;
     }
 
-    public File getNewFile(String directory, String fileName) {
-        getRootDir();
-
-        File podcastDir = new File(podgirDir.getAbsolutePath(), directory);
-        if (!podcastDir.exists())
-            podcastDir.mkdir();
-
-        File file = new File(podcastDir.getAbsolutePath(), fileName);
+    public File getNewFile(String fileName) {
+        File file = new File(podgirDir.getAbsolutePath(), fileName);
         Timber.d("File created: %s", file.getAbsolutePath());
         return file;
     }
 
-    public File getFile(String directory, String fileName) {
-        getRootDir();
-
-        File podcastDir = new File(podgirDir.getAbsolutePath(), directory);
-        return new File(podcastDir.getAbsolutePath(), fileName);
+    public File getFile(String fileName) {
+        return new File(podgirDir.getAbsolutePath(), fileName);
     }
 
-    private void getRootDir() {
+    private void initRootDir() {
         if (podgirDir == null) {
             File sdDir = Environment.getExternalStorageDirectory();
             podgirDir = new File(sdDir.getAbsolutePath(), BASE_DIRECTORY);

@@ -33,12 +33,12 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
     protected Boolean doInBackground(String... strings) {
         try {
             URL url = new URL(strings[0]);
-            URLConnection conection = url.openConnection();
-            conection.connect();
+            URLConnection connection = url.openConnection();
+            connection.connect();
 
-            int lenghtOfFile = conection.getContentLength();
+            int lenghtOfFile = connection.getContentLength();
             InputStream input = new BufferedInputStream(url.openStream(), 8192);
-            OutputStream output = new FileOutputStream(Directory.getInstance().getNewFile(podcast.getObjectId(), episode.getObjectId()).getAbsolutePath());
+            OutputStream output = new FileOutputStream(Directory.getInstance().getNewFile(episode.getObjectId()).getAbsolutePath());
 
             byte data[] = new byte[1024];
             long total = 0;

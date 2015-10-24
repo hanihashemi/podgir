@@ -84,13 +84,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
 
         episodes.clear();
         episodes.addAll(Episode.findAllAsList(Episode.class));
-//        checkIsFileDownloaded();
         adapter.notifyDataSetChanged();
-    }
-
-    private void checkIsFileDownloaded() {
-        for (Episode episode : episodes)
-            episode.setDownloaded(episode.isThere());
     }
 
     @Override

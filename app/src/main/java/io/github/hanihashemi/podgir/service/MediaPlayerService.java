@@ -35,7 +35,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
     public int onStartCommand(Intent intent, int flags, int startId) {
         Episode episode = intent.getExtras().getParcelable(ARG_FEED);
 
-        Uri myUri = Uri.parse(episode.getFilePath());
+        Uri myUri = Uri.parse(episode.getFile().getAbsolutePath());
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {

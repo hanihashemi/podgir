@@ -31,8 +31,6 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     private String title;
     private String url;
     private String summary;
-    @Ignore
-    private boolean downloaded;
     private String parent;
     @Ignore
     @Exclude
@@ -46,7 +44,6 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         this.title = in.readString();
         this.url = in.readString();
         this.summary = in.readString();
-        this.downloaded = in.readByte() != 0;
         this.parent = in.readString();
         this.podcast = in.readParcelable(Podcast.class.getClassLoader());
     }
@@ -70,28 +67,12 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         return episodes != null && episodes.size() == 1 ? episodes.get(0) : null;
     }
 
-    private File getFile() {
-        return Directory.getInstance().getFile(getParent().getObjectId(), getObjectId());
+    public File getFile() {
+        return Directory.getInstance().getFile(getObjectId());
     }
 
-    private boolean isThereFile() {
+    public boolean isDownloaded() {
         return getFile().exists();
-    }
-
-    public String getFilePath() {
-        return getFile().getAbsolutePath();
-    }
-
-    public boolean isThere() {
-        Episode episodeDB = getObjectDB();
-
-        if (isThereFile()) {
-            if (episodeDB == null)
-                this.save();
-            return true;
-        } else if (episodeDB != null)
-            episodeDB.delete();
-        return false;
     }
 
     public GsonRequest<EpisodeResultResponse> remoteFindAll(String parent, Response.Listener<EpisodeResultResponse> onSuccess, Response.ErrorListener onFailed) {
@@ -128,14 +109,6 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         return summary;
     }
 
-    public boolean isDownloaded() {
-        return downloaded;
-    }
-
-    public void setDownloaded(boolean downloaded) {
-        this.downloaded = downloaded;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -147,7 +120,6 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         dest.writeString(this.title);
         dest.writeString(this.url);
         dest.writeString(this.summary);
-        dest.writeByte(downloaded ? (byte) 1 : (byte) 0);
         dest.writeString(this.parent);
         dest.writeParcelable(this.podcast, 0);
     }
