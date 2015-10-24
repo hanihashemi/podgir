@@ -25,7 +25,7 @@ public abstract class BaseModel<T> extends SugarRecord<T> {
 
     public static <T extends BaseModel<?>> T find(Class<T> type, String objectId) {
         List<T> items = T.find(type, "OBJECT_ID=?", objectId);
-        return items.size() == 1 ? items.get(0) : null;
+        return items.size() >= 1 ? items.get(0) : null;
     }
 
     public static <T extends BaseModel<?>> void saveResults(Class<T> type, ResultResponse<T> response) {
