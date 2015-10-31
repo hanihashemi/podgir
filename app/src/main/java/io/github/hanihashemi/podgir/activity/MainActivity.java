@@ -15,7 +15,7 @@ import io.github.hanihashemi.podgir.base.BaseActivity;
 import io.github.hanihashemi.podgir.fragment.DownloadedFragment;
 import io.github.hanihashemi.podgir.fragment.PodcastFragment;
 
-public class NewMainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.toolbar)
     protected Toolbar toolbar;
@@ -37,7 +37,7 @@ public class NewMainActivity extends BaseActivity implements NavigationView.OnNa
 
     @Override
     public int getLayoutResource() {
-        return R.layout.activity_new_main;
+        return R.layout.activity_main;
     }
 
     @Override
