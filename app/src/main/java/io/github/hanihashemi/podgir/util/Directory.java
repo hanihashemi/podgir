@@ -9,6 +9,7 @@ import timber.log.Timber;
 /**
  * Created by hani on 8/27/15.
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class Directory {
     public static final String BASE_DIRECTORY = "Podgir";
     private static Directory directory;

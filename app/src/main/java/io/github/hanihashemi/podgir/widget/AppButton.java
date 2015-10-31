@@ -1,7 +1,6 @@
 package io.github.hanihashemi.podgir.widget;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.widget.Button;
 

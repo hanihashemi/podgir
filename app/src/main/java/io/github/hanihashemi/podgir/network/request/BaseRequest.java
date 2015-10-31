@@ -34,6 +34,7 @@ public abstract class BaseRequest<T> extends JsonRequest<T> {
         return null;
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> headers = super.getHeaders();

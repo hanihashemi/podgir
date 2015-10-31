@@ -19,7 +19,7 @@ public class App extends SugarApp {
 
     private static App app;
     private static Bus bus;
-    RequestQueue requestQueue;
+    private RequestQueue requestQueue;
 
     public static App getInstance() {
         return app;
@@ -47,7 +47,7 @@ public class App extends SugarApp {
         Timber.d("Adding request to queue: %s", request.getUrl());
     }
 
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         if (requestQueue == null)
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         return requestQueue;
@@ -78,6 +78,7 @@ public class App extends SugarApp {
         @Override
         protected void log(int priority, String tag, String message, Throwable t) {
             if (priority == Log.VERBOSE || priority == Log.DEBUG) {
+                //noinspection UnnecessaryReturnStatement
                 return;
             }
         }

@@ -58,7 +58,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/seekBar"
         android:layout_marginTop="83dp"
-        android:text="Dar kenare gol neshastan ha"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <io.github.hanihashemi.podgir.widget.AppTextView
@@ -68,7 +67,6 @@
         android:layout_alignBottom="@+id/title"
         android:layout_alignStart="@+id/title"
         android:layout_marginBottom="29dp"
-        android:text="Radio Jadi"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <io.github.hanihashemi.podgir.widget.AppImageView

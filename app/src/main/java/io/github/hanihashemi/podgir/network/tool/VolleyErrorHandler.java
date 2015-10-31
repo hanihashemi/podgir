@@ -67,11 +67,12 @@ public class VolleyErrorHandler {
 //            if (errorModel != null && errorModel.showing)
 //                showDialog(context, errorModel);
 //            else if (errorModel != null)
-            Timber.d(error, errorModel.toString());
+            if (errorModel != null)
+                Timber.d(error, errorModel.toString());
 
             return errorModel;
         } catch (Exception ex) {
-            Timber.e("showErrorDialog", ex);
+            Timber.e(ex, "asd");
             return null;
         }
     }

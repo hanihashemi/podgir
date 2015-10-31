@@ -6,11 +6,11 @@
             android:id="@+id/nav_podcast"
             android:checked="true"
             android:icon="@android:drawable/ic_btn_speak_now"
-            android:title="Podcast" />
+            android:title="@string/podcast" />
         <item
             android:id="@+id/nav_download"
             android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Downloaded" />
+            android:title="@string/downloaded" />
     </group>
 
     <!--<item android:title="Communicate">-->
