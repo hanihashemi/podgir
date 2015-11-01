@@ -1,7 +1,7 @@
 package io.github.hanihashemi.podgir.activity;
 
+import android.app.Fragment;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        addFragmentToContainer(new PodcastFragment());
     }
 
     @Override
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void addFragmentToContainer(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
+        getFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
     }

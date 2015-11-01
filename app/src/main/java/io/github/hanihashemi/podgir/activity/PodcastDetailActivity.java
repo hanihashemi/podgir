@@ -1,9 +1,9 @@
 package io.github.hanihashemi.podgir.activity;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
 import io.github.hanihashemi.podgir.base.BaseActivityWithSingleFragment;
 import io.github.hanihashemi.podgir.fragment.PodcastDetailFragment;

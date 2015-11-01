@@ -1,6 +1,6 @@
 package io.github.hanihashemi.podgir.base;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 
 import io.github.hanihashemi.podgir.R;
 
@@ -12,7 +12,7 @@ public abstract class BaseActivityWithSingleFragment extends BaseActivity {
     @Override
     public void customizeUI() {
         super.customizeUI();
-        getSupportFragmentManager()
+        getFragmentManager()
                 .beginTransaction()
                 .add(R.id.container, getFragment())
                 .commit();
