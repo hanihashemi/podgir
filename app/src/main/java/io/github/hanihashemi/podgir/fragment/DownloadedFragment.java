@@ -1,5 +1,6 @@
 package io.github.hanihashemi.podgir.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -47,6 +48,11 @@ public class DownloadedFragment extends BaseFragment {
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_recycler;
+    }
+
+    @Override
+    protected void gatherArguments(Bundle bundle) {
+
     }
 
     private void fetchData() {

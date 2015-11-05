@@ -60,6 +60,11 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     }
 
     @Override
+    protected void gatherArguments(Bundle bundle) {
+        podcast = getArguments().getParcelable(ARG_PODCAST);
+    }
+
+    @Override
     protected void customizeUI() {
         super.customizeUI();
 
@@ -85,11 +90,5 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         episodes.clear();
         episodes.addAll(Episode.findAllAsList(Episode.class));
         adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        podcast = getArguments().getParcelable(ARG_PODCAST);
     }
 }

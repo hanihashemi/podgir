@@ -3,6 +3,7 @@ package io.github.hanihashemi.podgir.util;
 import android.os.AsyncTask;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -33,21 +34,28 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
     protected Boolean doInBackground(String... strings) {
         try {
             URL url = new URL(strings[0]);
+            Timber.d("Start to downloading %s", url);
+
             URLConnection connection = url.openConnection();
             connection.connect();
 
             int lengthOfFile = connection.getContentLength();
             InputStream input = new BufferedInputStream(url.openStream(), 8192);
-            OutputStream output = new FileOutputStream(Directory.getInstance().getNewFile(episode.getObjectId()).getAbsolutePath());
+            OutputStream output = new FileOutputStream(Directory.getInstance().getFile(episode.getObjectId()).getAbsolutePath());
 
             byte data[] = new byte[1024];
             long total = 0;
-            int count;
+            int readFile;
+            int tempDownloadedPercent = 0;
 
-            while ((count = input.read(data)) != -1) {
-                total += count;
-                publishProgress((int) (total * 100) / lengthOfFile);
-                output.write(data, 0, count);
+            while ((readFile = input.read(data)) != -1) {
+                total += readFile;
+                int downloadedPercent = (int) (total * 100) / lengthOfFile;
+                if (downloadedPercent != tempDownloadedPercent) {
+                    publishProgress(downloadedPercent);
+                    tempDownloadedPercent = downloadedPercent;
+                }
+                output.write(data, 0, readFile);
             }
             output.flush();
             output.close();
@@ -75,6 +83,10 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
             episode.save();
             podcast.save();
         } else {
+            File file = Directory.getInstance().getFile(episode.getObjectId());
+            if (file.exists())
+                //noinspection ResultOfMethodCallIgnored
+                file.delete();
             notificationUtils.failedProgress();
         }
     }

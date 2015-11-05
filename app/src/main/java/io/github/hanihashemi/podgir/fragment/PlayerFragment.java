@@ -54,7 +54,6 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
 
     @Override
     protected void gatherArguments(Bundle bundle) {
-        super.gatherArguments(bundle);
         episode = bundle.getParcelable(ARG_FEED);
     }
 
