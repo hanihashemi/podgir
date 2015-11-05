@@ -1,5 +1,6 @@
 package io.github.hanihashemi.podgir.adapter;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
             case VIEW_HOLDER_PODCAST_DETAIL:
                 PodcastDetailViewHolder podcastHolder = (PodcastDetailViewHolder) holder;
                 podcastHolder.name.setText(podcast.getName());
+                podcastHolder.imageView.setImageURI(Uri.parse(podcast.getImageUrl()));
                 break;
             case VIEW_HOLDER_FEEDS:
                 FeedInPodcastDetailViewHolder feedHolder = (FeedInPodcastDetailViewHolder) holder;

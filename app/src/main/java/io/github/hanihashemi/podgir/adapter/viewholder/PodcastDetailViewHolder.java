@@ -1,8 +1,9 @@
 package io.github.hanihashemi.podgir.adapter.viewholder;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.Bind;
 import io.github.hanihashemi.podgir.R;
@@ -13,7 +14,7 @@ import io.github.hanihashemi.podgir.base.BaseViewHolder;
  */
 public class PodcastDetailViewHolder extends BaseViewHolder {
     @Bind(R.id.imageView)
-    public ImageView imageView;
+    public SimpleDraweeView imageView;
     @Bind(R.id.name)
     public TextView name;
 
