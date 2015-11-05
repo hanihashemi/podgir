@@ -50,7 +50,5 @@ public abstract class BaseFragment extends Fragment implements Response.ErrorLis
         App.getInstance().cancelRequest(this);
     }
 
-    protected void gatherArguments(Bundle bundle) {
-
-    }
+    protected abstract void gatherArguments(Bundle bundle);
 }

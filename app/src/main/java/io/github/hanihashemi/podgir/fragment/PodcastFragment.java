@@ -1,39 +1,25 @@
 package io.github.hanihashemi.podgir.fragment;
 
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.activity.PodcastDetailActivity;
 import io.github.hanihashemi.podgir.adapter.PodcastsRecyclerView;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastViewHolder;
-import io.github.hanihashemi.podgir.base.BaseFragment;
+import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.model.PodcastResultResponse;
-import io.github.hanihashemi.podgir.widget.AppTextView;
 
 /**
  * Created by hani on 8/18/15.
  */
-public class PodcastFragment extends BaseFragment implements Response.Listener<PodcastResultResponse>, PodcastViewHolder.OnClick, SwipeRefreshLayout.OnRefreshListener {
-    @Bind(R.id.recycler_view)
-    protected RecyclerView recyclerView;
-    @Bind(R.id.error_message)
-    AppTextView errorMessage;
-    @Bind(R.id.swipe_refresh)
-    SwipeRefreshLayout swipeRefresh;
-
+public class PodcastFragment extends BaseSwipeFragment<PodcastResultResponse> implements PodcastViewHolder.OnClick {
     private RecyclerView.Adapter adapter;
     private List<Podcast> podcasts;
 
@@ -53,25 +39,20 @@ public class PodcastFragment extends BaseFragment implements Response.Listener<P
         podcasts = new ArrayList<>();
         adapter = new PodcastsRecyclerView(getActivity(), podcasts, this);
         recyclerView.setAdapter(adapter);
-        swipeRefresh.setColorSchemeResources(R.color.accent);
-        swipeRefresh.setOnRefreshListener(this);
-        fetchData();
     }
 
     protected void fetchData() {
-        errorMessage.setVisibility(View.GONE);
-        setSwipeRefresh(true);
         App.getInstance().addRequestToQueue(new Podcast().reqFindAll(this, this), this);
     }
 
     @Override
     public void onResponse(PodcastResultResponse response) {
+        super.onResponse(response);
         Podcast.saveResults(Podcast.class, response);
 
         podcasts.clear();
         podcasts.addAll(Podcast.findAllAsList(Podcast.class));
 
-        setSwipeRefresh(false);
         adapter.notifyDataSetChanged();
     }
 
@@ -81,23 +62,7 @@ public class PodcastFragment extends BaseFragment implements Response.Listener<P
     }
 
     @Override
-    public void onErrorResponse(VolleyError error) {
-        super.onErrorResponse(error);
-        errorMessage.setVisibility(View.VISIBLE);
-        setSwipeRefresh(false);
-    }
+    protected void gatherArguments(Bundle bundle) {
 
-    @Override
-    public void onRefresh() {
-        fetchData();
-    }
-
-    private void setSwipeRefresh(final boolean value) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefresh.setRefreshing(value);
-            }
-        }, 100);
     }
 }
