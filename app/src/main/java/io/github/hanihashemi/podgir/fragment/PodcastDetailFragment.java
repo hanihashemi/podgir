@@ -74,7 +74,11 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         episodes = new ArrayList<>();
         adapter = new PodcastDetailRecyclerView(podcast, episodes, feedOnClick);
         recyclerView.setAdapter(adapter);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         fetchData();
     }
 
@@ -84,7 +88,7 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
     }
 
     @Override
-    public void onResponse(EpisodeResultResponse response) {
+    public void onResponse(final EpisodeResultResponse response) {
         Episode.saveResults(Episode.class, response);
 
         episodes.clear();
