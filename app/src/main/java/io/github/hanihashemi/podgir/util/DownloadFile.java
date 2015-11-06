@@ -80,8 +80,6 @@ public class DownloadFile extends AsyncTask<String, Integer, Boolean> {
         super.onPostExecute(result);
         if (result) {
             notificationUtils.completeProgress();
-            episode.save();
-            podcast.save();
         } else {
             File file = Directory.getInstance().getFile(episode.getObjectId());
             if (file.exists())
