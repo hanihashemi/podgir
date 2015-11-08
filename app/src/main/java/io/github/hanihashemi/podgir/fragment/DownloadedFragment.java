@@ -56,7 +56,14 @@ public class DownloadedFragment extends BaseFragment {
     }
 
     private void fetchData() {
-        episodes.addAll(Episode.listAll(Episode.class));
+        List<Episode> allEpisodes = Episode.listAll(Episode.class);
+        List<Episode> downloadedEpisodes = new ArrayList<>();
+
+        for (Episode episode : allEpisodes)
+            if (episode.isDownloaded())
+                downloadedEpisodes.add(episode);
+
+        episodes.addAll(downloadedEpisodes);
         adapter.notifyDataSetChanged();
     }
 }

@@ -32,7 +32,7 @@ public class DownloadedRecyclerView extends RecyclerView.Adapter<FeedInDownloade
     public void onBindViewHolder(FeedInDownloadedViewHolder holder, int position) {
         Episode episode = episodes.get(position);
         holder.name.setText(episode.getTitle() != null ? episode.getTitle() : "");
-        holder.feed.setText(episode.getSummary() != null ? episode.getSummary() : "");
+        holder.feed.setText(episode.getParent().getName() != null ? episode.getParent().getName() : "");
     }
 
     @Override
