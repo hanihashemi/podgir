@@ -14,12 +14,12 @@
         android:weightSum="2">
 
         <ImageButton
-            android:id="@+id/back_fifteen_seconds"
+            android:id="@+id/back_ten_seconds"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_back_ten_seconds"
-            android:contentDescription="@string/player_button_back_ten_seconds_description"
+            android:contentDescription="@string/content_description_back_ten_seconds"
             android:padding="40dp" />
 
         <io.github.hanihashemi.podgir.widget.AppPlayButton
@@ -28,6 +28,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_play"
+            android:contentDescription="@string/content_description_play_pause"
             android:padding="40dp" />
     </LinearLayout>
 
@@ -39,7 +40,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="64dp"
-        android:clickable="false" />
+        android:max="100"
+        android:progress="0" />
 
     <io.github.hanihashemi.podgir.widget.AppTextView
         android:id="@+id/time"
@@ -48,25 +50,30 @@
         android:layout_above="@+id/seekBar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
+        android:text="00:00"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <io.github.hanihashemi.podgir.widget.AppTextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/seekBar"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/seekBar"
         android:layout_marginTop="83dp"
+        android:gravity="right"
+        android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <io.github.hanihashemi.podgir.widget.AppTextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/title"
         android:layout_alignStart="@+id/title"
         android:layout_marginBottom="29dp"
+        android:gravity="right"
+        android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <io.github.hanihashemi.podgir.widget.AppImageView

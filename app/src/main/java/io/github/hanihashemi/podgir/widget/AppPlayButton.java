@@ -14,25 +14,26 @@ import com.mikepenz.iconics.IconicsDrawable;
  */
 public class AppPlayButton extends ImageButton implements View.OnClickListener {
 
-    private boolean play = false;
+    private boolean play;
     private PlayListener playListener;
 
     public AppPlayButton(Context context) {
-        this(context, null);
+        super(context);
+        update(context, isPlay());
     }
 
     public AppPlayButton(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        update(context, isPlay());
     }
 
     public AppPlayButton(final Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setOnClickListener(this);
         update(context, isPlay());
     }
 
     public void update(Context context, boolean isPlay) {
-        setPlay(isPlay);
+        setOnClickListener(this);
         IconicsDrawable iconicsDrawable;
 
         if (isPlay) {
@@ -58,12 +59,11 @@ public class AppPlayButton extends ImageButton implements View.OnClickListener {
 
     public void setPlay(boolean play) {
         this.play = play;
+        update(getContext(), play);
     }
 
     @Override
     public void onClick(View view) {
-        update(getContext(), !isPlay());
-
         if (playListener != null)
             playListener.onClick(isPlay());
     }

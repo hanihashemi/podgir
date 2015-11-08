@@ -27,7 +27,8 @@
     <string name="fragment_recycler_error_message">Check your connection and pull to refresh.</string>
     <string name="fragment_recycler_button_retry">Retry</string>
     <string name="player_feed_image">Feed image</string>
-    <string name="player_button_back_ten_seconds_description">back 10 seconds</string>
+    <string name="content_description_back_ten_seconds">back 10 seconds</string>
+    <string name="content_description_play_pause">play/pause</string>
     <string name="podcast">Podcast</string>
     <string name="downloaded">Downloaded</string>
 </resources>

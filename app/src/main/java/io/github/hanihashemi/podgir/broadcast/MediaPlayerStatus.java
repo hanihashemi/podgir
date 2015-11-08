@@ -5,6 +5,24 @@ package io.github.hanihashemi.podgir.broadcast;
  */
 public class MediaPlayerStatus {
     private boolean play;
+    private int totalTime;
+    private int correctTime;
+
+    public int getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public int getCorrectTime() {
+        return correctTime;
+    }
+
+    public void setCorrectTime(int correctTime) {
+        this.correctTime = correctTime;
+    }
 
     public boolean isPlay() {
         return play;
