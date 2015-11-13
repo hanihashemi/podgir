@@ -62,7 +62,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         try {
             mediaPlayer.setDataSource(this, Uri.parse(episode.getFile().getAbsolutePath()));
             mediaPlayer.prepareAsync();
-            startForeground(2, new NotificationUtils(210).initService(getString(R.string.notification_player_title), String.format("%s - %s", episode.getParent().getName(), episode.getTitle()), PlayerActivity.class));
+            showNotification();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -70,6 +70,10 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         }
 
         return START_NOT_STICKY;
+    }
+
+    private void showNotification() {
+        startForeground(2, new NotificationUtils(210).initService(getString(R.string.notification_player_title), String.format("%s - %s", episode.getParent().getName(), episode.getTitle()), PlayerActivity.class));
     }
 
     private void registerBus() {
@@ -153,6 +157,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
 
         switch (action.getCode()) {
             case MediaPlayerAction.ACTION_PAUSE:
+                stopForeground(true);
                 mediaPlayer.pause();
                 break;
             case MediaPlayerAction.ACTION_BACK_TEN_SECONDS:
@@ -161,6 +166,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
                 mediaPlayer.seekTo(position);
                 break;
             case MediaPlayerAction.ACTION_PLAY:
+                showNotification();
                 mediaPlayer.start();
                 break;
             case MediaPlayerAction.ACTION_CHANGE_POSITION:
