@@ -62,6 +62,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
             case R.id.action_settings:
                 break;
+            case R.id.action_refresh:
+
+                break;
         }
 
         return super.onOptionsItemSelected(item);
