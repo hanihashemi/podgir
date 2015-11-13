@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.v7.app.NotificationCompat;
 
 import io.github.hanihashemi.podgir.App;
+import io.github.hanihashemi.podgir.R;
 
 /**
  * Created by hani on 8/27/15.
@@ -25,7 +26,7 @@ public class NotificationUtils {
     public Notification initService(String title, String text, Class<?> cls) {
         builder = new NotificationCompat.Builder(App.getInstance().getApplicationContext());
         return builder.setContentIntent(createPendingIntent(cls))
-                .setSmallIcon(android.R.drawable.stat_sys_download).setTicker(text).setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_notification).setTicker(text).setWhen(System.currentTimeMillis())
                 .setAutoCancel(false).setContentTitle(title)
                 .setContentText(text).build();
     }

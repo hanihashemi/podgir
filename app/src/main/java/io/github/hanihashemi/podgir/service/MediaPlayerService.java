@@ -16,6 +16,7 @@ import com.squareup.otto.Subscribe;
 import java.io.IOException;
 
 import io.github.hanihashemi.podgir.App;
+import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerAction;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
@@ -61,7 +62,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         try {
             mediaPlayer.setDataSource(this, Uri.parse(episode.getFile().getAbsolutePath()));
             mediaPlayer.prepareAsync();
-            startForeground(2, new NotificationUtils(210).initService("title", "text", PlayerActivity.class));
+            startForeground(2, new NotificationUtils(210).initService(getString(R.string.notification_player_title), String.format("%s - %s", episode.getParent().getName(), episode.getTitle()), PlayerActivity.class));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
