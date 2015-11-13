@@ -15,6 +15,7 @@ import io.github.hanihashemi.podgir.adapter.viewholder.PodcastViewHolder;
 import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.model.PodcastResultResponse;
+import io.github.hanihashemi.podgir.network.request.GsonListRequest;
 
 /**
  * Created by hani on 8/18/15.
@@ -42,7 +43,8 @@ public class PodcastFragment extends BaseSwipeFragment<PodcastResultResponse> im
     }
 
     protected void fetchData() {
-        App.getInstance().addRequestToQueue(new Podcast().reqFindAll(this, this), this);
+        GsonListRequest request = Podcast.getModel().reqFindAll(this, this);
+        App.getInstance().addRequestToQueue(request, this);
     }
 
     @Override

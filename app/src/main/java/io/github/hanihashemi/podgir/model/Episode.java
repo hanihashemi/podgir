@@ -27,6 +27,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
             return new Episode[size];
         }
     };
+    private static Episode episode;
     private String objectId;
     private String title;
     private String url;
@@ -35,7 +36,6 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     @Ignore
     @Exclude
     private Podcast podcast;
-
     public Episode() {
     }
 
@@ -46,6 +46,16 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         this.summary = in.readString();
         this.parent = in.readString();
         this.podcast = in.readParcelable(Podcast.class.getClassLoader());
+    }
+
+    public static Episode getModel() {
+        if (episode == null)
+            episode = new Episode();
+        return episode;
+    }
+
+    public static List<Episode> findAll(String parent) {
+        return Episode.find(Episode.class, "PARENT = ?", parent);
     }
 
     public Podcast getParent() {

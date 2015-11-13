@@ -15,7 +15,7 @@ import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.adapter.PodcastDetailRecyclerView;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
-import io.github.hanihashemi.podgir.base.BaseFragment;
+import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.model.EpisodeResultResponse;
 import io.github.hanihashemi.podgir.model.Podcast;
@@ -25,7 +25,7 @@ import io.github.hanihashemi.podgir.util.DownloadFile;
 /**
  * Created by hani on 8/24/15.
  */
-public class PodcastDetailFragment extends BaseFragment implements Response.Listener<EpisodeResultResponse> {
+public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultResponse> implements Response.Listener<EpisodeResultResponse> {
     public static final String ARG_PODCAST = "arg_podcast";
     @Bind(R.id.recycler_view)
     protected RecyclerView recyclerView;
@@ -76,23 +76,19 @@ public class PodcastDetailFragment extends BaseFragment implements Response.List
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        fetchData();
-    }
-
-    private void fetchData() {
-        GsonRequest<EpisodeResultResponse> request = new Episode().remoteFindAll(podcast.getObjectId(), this, this);
+    protected void fetchData() {
+        GsonRequest<EpisodeResultResponse> request = Episode.getModel().remoteFindAll(podcast.getObjectId(), this, this);
         App.getInstance().addRequestToQueue(request, this);
     }
 
     @Override
     public void onResponse(final EpisodeResultResponse response) {
+        super.onResponse(response);
         Episode.saveResults(Episode.class, response);
 
         episodes.clear();
-        episodes.addAll(Episode.findAllAsList(Episode.class));
+
+        episodes.addAll(Episode.findAll(podcast.getObjectId()));
         adapter.notifyDataSetChanged();
     }
 }
