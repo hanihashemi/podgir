@@ -28,11 +28,6 @@ public abstract class BaseSwipeFragment<T> extends BaseFragment implements Swipe
         super.customizeUI();
         swipeRefresh.setColorSchemeResources(R.color.accent);
         swipeRefresh.setOnRefreshListener(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         setSwipeRefresh(true);
         fetchData();
     }
