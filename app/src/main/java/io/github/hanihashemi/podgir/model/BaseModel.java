@@ -14,18 +14,13 @@ import java.util.List;
 public abstract class BaseModel<T> extends SugarRecord<T> {
 
     public static <T extends BaseModel<?>> List<T> findAllAsList(Class<T> type) {
-        Iterator<T> iterator = Podcast.findAll(type);
+        Iterator<T> iterator = findAll(type);
 
         ArrayList<T> items = new ArrayList<>();
         while (iterator.hasNext())
             items.add(iterator.next());
 
         return items;
-    }
-
-    public static <T extends BaseModel<?>> T find(Class<T> type, String objectId) {
-        List<T> items = T.find(type, "OBJECT_ID=?", objectId);
-        return items.size() >= 1 ? items.get(0) : null;
     }
 
     public static <T extends BaseModel<?>> void saveResults(Class<T> type, ResultResponse<T> response) {
