@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import butterknife.Bind;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseActivity;
+import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.fragment.DownloadedFragment;
 import io.github.hanihashemi.podgir.fragment.PodcastFragment;
 
@@ -23,6 +24,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected DrawerLayout drawerLayout;
     @Bind(R.id.nav_view)
     protected NavigationView navigationView;
+
+    private Fragment podcastFragment;
+    private Fragment downloadFragment;
 
     @Override
     protected void customizeUI() {
@@ -63,7 +67,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.action_settings:
                 break;
             case R.id.action_refresh:
-
+                ((BaseSwipeFragment) downloadFragment).onRefresh();
+                ((BaseSwipeFragment) podcastFragment).onRefresh();
                 break;
         }
 
@@ -74,10 +79,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_podcast:
-                addFragmentToContainer(new PodcastFragment());
+                if (podcastFragment == null)
+                    podcastFragment = new PodcastFragment();
+
+                addFragmentToContainer(podcastFragment);
                 break;
             case R.id.nav_download:
-                addFragmentToContainer(new DownloadedFragment());
+                if (downloadFragment == null)
+                    downloadFragment = new DownloadedFragment();
+
+                addFragmentToContainer(downloadFragment);
                 break;
         }
 
