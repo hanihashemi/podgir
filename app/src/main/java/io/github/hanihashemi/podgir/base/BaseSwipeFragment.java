@@ -34,6 +34,7 @@ public abstract class BaseSwipeFragment<T> extends BaseFragment implements Swipe
 
     @Override
     public void onRefresh() {
+        setSwipeRefresh(true);
         fetchData();
     }
 
