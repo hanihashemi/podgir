@@ -11,7 +11,7 @@ import java.io.File;
 public class Directory {
     public static final String BASE_DIRECTORY = "Podgir";
     private static Directory directory;
-    private File podgirDir;
+    private File rootDir;
 
     public static Directory getInstance() {
         if (directory == null) {
@@ -22,15 +22,15 @@ public class Directory {
     }
 
     public File getFile(String fileName) {
-        return new File(podgirDir.getAbsolutePath(), fileName);
+        return new File(rootDir.getAbsolutePath(), fileName);
     }
 
     private void initRootDir() {
-        if (podgirDir == null) {
+        if (rootDir == null) {
             File sdDir = Environment.getExternalStorageDirectory();
-            podgirDir = new File(sdDir.getAbsolutePath(), BASE_DIRECTORY);
-            if (!podgirDir.exists())
-                podgirDir.mkdir();
+            rootDir = new File(sdDir.getAbsolutePath(), BASE_DIRECTORY);
+            if (!rootDir.exists())
+                rootDir.mkdir();
         }
     }
 }
