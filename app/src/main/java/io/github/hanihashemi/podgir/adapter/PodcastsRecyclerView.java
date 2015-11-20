@@ -5,13 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastViewHolder;
 import io.github.hanihashemi.podgir.model.Podcast;
+import io.github.hanihashemi.podgir.util.PicassoHelper;
 
 /**
  * Created by hani on 8/18/15.
@@ -35,9 +34,7 @@ public class PodcastsRecyclerView extends RecyclerView.Adapter<PodcastViewHolder
 
     @Override
     public void onBindViewHolder(PodcastViewHolder holder, int position) {
-        Picasso picasso = Picasso.with(context);
-        picasso.setIndicatorsEnabled(true);
-        picasso.load(podcasts.get(position).getImageUrl()).into(holder.imageView);
+        PicassoHelper.load(context, podcasts.get(position).getImageUrl(), holder.imageView);
     }
 
     @Override

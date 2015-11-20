@@ -4,7 +4,7 @@
     android:layout_height="180dp"
     android:background="@color/primary_light">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"

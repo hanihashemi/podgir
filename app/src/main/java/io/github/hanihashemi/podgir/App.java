@@ -5,7 +5,6 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.orm.SugarApp;
 import com.squareup.otto.Bus;
 
@@ -31,7 +30,6 @@ public class App extends SugarApp {
         app = this;
 
         timberConfig();
-        Fresco.initialize(this);
     }
 
     private void timberConfig() {

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -20,7 +21,6 @@ import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
 import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.service.MediaPlayerService;
 import io.github.hanihashemi.podgir.util.PlayerUtils;
-import io.github.hanihashemi.podgir.widget.AppImageView;
 import io.github.hanihashemi.podgir.widget.AppPlayButton;
 import io.github.hanihashemi.podgir.widget.AppTextView;
 
@@ -41,7 +41,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     @Bind(R.id.seekBar)
     SeekBar seekBar;
     @Bind(R.id.image)
-    AppImageView imageView;
+    ImageView imageView;
     @Bind(R.id.time)
     AppTextView time;
 

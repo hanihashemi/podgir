@@ -76,7 +76,7 @@
         android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <io.github.hanihashemi.podgir.widget.AppImageView
+    <ImageView
         android:id="@+id/image"
         android:layout_width="100dp"
         android:layout_height="100dp"

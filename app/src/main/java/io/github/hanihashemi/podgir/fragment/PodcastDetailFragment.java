@@ -75,7 +75,7 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         recyclerView.setLayoutManager(layoutManager);
 
         episodes = new ArrayList<>();
-        adapter = new PodcastDetailRecyclerView(podcast, episodes, feedOnClick);
+        adapter = new PodcastDetailRecyclerView(getActivity(), podcast, episodes, feedOnClick);
         recyclerView.setAdapter(adapter);
         downloadManagerHelper = new DownloadManagerHelper(getActivity());
     }

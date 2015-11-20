@@ -1,6 +1,6 @@
 package io.github.hanihashemi.podgir.adapter;
 
-import android.net.Uri;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHo
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.model.Podcast;
+import io.github.hanihashemi.podgir.util.PicassoHelper;
 
 /**
  * Created by hani on 8/25/15.
@@ -24,11 +25,13 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
     private Podcast podcast;
     private List<Episode> episodes;
     private FeedInPodcastDetailViewHolder.OnClick feedOnClick;
+    private Context context;
 
-    public PodcastDetailRecyclerView(Podcast podcast, List<Episode> episodes, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
+    public PodcastDetailRecyclerView(Context context, Podcast podcast, List<Episode> episodes, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
         this.podcast = podcast;
         this.episodes = episodes;
         this.feedOnClick = feedOnClick;
+        this.context = context;
     }
 
     @Override
@@ -48,7 +51,7 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
             case VIEW_HOLDER_PODCAST_DETAIL:
                 PodcastDetailViewHolder podcastHolder = (PodcastDetailViewHolder) holder;
                 podcastHolder.name.setText(podcast.getName());
-                podcastHolder.imageView.setImageURI(Uri.parse(podcast.getImageUrl()));
+                PicassoHelper.load(context, podcast.getImageUrl(), podcastHolder.imageView);
                 break;
             case VIEW_HOLDER_FEEDS:
                 FeedInPodcastDetailViewHolder feedHolder = (FeedInPodcastDetailViewHolder) holder;
