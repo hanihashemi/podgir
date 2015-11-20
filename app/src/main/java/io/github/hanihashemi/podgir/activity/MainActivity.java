@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import butterknife.Bind;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseActivity;
-import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.fragment.DownloadedFragment;
 import io.github.hanihashemi.podgir.fragment.PodcastFragment;
 
@@ -25,8 +24,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Bind(R.id.nav_view)
     protected NavigationView navigationView;
 
-    private Fragment podcastFragment;
-    private Fragment downloadFragment;
+    private PodcastFragment podcastFragment;
+    private DownloadedFragment downloadFragment;
 
     @Override
     protected void customizeUI() {
@@ -36,8 +35,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+        podcastFragment = new PodcastFragment();
+        downloadFragment = new DownloadedFragment();
         navigationView.setNavigationItemSelectedListener(this);
-        addFragmentToContainer(new PodcastFragment());
+        addFragmentToContainer(podcastFragment);
+
     }
 
     @Override
@@ -57,18 +59,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                break;
             case R.id.action_refresh:
-                ((BaseSwipeFragment) downloadFragment).onRefresh();
-                ((BaseSwipeFragment) podcastFragment).onRefresh();
+                podcastFragment.onRefresh();
                 break;
         }
 
@@ -79,15 +78,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_podcast:
-                if (podcastFragment == null)
-                    podcastFragment = new PodcastFragment();
-
                 addFragmentToContainer(podcastFragment);
                 break;
             case R.id.nav_download:
-                if (downloadFragment == null)
-                    downloadFragment = new DownloadedFragment();
-
                 addFragmentToContainer(downloadFragment);
                 break;
         }
