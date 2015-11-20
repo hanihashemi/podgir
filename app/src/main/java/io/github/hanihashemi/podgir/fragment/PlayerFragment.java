@@ -104,6 +104,11 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
 
     @Subscribe
     public void onStatusChanged(MediaPlayerStatus status) {
+        if (!episode.getObjectId().equals(status.getFileId())) {
+            getActivity().startService(MediaPlayerService.getIntent(getActivity(), episode));
+            return;
+        }
+
         if (status.isPlay())
             seekBar.setEnabled(true);
 

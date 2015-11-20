@@ -7,6 +7,7 @@ public class MediaPlayerStatus {
     private boolean play;
     private int totalTime;
     private int correctTime;
+    private String fileId;
 
     public int getTotalTime() {
         return totalTime;
@@ -30,5 +31,13 @@ public class MediaPlayerStatus {
 
     public void setPlay(boolean play) {
         this.play = play;
+    }
+
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileName) {
+        this.fileId = fileName;
     }
 }

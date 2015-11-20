@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
 
-import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 
 import java.io.IOException;
@@ -99,13 +98,6 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         }
     }
 
-    @Produce
-    public MediaPlayerStatus produceAnswer() {
-        MediaPlayerStatus mediaPlayerStatus = new MediaPlayerStatus();
-        mediaPlayerStatus.setPlay(false);
-        return mediaPlayerStatus;
-    }
-
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
         Timber.d("=========> MediaPlayer Service onError");
@@ -142,6 +134,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
             mediaPlayerStatus.setPlay(mediaPlayer.isPlaying());
             mediaPlayerStatus.setCorrectTime(mediaPlayer.getCurrentPosition());
             mediaPlayerStatus.setTotalTime(mediaPlayer.getDuration());
+            mediaPlayerStatus.setFileId(episode.getObjectId());
             App.getInstance().getBus().post(mediaPlayerStatus);
         } catch (Exception ignore) {
             ignore.printStackTrace();
