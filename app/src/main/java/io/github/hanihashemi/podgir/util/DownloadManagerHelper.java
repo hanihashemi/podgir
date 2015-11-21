@@ -18,6 +18,7 @@ import timber.log.Timber;
 public class DownloadManagerHelper {
     private Context context;
     private List<Long> referenceIds;
+    private BroadcastReceiver broadcastReceiver;
 
     public DownloadManagerHelper(Context context) {
         this.context = context;
@@ -37,38 +38,40 @@ public class DownloadManagerHelper {
     }
 
     public BroadcastReceiver getBroadcastReceiver() {
-        return new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                for (Long referenceId : referenceIds) {
-                    long receivedReferenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+        if (broadcastReceiver == null)
+            broadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    for (Long referenceId : referenceIds) {
+                        long receivedReferenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
 
-                    if (referenceId != receivedReferenceId)
-                        continue;
+                        if (referenceId != receivedReferenceId)
+                            continue;
 
-                    Cursor cursor = getDownloadManager().query(new DownloadManager.Query().setFilterById(referenceId));
-                    cursor.moveToFirst();
-                    int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
-                    String fileName = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
+                        Cursor cursor = getDownloadManager().query(new DownloadManager.Query().setFilterById(referenceId));
+                        cursor.moveToFirst();
+                        int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                        String fileName = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
 
-                    switch (status) {
-                        case DownloadManager.STATUS_FAILED:
-                            Timber.d("File failed to download: %s", fileName);
-                            break;
-                        case DownloadManager.STATUS_PAUSED:
-                            break;
-                        case DownloadManager.STATUS_PENDING:
-                            Timber.d("File pending: %s", fileName);
-                            break;
-                        case DownloadManager.STATUS_RUNNING:
-                            break;
-                        case DownloadManager.STATUS_SUCCESSFUL:
-                            Timber.d("File successfully downloaded: %s", fileName);
-                            break;
+                        switch (status) {
+                            case DownloadManager.STATUS_FAILED:
+                                Timber.d("File failed to download: %s", fileName);
+                                break;
+                            case DownloadManager.STATUS_PAUSED:
+                                break;
+                            case DownloadManager.STATUS_PENDING:
+                                Timber.d("File pending: %s", fileName);
+                                break;
+                            case DownloadManager.STATUS_RUNNING:
+                                break;
+                            case DownloadManager.STATUS_SUCCESSFUL:
+                                Timber.d("File successfully downloaded: %s", fileName);
+                                break;
+                        }
                     }
                 }
-            }
-        };
+            };
+        return broadcastReceiver;
     }
 
     private DownloadManager getDownloadManager() {
