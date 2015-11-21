@@ -24,7 +24,7 @@
         android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/text_third"
-        android:textSize="@dimen/size_2"
+        android:textSize="@dimen/text"
         android:textStyle="bold" />
 
     <io.github.hanihashemi.podgir.widget.AppTextView
@@ -39,6 +39,6 @@
         android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/text_third"
-        android:textSize="@dimen/size_2" />
+        android:textSize="@dimen/text" />
 
 </RelativeLayout>

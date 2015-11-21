@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textSize="@dimen/size_2"
+            android:textSize="@dimen/text"
             android:textStyle="bold" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textSize="@dimen/size_2" />
+            android:textSize="@dimen/text" />
 
     </LinearLayout>
 

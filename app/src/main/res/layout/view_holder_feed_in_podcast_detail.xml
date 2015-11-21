@@ -13,7 +13,7 @@
         android:layout_gravity="center_vertical|left"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:textSize="@dimen/size_2" />
+        android:textSize="@dimen/text" />
 
     <Button
         android:id="@+id/button"
