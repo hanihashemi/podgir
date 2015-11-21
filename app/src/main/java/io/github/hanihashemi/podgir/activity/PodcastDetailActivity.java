@@ -27,6 +27,7 @@ public class PodcastDetailActivity extends BaseActivityWithSingleFragment {
     @Override
     public void customizeUI() {
         super.customizeUI();
+        setTitle(podcast.getName());
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

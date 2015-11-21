@@ -51,6 +51,7 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
             case VIEW_HOLDER_PODCAST_DETAIL:
                 PodcastDetailViewHolder podcastHolder = (PodcastDetailViewHolder) holder;
                 podcastHolder.name.setText(podcast.getName());
+                podcastHolder.summary.setText(podcast.getSummary());
                 PicassoHelper.load(context, podcast.getImageUrl(), podcastHolder.imageView);
                 break;
             case VIEW_HOLDER_FEEDS:

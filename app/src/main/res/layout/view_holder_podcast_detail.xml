@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
+    android:layout_height="200dp"
     android:background="@color/primary_light">
 
     <ImageView
@@ -12,17 +12,33 @@
         android:layout_marginTop="20dp"
         android:scaleType="centerCrop" />
 
-    <TextView
+    <io.github.hanihashemi.podgir.widget.AppTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
         android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/text_third"
-        android:textSize="@dimen/size_1"
+        android:textSize="@dimen/size_2"
         android:textStyle="bold" />
+
+    <io.github.hanihashemi.podgir.widget.AppTextView
+        android:id="@+id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/text_third"
+        android:textSize="@dimen/size_2" />
 
 </RelativeLayout>

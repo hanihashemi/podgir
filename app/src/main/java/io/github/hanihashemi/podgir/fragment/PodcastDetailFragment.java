@@ -77,7 +77,6 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         episodes = new ArrayList<>();
         adapter = new PodcastDetailRecyclerView(getActivity(), podcast, episodes, feedOnClick);
         recyclerView.setAdapter(adapter);
-        downloadManagerHelper = new DownloadManagerHelper(getActivity());
     }
 
     protected void fetchData() {
@@ -99,15 +98,16 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
     @Override
     public void onResume() {
         super.onResume();
+        downloadManagerHelper = new DownloadManagerHelper(getActivity());
         getActivity().registerReceiver(downloadManagerHelper.getBroadcastReceiver(), new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
     }
 
     @Override
     public void onPause() {
-        super.onPause();
         try {
             getActivity().unregisterReceiver(downloadManagerHelper.getBroadcastReceiver());
         } catch (Exception ignore) {
         }
+        super.onPause();
     }
 }
