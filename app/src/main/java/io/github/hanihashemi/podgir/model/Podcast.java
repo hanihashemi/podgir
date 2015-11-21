@@ -81,4 +81,8 @@ public class Podcast extends BaseModel<Podcast> implements Parcelable {
         dest.writeString(this.imageUrl);
         dest.writeString(this.summary);
     }
+
+    public String getSummary() {
+        return summary;
+    }
 }
