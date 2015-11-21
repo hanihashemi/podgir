@@ -33,4 +33,11 @@ public class PlayerActivity extends BaseActivityWithSingleFragment {
         super.gatherArguments(bundle);
         episode = getIntent().getParcelableExtra(ARG_FEED);
     }
+
+    @Override
+    public void customizeUI() {
+        super.customizeUI();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 }

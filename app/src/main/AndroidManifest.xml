@@ -32,7 +32,10 @@
             android:name=".activity.PodcastDetailActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.PlayerActivity" />
+
+        <activity
+            android:name=".activity.PlayerActivity"
+            android:label="@string/empty" />
 
         <service
             android:name=".service.MediaPlayerService"

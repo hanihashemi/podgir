@@ -130,7 +130,6 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
     }
 
     @Override
