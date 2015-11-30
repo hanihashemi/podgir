@@ -53,37 +53,47 @@
         android:text="00:00"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <io.github.hanihashemi.podgir.widget.AppTextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/seekBar"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/seekBar"
-        android:layout_marginTop="83dp"
-        android:gravity="right"
-        android:padding="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
 
-    <io.github.hanihashemi.podgir.widget.AppTextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/title"
-        android:layout_alignStart="@+id/title"
-        android:layout_marginBottom="29dp"
-        android:gravity="right"
-        android:padding="10dp"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <io.github.hanihashemi.podgir.widget.AppTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/title" />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:contentDescription="@string/player_feed_image"
-        android:scaleType="centerCrop" />
+        <io.github.hanihashemi.podgir.widget.AppTextView
+            android:id="@+id/summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/text" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/player_feed_image"
+            android:scaleType="centerCrop" />
+
+    </LinearLayout>
 
 </RelativeLayout>
