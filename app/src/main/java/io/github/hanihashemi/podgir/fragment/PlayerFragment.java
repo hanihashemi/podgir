@@ -1,7 +1,6 @@
 package io.github.hanihashemi.podgir.fragment;
 
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,6 +19,7 @@ import io.github.hanihashemi.podgir.broadcast.MediaPlayerAction;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
 import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.service.MediaPlayerService;
+import io.github.hanihashemi.podgir.util.PicassoHelper;
 import io.github.hanihashemi.podgir.util.PlayerUtils;
 import io.github.hanihashemi.podgir.widget.AppPlayButton;
 import io.github.hanihashemi.podgir.widget.AppTextView;
@@ -30,8 +30,8 @@ import io.github.hanihashemi.podgir.widget.AppTextView;
 public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayListener, SeekBar.OnSeekBarChangeListener {
 
     public static final String ARG_FEED = "episode";
-    @Bind(R.id.name)
-    AppTextView name;
+    @Bind(R.id.summary)
+    AppTextView summary;
     @Bind(R.id.title)
     AppTextView title;
     @Bind(R.id.play)
@@ -75,12 +75,13 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     protected void customizeUI() {
         super.customizeUI();
         setRetainInstance(true);
-        name.setText(episode.getParent().getName());
-        title.setText(episode.getTitle());
+        summary.setText(episode.getTitle());
+        title.setText(episode.getParent().getName());
 
         seekBar.setEnabled(false);
         seekBar.setOnSeekBarChangeListener(this);
-        imageView.setImageURI(Uri.parse(episode.getParent().getImageUrl()));
+        PicassoHelper.load(getActivity(), episode.getParent().getImageUrl(), imageView);
+
         backTenSeconds.setImageDrawable(new IconicsDrawable(getActivity()).icon(GoogleMaterial.Icon.gmd_replay_10).color(Color.WHITE).sizeDp(50));
         play.setPlayListener(this);
     }
