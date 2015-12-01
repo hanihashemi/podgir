@@ -36,6 +36,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     @Ignore
     @Exclude
     private Podcast podcast;
+
     public Episode() {
     }
 
@@ -90,8 +91,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
 
         return new GsonRequest<>(
                 Request.Method.GET,
-                getHostUrl("classes/feed?where=" +
-                        argument),
+                getHostUrl("classes/feed?where=%s&order=-number", argument),
                 null,
                 EpisodeResultResponse.class,
                 onSuccess,
