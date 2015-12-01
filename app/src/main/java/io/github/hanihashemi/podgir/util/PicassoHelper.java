@@ -14,6 +14,6 @@ public class PicassoHelper {
     public static void load(Context context, String url, ImageView imageView) {
         Picasso picasso = Picasso.with(context);
         picasso.setIndicatorsEnabled(true);
-        picasso.load(url).placeholder(R.color.primary).into(imageView);
+        picasso.load(url).placeholder(R.color.primary_light).into(imageView);
     }
 }
