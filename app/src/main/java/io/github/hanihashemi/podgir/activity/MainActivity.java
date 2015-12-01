@@ -1,6 +1,8 @@
 package io.github.hanihashemi.podgir.activity;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,6 +29,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private PodcastFragment podcastFragment;
     private DownloadedFragment downloadFragment;
 
+    public static Intent getIntent(Context context) {
+        return new Intent(context, MainActivity.class);
+    }
+
     @Override
     protected void customizeUI() {
         super.customizeUI();
@@ -39,7 +45,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         downloadFragment = new DownloadedFragment();
         navigationView.setNavigationItemSelectedListener(this);
         addFragmentToContainer(podcastFragment);
-
     }
 
     @Override

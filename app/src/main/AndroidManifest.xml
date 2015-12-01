@@ -32,7 +32,6 @@
             android:name=".activity.PodcastDetailActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activity.MainActivity" />
-
         <activity
             android:name=".activity.PlayerActivity"
             android:label="@string/empty" />
@@ -44,10 +43,15 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label="@string/title_activity_splash"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -35,4 +35,5 @@
     <string name="play">Play</string>
     <string name="notification_player_title">Playing</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>
