@@ -27,7 +27,7 @@ import timber.log.Timber;
 /**
  * Created by hani on 9/13/15.
  */
-public class MediaPlayerService extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, Runnable {
+public class MediaPlayerService extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, Runnable, MediaPlayer.OnCompletionListener {
     private static final String ARG_FEED = "feed_model";
     private MediaPlayer mediaPlayer;
     private boolean isRegistered;
@@ -87,6 +87,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         mediaPlayer.setOnPreparedListener(this);
         mediaPlayer.setOnErrorListener(this);
         mediaPlayer.setWakeMode(App.getInstance().getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+        mediaPlayer.setOnCompletionListener(this);
     }
 
     @Override
@@ -166,5 +167,10 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
                 mediaPlayer.seekTo(new PlayerUtils().getProgressToTimer(action.getPositionPercent(), mediaPlayer.getDuration()));
                 break;
         }
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+        stopForeground(true);
     }
 }
