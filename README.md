@@ -1,8 +1,8 @@
 # پادگیر
 
 ## نسخه ۱
-![Main](screenshot/1/downloaded.png) 
-![Player](/screenshot/1/downloaded.png) 
-![Navigation Drawer](https://github.com/hanihashemi/khabarefori-android/blob/master/screen-shot/ir.khabarefori1.jpg) 
-![Downloaded](https://github.com/hanihashemi/khabarefori-android/blob/master/screen-shot/ir.khabarefori1.jpg) 
-![Podcast](https://github.com/hanihashemi/khabarefori-android/blob/master/screen-shot/ir.khabarefori1.jpg) 
+<img src="screenshot/1/main.png" width="480">
+<img src="screenshot/1/player.png" width="480">
+<img src="screenshot/1/nav.png" width="480">
+<img src="screenshot/1/downloaded.png" width="480">
+<img src="screenshot/1/podcast.png" width="480">
