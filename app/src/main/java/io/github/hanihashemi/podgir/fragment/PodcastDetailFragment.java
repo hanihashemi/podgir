@@ -3,6 +3,7 @@ package io.github.hanihashemi.podgir.fragment;
 import android.app.DownloadManager;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,7 +16,7 @@ import butterknife.Bind;
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.activity.PlayerActivity;
-import io.github.hanihashemi.podgir.adapter.PodcastDetailRecyclerView;
+import io.github.hanihashemi.podgir.adapter.PodcastDetailAdapter;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.model.Episode;
@@ -23,11 +24,13 @@ import io.github.hanihashemi.podgir.model.EpisodeResultResponse;
 import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
 import io.github.hanihashemi.podgir.util.DownloadManagerHelper;
+import io.github.hanihashemi.podgir.util.DownloadManagerHelper.Listener;
+import timber.log.Timber;
 
 /**
  * Created by hani on 8/24/15.
  */
-public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultResponse> implements Response.Listener<EpisodeResultResponse> {
+public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultResponse> implements Response.Listener<EpisodeResultResponse>, Listener {
     public static final String ARG_PODCAST = "arg_podcast";
     @Bind(R.id.recycler_view)
     protected RecyclerView recyclerView;
@@ -42,7 +45,11 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
             Episode episode = episodes.get(position - 1);
 
             if (!episode.isDownloaded()) {
-                downloadManagerHelper.add(getString(R.string.app_name), getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), episode.getObjectId(), episode.getUrl());
+                //"http://cdn.p30download.com/?b=p30dl-ebook&f=Click.545.1394.09.08_p30download.com.zip"
+                long downloadId = downloadManagerHelper.add(getString(R.string.app_name), getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), episode.getObjectId(), episode.getUrl());
+                episode.setDownloadId(downloadId);
+                episode.save();
+                adapter.notifyDataSetChanged();
             } else {
                 startActivity(PlayerActivity.getIntent(PodcastDetailFragment.this.getActivity(), episode));
             }
@@ -75,7 +82,7 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         recyclerView.setLayoutManager(layoutManager);
 
         episodes = new ArrayList<>();
-        adapter = new PodcastDetailRecyclerView(getActivity(), podcast, episodes, feedOnClick);
+        adapter = new PodcastDetailAdapter(getActivity(), podcast, episodes, feedOnClick);
         recyclerView.setAdapter(adapter);
     }
 
@@ -92,14 +99,26 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         episodes.clear();
 
         episodes.addAll(Episode.findAll(podcast.getObjectId()));
+        checkEpisodesDownloadStatus();
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        downloadManagerHelper = new DownloadManagerHelper(getActivity());
+        downloadManagerHelper = new DownloadManagerHelper(getActivity(), this);
         getActivity().registerReceiver(downloadManagerHelper.getBroadcastReceiver(), new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        checkEpisodesDownloadStatus();
+    }
+
+    private void checkEpisodesDownloadStatus() {
+        if (episodes == null)
+            return;
+
+        for (Episode episode : episodes) {
+            if (episode.getDownloadId() != null)
+                downloadManagerHelper.checkDownloadStatus(episode.getDownloadId(), this);
+        }
     }
 
     @Override
@@ -109,5 +128,42 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         } catch (Exception ignore) {
         }
         super.onPause();
+    }
+
+    @Override
+    public void onDownloadFailed(long downloadId) {
+        Episode episode = getEpisode(downloadId);
+        if (episode == null) {
+            Timber.w("Couldn't find episode with this downloadId");
+            return;
+        }
+
+        episode.setDownloadId(null);
+        episode.getFile().deleteOnExit();
+        episode.save();
+
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDownloadSuccess(long downloadId) {
+        Episode episode = getEpisode(downloadId);
+        if (episode == null) {
+            Timber.w("Couldn't find episode with this downloadId");
+            return;
+        }
+
+        episode.setDownloadId(null);
+        episode.save();
+
+        adapter.notifyDataSetChanged();
+    }
+
+    @Nullable
+    private Episode getEpisode(long downloadId) {
+        for (Episode episode : episodes)
+            if (episode.getDownloadId() != null && episode.getDownloadId() == downloadId)
+                return episode;
+        return null;
     }
 }

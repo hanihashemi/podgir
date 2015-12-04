@@ -23,7 +23,7 @@ public class SplashActivity extends BaseActivity implements Runnable {
     @Override
     protected void onStart() {
         super.onStart();
-        handler.postDelayed(this, 5000);
+        handler.postDelayed(this, 2000);
     }
 
     @Override

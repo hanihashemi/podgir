@@ -19,13 +19,15 @@ public class DownloadManagerHelper {
     private Context context;
     private List<Long> referenceIds;
     private BroadcastReceiver broadcastReceiver;
+    private Listener listener;
 
-    public DownloadManagerHelper(Context context) {
+    public DownloadManagerHelper(Context context, Listener listener) {
         this.context = context;
+        this.listener = listener;
         referenceIds = new ArrayList<>();
     }
 
-    public void add(String title, String description, String fileName, String url) {
+    public long add(String title, String description, String fileName, String url) {
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setTitle(title);
         request.setDescription(description);
@@ -34,7 +36,9 @@ public class DownloadManagerHelper {
         request.setAllowedOverRoaming(false);
 
         Timber.d("Added to download manager: %s", url);
-        referenceIds.add(getDownloadManager().enqueue(request));
+        long requestId = getDownloadManager().enqueue(request);
+        referenceIds.add(requestId);
+        return requestId;
     }
 
     public BroadcastReceiver getBroadcastReceiver() {
@@ -48,33 +52,47 @@ public class DownloadManagerHelper {
                         if (referenceId != receivedReferenceId)
                             continue;
 
-                        Cursor cursor = getDownloadManager().query(new DownloadManager.Query().setFilterById(referenceId));
-                        cursor.moveToFirst();
-                        int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
-                        String fileName = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
-
-                        switch (status) {
-                            case DownloadManager.STATUS_FAILED:
-                                Timber.d("File failed to download: %s", fileName);
-                                break;
-                            case DownloadManager.STATUS_PAUSED:
-                                break;
-                            case DownloadManager.STATUS_PENDING:
-                                Timber.d("File pending: %s", fileName);
-                                break;
-                            case DownloadManager.STATUS_RUNNING:
-                                break;
-                            case DownloadManager.STATUS_SUCCESSFUL:
-                                Timber.d("File successfully downloaded: %s", fileName);
-                                break;
-                        }
+                        checkDownloadStatus(referenceId, listener);
                     }
                 }
             };
         return broadcastReceiver;
     }
 
+    public void checkDownloadStatus(Long referenceId, Listener listener) {
+        Cursor cursor = getDownloadManager().query(new DownloadManager.Query().setFilterById(referenceId));
+        cursor.moveToFirst();
+        int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+        String fileName = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
+
+        switch (status) {
+            case DownloadManager.STATUS_FAILED:
+            case DownloadManager.STATUS_PENDING:
+                Timber.d("File pending/failed: %s", fileName);
+                listener.onDownloadFailed(referenceId);
+                break;
+            case DownloadManager.STATUS_PAUSED:
+                Timber.d("File is paused: %s", fileName);
+                break;
+            case DownloadManager.STATUS_RUNNING:
+                Timber.d("File downloading: %s", fileName);
+                break;
+            case DownloadManager.STATUS_SUCCESSFUL:
+                Timber.d("File successfully downloaded: %s", fileName);
+                listener.onDownloadSuccess(referenceId);
+                break;
+            default:
+                Timber.d("Unknown status");
+        }
+    }
+
     private DownloadManager getDownloadManager() {
         return (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+    }
+
+    public interface Listener {
+        void onDownloadFailed(long downloadId);
+
+        void onDownloadSuccess(long downloadId);
     }
 }

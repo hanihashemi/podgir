@@ -4,10 +4,10 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.List;
 
-import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastDetailViewHolder;
@@ -18,7 +18,7 @@ import io.github.hanihashemi.podgir.util.PicassoHelper;
 /**
  * Created by hani on 8/25/15.
  */
-public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PodcastDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int VIEW_HOLDER_PODCAST_DETAIL = 0;
     private static final int VIEW_HOLDER_FEEDS = 1;
@@ -27,7 +27,7 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
     private FeedInPodcastDetailViewHolder.OnClick feedOnClick;
     private Context context;
 
-    public PodcastDetailRecyclerView(Context context, Podcast podcast, List<Episode> episodes, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
+    public PodcastDetailAdapter(Context context, Podcast podcast, List<Episode> episodes, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
         this.podcast = podcast;
         this.episodes = episodes;
         this.feedOnClick = feedOnClick;
@@ -58,8 +58,21 @@ public class PodcastDetailRecyclerView extends RecyclerView.Adapter<RecyclerView
                 FeedInPodcastDetailViewHolder feedHolder = (FeedInPodcastDetailViewHolder) holder;
                 Episode episode = episodes.get(position - 1);
                 feedHolder.name.setText(episode.getTitle());
-                feedHolder.download.setText(episode.isDownloaded() ? App.getInstance().getString(R.string.podcast_detail_feed_downloaded) : App.getInstance().getString(R.string.podcast_detail_feed_not_download));
+                setDownloadButtonStatus(episode, feedHolder.download);
                 break;
+        }
+    }
+
+    private void setDownloadButtonStatus(Episode episode, Button download) {
+        if (episode.getDownloadId() != null) {
+            download.setText(R.string.podcast_detail_feed_downloading);
+            download.setEnabled(false);
+        } else if (episode.isDownloaded()) {
+            download.setText(R.string.podcast_detail_feed_downloaded);
+            download.setEnabled(true);
+        } else {
+            download.setText(R.string.podcast_detail_feed_not_download);
+            download.setEnabled(true);
         }
     }
 

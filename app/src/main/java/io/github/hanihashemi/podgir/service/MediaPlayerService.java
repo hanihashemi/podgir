@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
@@ -16,7 +17,6 @@ import java.io.IOException;
 
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerAction;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
 import io.github.hanihashemi.podgir.model.Episode;
@@ -72,7 +72,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
     }
 
     private void showNotification() {
-        startForeground(2, new NotificationUtils(210).initService(getString(R.string.notification_player_title), String.format("%s - %s", episode.getParent().getName(), episode.getTitle()), PlayerActivity.class));
+        startForeground(2, new NotificationUtils(210).initService(episode));
     }
 
     private void registerBus() {
@@ -102,6 +102,8 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
         Timber.d("=========> MediaPlayer Service onError");
+        Toast.makeText(this, R.string.player_serivce_error, Toast.LENGTH_LONG).show();
+        stopForeground(true);
         mediaPlayer.reset();
         return true;
     }

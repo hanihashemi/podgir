@@ -33,6 +33,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     private String url;
     private String summary;
     private String parent;
+    private Long downloadId;
     @Ignore
     @Exclude
     private Podcast podcast;
@@ -46,6 +47,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         this.url = in.readString();
         this.summary = in.readString();
         this.parent = in.readString();
+        this.downloadId = (Long) in.readValue(Long.class.getClassLoader());
         this.podcast = in.readParcelable(Podcast.class.getClassLoader());
     }
 
@@ -119,6 +121,14 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         return summary;
     }
 
+    public Long getDownloadId() {
+        return downloadId;
+    }
+
+    public void setDownloadId(Long downloadId) {
+        this.downloadId = downloadId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -131,6 +141,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         dest.writeString(this.url);
         dest.writeString(this.summary);
         dest.writeString(this.parent);
+        dest.writeValue(this.downloadId);
         dest.writeParcelable(this.podcast, 0);
     }
 }

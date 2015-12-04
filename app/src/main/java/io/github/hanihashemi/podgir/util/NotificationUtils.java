@@ -9,6 +9,8 @@ import android.support.v7.app.NotificationCompat;
 
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
+import io.github.hanihashemi.podgir.activity.PlayerActivity;
+import io.github.hanihashemi.podgir.model.Episode;
 
 /**
  * Created by hani on 8/27/15.
@@ -23,11 +25,17 @@ public class NotificationUtils {
         notificationManager = (NotificationManager) App.getInstance().getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
-    public Notification initService(String title, String text, Class<?> cls) {
+    public Notification initService(Episode episode) {
         builder = new NotificationCompat.Builder(App.getInstance().getApplicationContext());
-        return builder.setContentIntent(createPendingIntent(cls))
+
+        Intent contentIntent = PlayerActivity.getIntent(App.getInstance().getApplicationContext(), episode);
+        PendingIntent pendingIntent = PendingIntent.getActivity(App.getInstance().getApplicationContext(), 0, contentIntent, 0);
+
+        String text = String.format("%s - %s", episode.getParent().getName(), episode.getTitle());
+
+        return builder.setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_notification).setTicker(text).setWhen(System.currentTimeMillis())
-                .setAutoCancel(false).setContentTitle(title)
+                .setAutoCancel(false).setContentTitle(App.getInstance().getApplicationContext().getString(R.string.notification_player_title))
                 .setContentText(text).build();
     }
 

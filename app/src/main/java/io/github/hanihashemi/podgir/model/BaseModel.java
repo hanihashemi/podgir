@@ -34,14 +34,15 @@ public abstract class BaseModel<T> extends SugarRecord<T> {
                 item.save();
     }
 
-    protected final String getHostUrl(String apiUrl, Object... args) {
+    protected final String getHostUrl(String api, Object... args) {
         String host = "https://api.parse.com/1/";
+        api = String.format(api, args);
         try {
-            apiUrl = URLEncoder.encode(apiUrl, "UTF-8");
+            api = URLEncoder.encode(api, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return host + String.format(apiUrl, args);
+        return host + api;
     }
 
     protected final String getHostUrl(String apiUrl) {
