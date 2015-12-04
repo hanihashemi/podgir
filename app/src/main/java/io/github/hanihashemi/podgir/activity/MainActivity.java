@@ -84,9 +84,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
             case R.id.nav_podcast:
                 addFragmentToContainer(podcastFragment);
+                setTitle(R.string.app_name_fa);
                 break;
             case R.id.nav_download:
                 addFragmentToContainer(downloadFragment);
+                setTitle(R.string.downloaded);
                 break;
         }
 
