@@ -1,41 +1,34 @@
 <resources>
     <string name="app_name">Podgir</string>
+    <string name="app_name_fa">پادگیر</string>
     <string name="empty" />
 
-    <string name="navigation_podcasts">Podcasts</string>
-    <string name="navigation_downloaded">Downloaded</string>
+    <string name="navigation_podcasts">پادکست</string>
+    <string name="navigation_downloaded">دانلود شده</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_example">Example action</string>
-
-    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open">باز کن</string>
+    <string name="navigation_drawer_close">ببند</string>
 
     <!--Errors Messages-->
-    <string name="no_internet_error">No internet connection.</string>
-    <string name="server_response_problem">Server problem</string>
-    <string name="server_timeout_error">Timeout trying to reach server.</string>
-    <string name="token_expired">Token is expired, please login again.</string>
-    <string name="error_max_item_selected">You should remove at least one item to add new one.</string>
-    <string name="error_dialog_title">Error</string>
-    <string name="could_not_reach_server">Could not reach server.</string>
-    <string name="notification_download_title" formatted="false">Download %s - %s</string>
-    <string name="notification_download_text">Wait to start …</string>
+    <string name="no_internet_error">اینترنت نداری!</string>
+    <string name="server_response_problem">مشکل در ارتباط با سرور!</string>
+    <string name="server_timeout_error">اتمام مهلت برای دسترسی به سرور!</string>
+    <string name="error_dialog_title">مشکل</string>
+    <string name="could_not_reach_server">سرور در دسترس نیست!</string>
+    <string name="notification_download_title" formatted="false">دریافت %s - %s</string>
 
-    <string name="podcast_detail_feed_downloaded">Play</string>
-    <string name="podcast_detail_feed_downloading">Downloading</string>
-    <string name="podcast_detail_feed_not_download">Download</string>
-    <string name="fragment_recycler_error_message">Check your connection and pull to refresh.</string>
-    <string name="fragment_recycler_button_retry">Retry</string>
+    <string name="podcast_detail_feed_downloaded">پخش</string>
+    <string name="podcast_detail_feed_downloading">در حال دریافت</string>
+    <string name="podcast_detail_feed_not_download">دریافت</string>
+    <string name="fragment_recycler_error_message">دسترسی به شبکه ات رو بررسی کن بعدش بکش تا بروز شه.</string>
+    <string name="fragment_recycler_button_retry">دوباره</string>
     <string name="player_feed_image">Feed image</string>
     <string name="content_description_back_ten_seconds">back 10 seconds</string>
     <string name="content_description_play_pause">play/pause</string>
-    <string name="podcast">Podcast</string>
-    <string name="downloaded">Downloaded</string>
-    <string name="play">Play</string>
-    <string name="notification_player_title">Playing</string>
-    <string name="menu_refresh">Refresh</string>
-    <string name="title_activity_splash">SplashActivity</string>
-    <string name="player_serivce_error">Couldn\'t play this file</string>
+    <string name="podcast">پادکست</string>
+    <string name="downloaded">دانلود شده</string>
+    <string name="play">پخش</string>
+    <string name="notification_player_title">ذر حال پخش</string>
+    <string name="menu_refresh">بروز رسانی</string>
+    <string name="player_serivce_error">این فایل قابل پخش نیست!</string>
 </resources>

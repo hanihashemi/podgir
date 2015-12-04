@@ -13,7 +13,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="DATABASE"
@@ -30,12 +29,13 @@
 
         <activity
             android:name=".activity.PodcastDetailActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.PlayerActivity"
             android:label="@string/empty"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".service.MediaPlayerService"
@@ -43,13 +43,15 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name"
+            android:label="@string/app_name_fa"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
             android:noHistory="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
