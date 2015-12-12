@@ -1,0 +1,1165 @@
+
+a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var {background:transparent;border:0 none;font-size:100%;margin:0;padding:0;border:0;outline:0;vertical-align:top}
+ol, ul {list-style:none}
+blockquote, q {quotes:none}
+table, table td {padding:0;border:none;border-collapse:collapse}
+img {vertical-align:top}
+embed {vertical-align:top}
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block}
+mark, rp, rt, ruby, summary, time {display:inline}
+/*  Global properties */
+html {width:100%;min-height:100%;position: relative;overflow-x:hidden}
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+a:hover,a:focus{
+  text-decoration: none;
+}
+body{
+    color:#fff;
+    font-size:22px;
+}
+header{
+    height: 650px;
+    width: 100%;
+    float: left;
+    padding-top: 80px;
+    position: relative;
+    z-index: 99999;
+}
+header .container{
+   padding:0 40px;
+
+}
+header h1{
+    font-size: 60px;
+    color: #673AB7;
+    margin-top: 120px;
+    line-height: 55px;
+}
+header form{
+    width: 100%;
+    float: left;
+    margin-top: 42px;
+}
+header form label{
+    width: 100%;
+    float: left;
+    font-size: 17px;
+    color: #673AB7;
+    margin-bottom: 12px;
+}
+header form input[type=email]{
+   height: 60px;
+   width: 372px;
+   border:2px solid #e9ebeb;
+   padding-left: 20px;
+   font-size: 19px;
+   color:#D0D7D7;
+}
+header form .bottom{
+    margin-top: 15px;
+    width: 100%;
+    float: left;
+}
+header form .bottom button,header form .bottom button{
+  border: none;
+  float: left;
+  color: #fff;
+  font-size: 18px;
+  height: 60px;
+  margin-right: 8px;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    -moz-transition-property: transform;
+    -o-transition-property: transform;
+    -ms-transition-property: transform;
+    transition-property: transform;
+}
+header form .bottom button:disabled,header form .bottom button:disabled{
+   cursor: no-drop;
+}
+header form .bottom button:before,header form .bottom button:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -moz-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -o-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -ms-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  -moz-transition-property: transform, opacity;
+  -o-transition-property: transform, opacity;
+  -ms-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+header form .bottom button:first-child{
+  width: 204px;
+  background: #512DA8;
+}
+header form .bottom button:last-child{
+  width: 234px;
+  background: #D1C4E9;
+}
+header form .bottom button:hover, header form .bottom button:focus, header form .bottom button:active,header form .bottom button:hover, header form .bottom button:focus, header form .bottom button:active {
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+header form .bottom button:hover:before, header form .bottom button:focus:before, header form .bottom button:active:before,header form .bottom button:hover:before, header form .bottom button:focus:before, header form .bottom button:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+header form .bottom button i,header form .bottom button i{
+    float: right;
+    margin-right: 25px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    font-size: 32px;
+}
+
+section{
+    float: left;
+    width: 100%;
+}
+section.one{
+    height: 500px;
+    background: url(../img/bg1.jpg) no-repeat scroll top center;
+    background-size: cover;
+    text-align: center;
+    position: relative;
+}
+section.one span{
+    position: absolute;
+    top: 0;
+    left: 35%;
+    right: 35%;
+    width: 30%;
+    text-align: center;
+    margin-top: 152px;
+}
+section.one span::before{
+  content:'';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 150px 150px 0 150px;
+  border-color: #fff transparent transparent transparent;
+}
+section.one h2{
+  margin-top: 225px;
+  font-size: 42px;
+  line-height: 50px;
+
+}
+section.two{
+    height: 510px;
+    background: url(../img/bg2.jpg) no-repeat scroll top center;
+    background-size: cover;
+    text-align: center;
+}
+section.two h2{
+    margin-top: 174px;
+    font-size: 60px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+section.two p{
+    font-size: 30px;
+    margin-bottom: 48px;
+    text-align: center;
+}
+section.two a,section.two button{
+    width: 405px;
+    display: block;
+    border:none;
+    margin: auto;
+    height: 60px;
+    border-radius: 3px;
+    background: #bbc1f5;
+    font-size: 18px;
+    color: #fff;
+    line-height: 60px;
+    text-align: center;
+    display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+section.two a:hover, section.two a:focus, section.two a:active,section.two button:hover, section.two button:focus, section.two button:active {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+section.two a i,section.two button i{
+    font-size: 30px;
+    margin-top: 16px;
+    margin-left: 14px;
+}
+
+section.three{
+    height: 310px;
+    background: url(../img/bg4.jpg) no-repeat scroll top center;
+    background-size: cover;
+    text-align: center;
+}
+section.three h2{
+    margin-top: 110px;
+    font-size: 44px;
+    color: #233639;
+    margin-bottom: 10px;
+}
+section.three p{
+    color: #233639;
+    font-size: 26px;
+    line-height: 36px;
+}
+section.four{
+    height: 505px;
+}
+section.four .left{
+  float: left; 
+  width: 50%;
+  background: #bbc1f5; 
+  min-height: 100%;
+}
+section.four .left .content{
+  width: 585px;
+  float: right;
+  text-align: left;
+  padding: 0 15px;
+}
+section.four .left h2{
+  margin-top: 130px;
+  font-size: 44px;
+  line-height: 50px;
+  color: #fff;
+  padding-bottom: 37px;
+  position: relative;
+  margin-bottom: 37px;
+}
+section.four .left h2::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 6px;
+  width: 120px;
+  background: #fff;
+}
+section.four .left p{
+   font-size: 22px;
+   line-height: 36px;
+}
+section.four .right{
+  float: left;
+  width: 50%;
+  min-height: 100%;
+  background: url(../img/img1.jpg) no-repeat scroll top center;
+  background-size: cover;
+}
+
+
+section.five{
+    height: 505px;
+}
+section.five .left{
+  float: left; 
+  width: 50%;
+  background: url(../img/img2.jpg) no-repeat scroll top center;
+  background-size: cover;
+  min-height: 100%;
+}
+section.five .right{
+   float: left; 
+   width: 50%;
+   background:#fff;
+}
+section.five .right .content{
+  width: 585px;
+  float: left;
+  text-align: left;
+  padding: 0 40px 0 60px;
+}
+section.five .right h2{
+    margin-top: 72px;
+    color: #233639;
+    font-size: 44px;
+    line-height: 48px;
+    
+}
+section.five .right p{
+    margin: 30px 0 35px;
+}
+section.five .right p i{
+    color: #32fbed;
+    font-size: 29px;
+    margin-right: 5px;
+}
+section.five .right ul li{
+    font-size: 22px;
+    line-height: 36px;
+    color: #233639;
+    margin-bottom: 10px;
+}
+section.five .right ul li i{
+   font-size: 11px;
+   margin-top: 13px;
+   margin-right: 12px;
+}
+section.six{
+   height: 500px;
+   background: url(../img/bg3.jpg) no-repeat scroll top center;
+   background-size: cover;
+}
+section.six h3{
+   margin-top: 120px;
+   font-size: 44px;
+   line-height: 48px;
+   position: relative;
+   padding-bottom: 43px;
+   margin-bottom: 40px;
+}
+section.six h3::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 6px;
+  width: 115px;
+  background: #fff;
+}
+section.six p{
+  font-size: 22px;
+  line-height: 36px;
+}
+section.seven{
+    height: 430px;
+    background: #32fbed;
+}
+section.seven h3{
+   float: left;
+   margin-top: 200px;
+   font-size: 40px;
+   line-height: 46px;
+   float: left;
+   width: 33%;
+}
+section.seven h3 span{
+  display: none;
+  }
+section.seven p.first{
+    margin-top: 40px;
+    float: left;
+    width: 34%;
+    float: left;
+    text-align: center;
+}
+section.seven p.last{
+    margin-top: 187px;
+    font-size: 32px;
+    line-height: 48px;
+    float: left;
+    width: 33%;
+}
+section.seven p.last strong{
+   font-size: 60px;
+}
+
+section.eight{
+    height: 485px;
+}
+section.eight .right{
+  float: left;
+  width: 50%;
+  min-height: 100%;
+  background: url(../img/img3.jpg) no-repeat scroll top center;
+  background-size: cover;
+}
+section.eight .left{
+  float: left; 
+  width: 50%;
+  background: #fff; 
+  min-height: 100%;
+}
+section.eight .left .content{
+  width: 585px;
+  float: right;
+  text-align: left;
+  padding: 0 15px;
+}
+section.eight .left h3{
+  margin-top: 60px;
+  color: #233639;
+  font-size: 44px;
+  line-height: 48px;
+  padding-bottom: 35px;
+  margin-bottom: 35px;
+  position: relative;
+}
+section.eight .left h3::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 6px;
+  width: 120px;
+  background: #bbc1f5;
+}
+section.eight .left ul li{
+   font-size: 22px;
+   line-height: 36px;
+   color: #233639;
+   margin-bottom: 18px;
+}
+section.eight .left ul li i{
+   margin-right: 25px;
+   font-size: 11px;
+   margin-top: 10px;
+}
+section.nine{
+    height: 380px;
+    background: #f6f6f3;
+    text-align: center;
+}
+section.nine h3{
+    margin-top: 90px;
+    font-size: 36px;
+    line-height: 48px;
+    color: #233639;
+    margin-bottom: 24px;
+}
+section.nine form{
+    width: 550px;
+    margin: auto;
+}
+section.nine form input[type=email]{
+   height: 60px;
+   line-height: 56px;
+   width: 100%;
+   border:2px solid #e9ebeb;
+   font-size: 20px;
+   color:#D0D7D7;  
+   text-align: center;
+}
+section.nine form .bottom{
+    margin-top: 15px;
+    width: 100%;
+    float: left;
+}
+section.nine form .bottom button,section.nine form .bottom button{
+  float: left;
+  color: #fff;
+  font-size: 18px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 3px;
+  position: relative;
+  display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    -moz-transition-property: transform;
+    -o-transition-property: transform;
+    -ms-transition-property: transform;
+    transition-property: transform;
+}
+section.nine form .bottom button:disabled,section.nine form .bottom button:disabled{
+   cursor: no-drop;
+}
+section.nine form .bottom button:before,section.nine form .bottom button:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -moz-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -o-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -ms-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  -moz-transition-property: transform, opacity;
+  -o-transition-property: transform, opacity;
+  -ms-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+section.nine .bottom a:hover, section.nine .bottom a:focus, section.nine .bottom a:active,section.nine .bottom button:hover, section.nine .bottom button:focus, section.nine .bottom button:active {
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+section.nine .bottom a:hover:before, section.nine .bottom a:focus:before, section.nine .bottom a:active:before,section.nine .bottom button:hover:before, section.nine .bottom button:focus:before, section.nine .bottom button:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+section.nine form .bottom button:first-child{
+  width: 265px;
+  background: #FF5722;
+  border: none;
+}
+section.nine form .bottom button:last-child{
+  width: 265px;
+  float: right;
+  background: #FFCCBC;
+  border: none;
+}
+section.nine form .bottom button i,section.nine form .bottom button i{
+    float: right;
+    margin-right: 38px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    font-size: 32px;
+}
+section.nine form .bottom button i{
+   margin-right: 50px;
+}
+footer{
+    width: 100%;
+    float: left;
+}
+footer .footer{ 
+   width: 95%;
+   float: left;
+   margin: 0 2.5%;
+   padding: 15px 0 10px;
+}
+footer .footer p{
+  float: left;
+  padding-top: 25px;
+}  
+footer .footer p.right{
+  text-align: right;
+}
+footer .footer div{
+  text-align: center;
+}
+footer .footer ul{
+    margin: 0;
+}
+footer .footer ul li{
+   padding: 0 5px;
+}
+footer .footer p{
+   color: #233639; 
+   font-size: 17px;
+
+}
+footer .footer p img{
+   float: right;
+   margin-left: 25px;
+   margin-top: -10px;
+}
+footer .footer p.left img{
+  float: left;
+  margin-left: 0;
+}
+footer .footer p.txt{
+   color: #c3c2c2;
+   font-size: 14px;
+   margin-right: 20px;
+}
+body.form header{
+  height: 67px;
+  background: #282828;
+  padding: 0;
+}
+body.form header p{
+   text-align: center;
+   line-height: 67px;
+   color: #fff;
+   font-size: 18px;
+}
+body.form header p strong{
+   font-weight: normal;
+}
+body.form section{
+  padding-top: 65px;
+}
+body.form section .form-content{
+  width: 400px;
+  margin: auto;
+  text-align: center;
+}
+body.form section .top-form{
+  width: 520px;
+  margin: auto;
+  text-align: center;
+}
+body.form section .form-content h1,body.form section .top-form h1{
+    color: #233639;
+    font-size: 43px;
+    margin: 30px 0;
+    line-height: 40px;
+}
+body.form section .form-content h2,body.form section .top-form h2{
+    color: #233639;
+    font-size: 18px;
+    margin:0 0 35px;
+}
+body.form section .form-content h2{
+  margin: 0 0 20px;
+}
+body.form section .form-content h3{
+   font-size: 18px;
+   color: #3b5998;
+   margin-bottom: 25px;
+}
+body.form section .form-content p{
+  margin-bottom: 20px;
+}
+body.form section .form-content a.fb{
+  border:1px solid #27478a;
+  cursor: pointer;
+  background: #3b5998;
+  border-radius: 4px;
+  color: #ececec;
+  width: 100%;
+  padding-right: 42px;
+  height: 47px;
+  text-align: center;
+  font-size: 18px;
+  float: left;
+  line-height: 47px;
+  margin-bottom: 15px;
+  display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    -moz-transition-property: transform;
+    -o-transition-property: transform;
+    -ms-transition-property: transform;
+    transition-property: transform;
+}
+body.form section .form-content a.fb.twt{
+    background: #00acf1;
+    border:1px solid #1e9ed1;
+}
+body.form section .form-content a.fb:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -moz-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -o-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -ms-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  -moz-transition-property: transform, opacity;
+  -o-transition-property: transform, opacity;
+  -ms-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+body.form section .form-content a.fb:hover, body.form section .form-content a.fb:focus, body.form section .form-content a.fb:active {
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+body.form section .form-content a.fb:hover:before, body.form section .form-content a.fb:focus:before, body.form section .form-content a.fb:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+body.form section .form-content form.poppin{
+  margin: 0;
+  width: 100%;
+}
+body.form section .form-content .poppins{
+  border:2px solid #e9ebeb;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 4px;
+  color: #233639;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  font-size: 20px;
+  float: left;
+  line-height: 54px;
+  margin-top: 10px;
+  display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    -moz-transition-property: transform;
+    -o-transition-property: transform;
+    -ms-transition-property: transform;
+    transition-property: transform;
+}
+body.form section .form-content .poppins:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -moz-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -o-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: -ms-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  -moz-transition-property: transform, opacity;
+  -o-transition-property: transform, opacity;
+  -ms-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+body.form section .form-content .poppins:hover, body.form section .form-content .poppins:focus, body.form section .form-content .poppins:active {
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+
+body.form section .form-content .poppins:active{
+  background: #638DE7;
+  color: #fff; 
+}
+body.form section .form-content .poppins:hover:before, body.form section .form-content .poppins:focus:before, body.form section .form-content .poppins:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+body.form section .form-content form{
+  width: 360px;
+  margin:20px auto 40px;
+  height: auto;
+  overflow: hidden;
+}
+body.form section .form-content form label{
+  font-size: 18px;
+  color: #233639;
+  width: 100%;
+  float: left;
+  margin-bottom: 15px;
+  font-weight: normal;
+  text-align: left;
+}
+body.form section .form-content form label.lbl{
+  margin: 10px 0 20px;
+}
+body.form section .form-content form label span{
+   color: #bfbfbf;
+}
+body.form section .form-content form .ligne{
+  width: 100%;
+  float: left;
+  margin-bottom: 20px;
+  position: relative;
+} 
+body.form section .form-content form .lg-check{
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+}
+body.form section .form-content form .ligne i{
+  position: absolute;
+  top: 18px;
+  right: 10px;
+}
+body.form section .form-content form .ligne#radio i{
+  top: -35px;
+}
+body.form section .form-content form .ligne i.fa-check-circle{
+  color: #83f0a9;
+}
+body.form section .form-content form .ligne i.fa-exclamation-circle{
+  color: #f73c37;
+}
+body.form section .form-content form .ligne input[type=text],body.form section .form-content form .ligne input[type=email],
+body.form section .form-content form .ligne input[type=tel],body.form section .form-content form .ligne select,
+body.form section .form-content form .ligne textarea{
+  height: 60px;
+  width: 100%;
+  border:2px solid #e9ebeb;
+  color: #233639;
+  font-size: 20px;
+  padding: 0 15px;
+}
+body.form section .form-content form .ligne select{
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    position: relative;
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    display: block;
+    line-height: 30px;
+    width: 100%;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all.4s;
+    -moz-transition: all.4s;
+    -ms-transition: all.4s;
+    -o-transition: all.4s;
+    transition: all.4s;
+}
+body.form section .form-content form .ligne .triangle{
+    height: 13px;
+    position: absolute;
+    pointer-events: none;
+    top: 14px;
+    right: 14px;
+    width: 18px;
+}
+body.form section .form-content form .ligne .triangle::after{
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    content: '';
+    position: absolute;
+    right: 5px;
+    border-top: 12px solid #233639;
+    bottom: -10px;
+}
+body.form section .form-content form .ligne.lg-optional select{
+  color: #bfbfbf;
+}
+body.form section .form-content form .ligne.lg-right{
+  padding-left: 78px;
+}
+body.form section .form-content form .ligne.lg-select{
+   margin-bottom: 10px;
+}
+body.form section .form-content form .ligne .left{
+  width: 97px;
+  float: left;
+  margin-right: 10px;
+  position: relative;
+}
+body.form section .form-content form .ligne .right{
+  width: 146px;
+  float: left;
+  position: relative;
+}
+body.form section .form-content form .ligne textarea{
+  height: 240px;
+  resize:none;
+  padding: 20px 15px 0;
+}
+body.form section .form-content form .ligne input[type="checkbox"]:not(:checked),
+body.form section .form-content form .ligne input[type="checkbox"]:checked,
+body.form section .form-content form .ligne input[type="radio"]:not(:checked),
+body.form section .form-content form .ligne input[type="radio"]:checked{
+   float: left;
+   position: absolute;
+  left: -9999px;
+}
+body.form section .form-content form .ligne input[type="checkbox"]:not(:checked) + label, 
+body.form section .form-content form .ligne input[type="checkbox"]:checked + label,
+body.form section .form-content form .ligne input[type="radio"]:not(:checked) + label, 
+body.form section .form-content form .ligne input[type="radio"]:checked + label {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+body.form section .form-content form .ligne input[type="checkbox"]:not(:checked) + label:before, 
+body.form section .form-content form .ligne input[type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 27px;
+    height: 27px;
+    border: 2px solid #e9ebeb;
+    background: #fff;
+    border-radius: 3px;
+}
+body.form section .form-content form .ligne input[type="radio"]:not(:checked) + label:before, 
+body.form section .form-content form .ligne input[type="radio"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 27px;
+    height: 27px;
+    border: 2px solid #e9ebeb;
+    background: #fff;
+    border-radius: 50%;
+}
+body.form section .form-content form .ligne input[type="checkbox"]:not(:checked) + label:after,
+body.form section .form-content form .ligne input[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+}
+body.form section .form-content form .ligne input[type="checkbox"]:not(:checked) + label:after, 
+body.form section .form-content form .ligne input[type="checkbox"]:checked + label:after {
+    content: '✔';
+    position: absolute;
+    top: 0;
+    left: 4px;
+    font-size: 19px;
+    color: #233639;
+    font-weight: bold;
+    line-height: 1.75;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    transition: all .2s;
+}
+body.form section .form-content form .ligne input[type="radio"]:not(:checked) + label:after, 
+body.form section .form-content form .ligne input[type="radio"]:checked + label:after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin: 8px 2px;
+    background: #233639;
+    border-radius: 50%;
+    top: 0;
+    left: 4px;
+    font-size: 19px;
+    color: #233639;
+    font-weight: bold;
+    line-height: 1.75;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    transition: all .2s;
+}
+body.form section .form-content form .ligne span.chek{
+   text-align: left;
+   color: #233639;
+   font-size: 17px;
+   float: left;
+   margin-left: 35px;
+   line-height: 27px;
+
+}
+body.form section .form-content form h4{
+  margin: 28px 0;
+  text-align: center;
+  color: #233639;
+  font-size: 24px;
+  width: 100%;
+  float: left;
+}
+body.form section .form-content p{
+  color: #9da2a3;
+  font-size: 14px;
+  line-height: 18px;
+}
+body.form section .form-content a.fb i{
+   color: #fff;
+   width: 42px;
+   min-height: 100%;
+   border-right:1px solid #27478a;
+   float: left;
+   padding: 13px 0;
+}
+body.form section .form-content a.fb.twt i{
+   border-right:1px solid #1e9ed1;
+}
+body.form section .form-content form .errors{
+  width: 100%;
+  float: left;
+  margin: 10px 0 30px;
+}
+body.form section .form-content form .errors p,body.form section .form-content form .errors a{
+  color: #f3a2a1;
+  font-size: 14px;
+}
+body.form section .form-content form button{
+  width: 100%;
+  float: left;
+  height: 60px;
+  border-radius: 3px;
+  border: none;
+  background: #bbc1f5;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  transition:1s;
+}
+body.form section .form-content form button:hover,body.form section .form-content form button:focus{
+   transition:1s;
+   background: #5D65AE;
+}
+body.form section .form-content form button i{
+  position: absolute;
+  top: 15px;
+  right: 40px;
+  font-size: 33px;
+}
+.mobile,section.sister{
+  display: none;
+}
+section.seven p.first.desktop{
+      display: block;
+    }
+    section.seven p.first.mobil{
+      display: none;
+}
+a[id*="-link"]{float:left!important}
