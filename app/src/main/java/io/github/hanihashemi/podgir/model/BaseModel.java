@@ -2,8 +2,6 @@ package io.github.hanihashemi.podgir.model;
 
 import com.orm.SugarRecord;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -37,11 +35,6 @@ public abstract class BaseModel<T> extends SugarRecord<T> {
     protected final String getHostUrl(String api, Object... args) {
         String host = "https://api.parse.com/1/";
         api = String.format(api, args);
-        try {
-            api = URLEncoder.encode(api, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
         return host + api;
     }
 
