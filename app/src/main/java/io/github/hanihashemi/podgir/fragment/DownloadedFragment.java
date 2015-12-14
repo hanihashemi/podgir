@@ -24,7 +24,13 @@ public class DownloadedFragment extends BaseFragment {
     protected RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Episode> episodes;
-    FeedInDownloadedViewHolder.OnClick feedOnClick = position -> startActivity(PlayerActivity.getIntent(DownloadedFragment.this.getActivity(), episodes.get(position)));
+    FeedInDownloadedViewHolder.OnClick feedOnClick =
+            new FeedInDownloadedViewHolder.OnClick() {
+                @Override
+                public void onPlay(int position) {
+                    startActivity(PlayerActivity.getIntent(DownloadedFragment.this.getActivity(), episodes.get(position)));
+                }
+            };
 
     @Override
     protected void customizeUI() {
