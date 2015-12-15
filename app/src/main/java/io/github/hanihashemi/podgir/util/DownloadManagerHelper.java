@@ -60,29 +60,34 @@ public class DownloadManagerHelper {
     }
 
     public void checkDownloadStatus(Long referenceId, Listener listener) {
-        Cursor cursor = getDownloadManager().query(new DownloadManager.Query().setFilterById(referenceId));
-        cursor.moveToFirst();
-        int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
-        String fileName = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
+        try {
+            Cursor cursor = getDownloadManager().query(new DownloadManager.Query().setFilterById(referenceId));
+            cursor.moveToFirst();
+            int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+            String fileName = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));
 
-        switch (status) {
-            case DownloadManager.STATUS_FAILED:
-            case DownloadManager.STATUS_PENDING:
-                Timber.d("File pending/failed: %s", fileName);
-                listener.onDownloadFailed(referenceId);
-                break;
-            case DownloadManager.STATUS_PAUSED:
-                Timber.d("File is paused: %s", fileName);
-                break;
-            case DownloadManager.STATUS_RUNNING:
-                Timber.d("File downloading: %s", fileName);
-                break;
-            case DownloadManager.STATUS_SUCCESSFUL:
-                Timber.d("File successfully downloaded: %s", fileName);
-                listener.onDownloadSuccess(referenceId);
-                break;
-            default:
-                Timber.d("Unknown status");
+            switch (status) {
+                case DownloadManager.STATUS_FAILED:
+                case DownloadManager.STATUS_PENDING:
+                    Timber.d("File pending/failed: %s", fileName);
+                    listener.onDownloadFailed(referenceId);
+                    break;
+                case DownloadManager.STATUS_PAUSED:
+                    Timber.d("File is paused: %s", fileName);
+                    break;
+                case DownloadManager.STATUS_RUNNING:
+                    Timber.d("File downloading: %s", fileName);
+                    break;
+                case DownloadManager.STATUS_SUCCESSFUL:
+                    Timber.d("File successfully downloaded: %s", fileName);
+                    listener.onDownloadSuccess(referenceId);
+                    break;
+                default:
+                    Timber.d("Unknown status");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            listener.onDownloadFailed(referenceId);
         }
     }
 

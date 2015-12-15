@@ -20,7 +20,7 @@
     <string name="podcast_detail_feed_downloaded">پخش</string>
     <string name="podcast_detail_feed_downloading">در حال دریافت</string>
     <string name="podcast_detail_feed_not_download">دریافت</string>
-    <string name="fragment_recycler_error_message">دسترسی به شبکه ات رو بررسی کن بعدش بکش تا بروز شه.</string>
+    <string name="fragment_recycler_error_message">دسترسی به شبکه رو بررسی کن بعدش بکش تا بروز شه.</string>
     <string name="fragment_recycler_button_retry">دوباره</string>
     <string name="player_feed_image">Feed image</string>
     <string name="content_description_back_ten_seconds">back 10 seconds</string>

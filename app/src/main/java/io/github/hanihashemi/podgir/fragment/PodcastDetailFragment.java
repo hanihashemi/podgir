@@ -45,8 +45,7 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
             Episode episode = episodes.get(position - 1);
 
             if (!episode.isDownloaded()) {
-                //"http://cdn.p30download.com/?b=p30dl-ebook&f=Click.545.1394.09.08_p30download.com.zip"
-                long downloadId = downloadManagerHelper.add(getString(R.string.app_name), getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), episode.getObjectId(), episode.getUrl());
+                long downloadId = downloadManagerHelper.add(getString(R.string.app_name_fa), getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), episode.getObjectId(), episode.getUrl());
                 episode.setDownloadId(downloadId);
                 episode.save();
                 adapter.notifyDataSetChanged();
@@ -115,10 +114,13 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         if (episodes == null)
             return;
 
-        for (Episode episode : episodes) {
-            if (episode.getDownloadId() != null)
+        Timber.d("======================== Start Checking ======================");
+        for (Episode episode : episodes)
+            if (episode.getDownloadId() != null) {
+                Timber.d("checking episode %s: id is %s", episode.getTitle(), episode.getDownloadId());
                 downloadManagerHelper.checkDownloadStatus(episode.getDownloadId(), this);
-        }
+            }
+        Timber.d("======================== End Checking ======================");
     }
 
     @Override
