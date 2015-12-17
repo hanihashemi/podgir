@@ -45,7 +45,7 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
             Episode episode = episodes.get(position - 1);
 
             if (!episode.isDownloaded()) {
-                long downloadId = downloadManagerHelper.add(getString(R.string.app_name_fa), getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), episode.getObjectId(), episode.getUrl());
+                long downloadId = downloadManagerHelper.add(getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), getString(R.string.app_name_fa), episode.getObjectId(), episode.getUrl());
                 episode.setDownloadId(downloadId);
                 episode.save();
                 adapter.notifyDataSetChanged();
