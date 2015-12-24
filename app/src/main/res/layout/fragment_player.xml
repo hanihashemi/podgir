@@ -41,6 +41,8 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="64dp"
         android:max="100"
+        android:maxHeight="10dp"
+        android:minHeight="10dp"
         android:progress="0" />
 
     <io.github.hanihashemi.podgir.widget.AppTextView
@@ -59,7 +61,8 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingTop="20dp">
+        android:paddingTop="20dp"
+        android:weightSum="1">
 
         <io.github.hanihashemi.podgir.widget.AppTextView
             android:id="@+id/title"
@@ -88,9 +91,10 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="100dp"
+            android:layout_width="174dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="0.91"
             android:contentDescription="@string/player_feed_image"
             android:scaleType="centerCrop" />
 

@@ -44,6 +44,8 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     ImageView imageView;
     @Bind(R.id.time)
     AppTextView time;
+    @Bind(R.id.album_art_bg)
+    ImageView albumArtBg;
 
     private PlayerUtils playerUtils;
     private Episode episode;
@@ -81,6 +83,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
         seekBar.setEnabled(false);
         seekBar.setOnSeekBarChangeListener(this);
         PicassoHelper.load(getActivity(), episode.getParent().getImageUrl(), imageView);
+        PicassoHelper.load(getActivity(), episode.getParent().getImageUrl(), albumArtBg);
 
         backTenSeconds.setImageDrawable(new IconicsDrawable(getActivity()).icon(GoogleMaterial.Icon.gmd_replay_10).color(Color.WHITE).sizeDp(50));
         play.setPlayListener(this);

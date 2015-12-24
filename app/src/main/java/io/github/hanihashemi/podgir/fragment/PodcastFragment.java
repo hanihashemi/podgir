@@ -34,7 +34,7 @@ public class PodcastFragment extends BaseSwipeFragment<PodcastResultResponse> im
         super.customizeUI();
 
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
         podcasts = new ArrayList<>();
