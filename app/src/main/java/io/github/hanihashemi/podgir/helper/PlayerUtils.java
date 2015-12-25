@@ -1,4 +1,4 @@
-package io.github.hanihashemi.podgir.util;
+package io.github.hanihashemi.podgir.helper;
 
 /**
  * Created by hani on 11/6/15.

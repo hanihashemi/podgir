@@ -17,10 +17,10 @@ import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseFragment;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerAction;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
+import io.github.hanihashemi.podgir.helper.PicassoHelper;
+import io.github.hanihashemi.podgir.helper.PlayerUtils;
 import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.service.MediaPlayerService;
-import io.github.hanihashemi.podgir.util.PicassoHelper;
-import io.github.hanihashemi.podgir.util.PlayerUtils;
 import io.github.hanihashemi.podgir.widget.AppPlayButton;
 import io.github.hanihashemi.podgir.widget.AppTextView;
 
@@ -44,8 +44,6 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
     ImageView imageView;
     @Bind(R.id.time)
     AppTextView time;
-    @Bind(R.id.album_art_bg)
-    ImageView albumArtBg;
 
     private PlayerUtils playerUtils;
     private Episode episode;
@@ -83,7 +81,6 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
         seekBar.setEnabled(false);
         seekBar.setOnSeekBarChangeListener(this);
         PicassoHelper.load(getActivity(), episode.getParent().getImageUrl(), imageView);
-        PicassoHelper.load(getActivity(), episode.getParent().getImageUrl(), albumArtBg);
 
         backTenSeconds.setImageDrawable(new IconicsDrawable(getActivity()).icon(GoogleMaterial.Icon.gmd_replay_10).color(Color.WHITE).sizeDp(50));
         play.setPlayListener(this);

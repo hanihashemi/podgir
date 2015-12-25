@@ -11,8 +11,8 @@ import java.io.File;
 import java.util.List;
 
 import io.github.hanihashemi.podgir.annotate.Exclude;
+import io.github.hanihashemi.podgir.helper.Directory;
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
-import io.github.hanihashemi.podgir.util.Directory;
 
 /**
  * Created by hani on 8/21/15.

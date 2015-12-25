@@ -19,12 +19,12 @@ import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.adapter.PodcastDetailAdapter;
 import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
+import io.github.hanihashemi.podgir.helper.DownloadManagerHelper;
+import io.github.hanihashemi.podgir.helper.DownloadManagerHelper.Listener;
 import io.github.hanihashemi.podgir.model.Episode;
 import io.github.hanihashemi.podgir.model.EpisodeResultResponse;
 import io.github.hanihashemi.podgir.model.Podcast;
 import io.github.hanihashemi.podgir.network.request.GsonRequest;
-import io.github.hanihashemi.podgir.util.DownloadManagerHelper;
-import io.github.hanihashemi.podgir.util.DownloadManagerHelper.Listener;
 import timber.log.Timber;
 
 /**

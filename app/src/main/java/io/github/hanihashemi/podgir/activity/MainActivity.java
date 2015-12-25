@@ -16,6 +16,7 @@ import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.base.BaseActivity;
 import io.github.hanihashemi.podgir.fragment.DownloadedFragment;
 import io.github.hanihashemi.podgir.fragment.PodcastFragment;
+import io.github.hanihashemi.podgir.helper.IntentHelper;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -89,6 +90,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_download:
                 addFragmentToContainer(downloadFragment);
                 setTitle(R.string.downloaded);
+                break;
+            case R.id.nav_feedback:
+                new IntentHelper().sendMail(this, R.string.feedback_email, R.string.feedback_subject, R.string.feedback_text);
                 break;
         }
 

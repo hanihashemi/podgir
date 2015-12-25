@@ -1,4 +1,4 @@
-package io.github.hanihashemi.podgir.util;
+package io.github.hanihashemi.podgir.helper;
 
 import android.app.Notification;
 import android.app.NotificationManager;

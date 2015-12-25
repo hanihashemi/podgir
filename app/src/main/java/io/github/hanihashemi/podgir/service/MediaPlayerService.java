@@ -19,9 +19,9 @@ import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerAction;
 import io.github.hanihashemi.podgir.broadcast.MediaPlayerStatus;
+import io.github.hanihashemi.podgir.helper.NotificationUtils;
+import io.github.hanihashemi.podgir.helper.PlayerUtils;
 import io.github.hanihashemi.podgir.model.Episode;
-import io.github.hanihashemi.podgir.util.NotificationUtils;
-import io.github.hanihashemi.podgir.util.PlayerUtils;
 import timber.log.Timber;
 
 /**

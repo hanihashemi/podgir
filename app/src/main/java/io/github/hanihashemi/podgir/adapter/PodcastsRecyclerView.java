@@ -9,8 +9,8 @@ import java.util.List;
 
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastViewHolder;
+import io.github.hanihashemi.podgir.helper.PicassoHelper;
 import io.github.hanihashemi.podgir.model.Podcast;
-import io.github.hanihashemi.podgir.util.PicassoHelper;
 
 /**
  * Created by hani on 8/18/15.
