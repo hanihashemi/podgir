@@ -1,13 +1,15 @@
 package io.github.hanihashemi.podgir;
 
-import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.orm.SugarApp;
 import com.squareup.otto.Bus;
 
+import io.github.hanihashemi.podgir.helper.BugReporter;
+import io.github.hanihashemi.podgir.helper.CrashReportingTree;
 import io.github.hanihashemi.podgir.network.request.BaseRequest;
 import timber.log.Timber;
 
@@ -19,8 +21,9 @@ public class App extends SugarApp {
     private static App app;
     private static Bus bus;
     private RequestQueue requestQueue;
+    private Tracker mTracker;
 
-    public static App getInstance() {
+    public synchronized static App getInstance() {
         return app;
     }
 
@@ -29,7 +32,13 @@ public class App extends SugarApp {
         super.onCreate();
         app = this;
 
+        setUncaughtExceptionHandler();
         timberConfig();
+    }
+
+    private void setUncaughtExceptionHandler() {
+        Thread.UncaughtExceptionHandler myHandler = new BugReporter().getExceptionReporter();
+        Thread.setDefaultUncaughtExceptionHandler(myHandler);
     }
 
     private void timberConfig() {
@@ -72,14 +81,11 @@ public class App extends SugarApp {
         return bus;
     }
 
-    private static class CrashReportingTree extends Timber.Tree {
-        @Override
-        protected void log(int priority, String tag, String message, Throwable t) {
-            if (priority == Log.VERBOSE || priority == Log.DEBUG) {
-                //noinspection UnnecessaryReturnStatement
-                return;
-            }
+    synchronized public Tracker getDefaultTracker() {
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            mTracker = analytics.newTracker(R.xml.global_tracker);
         }
+        return mTracker;
     }
-
 }

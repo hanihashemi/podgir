@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import butterknife.ButterKnife;
+import io.github.hanihashemi.podgir.App;
 
 /**
  * Created by hani on 8/19/15.
@@ -38,5 +42,17 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sendAnalyticsHit();
+    }
+
+    private void sendAnalyticsHit() {
+        Tracker tracker = App.getInstance().getDefaultTracker();
+        tracker.setScreenName(this.getClass().getSimpleName());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }
