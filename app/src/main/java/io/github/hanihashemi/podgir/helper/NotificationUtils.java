@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
 
 import io.github.hanihashemi.podgir.App;
@@ -36,7 +37,9 @@ public class NotificationUtils {
         return builder.setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_notification).setTicker(text).setWhen(System.currentTimeMillis())
                 .setAutoCancel(false).setContentTitle(App.getInstance().getApplicationContext().getString(R.string.notification_player_title))
-                .setContentText(text).build();
+                .setColor(ContextCompat.getColor(App.getInstance().getApplicationContext(), R.color.primary))
+                .setContentText(text)
+                .build();
     }
 
     private PendingIntent createPendingIntent(Class<?> cls) {
