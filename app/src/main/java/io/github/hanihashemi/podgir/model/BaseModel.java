@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by hani on 8/22/15.
  */
-public abstract class BaseModel<T> extends SugarRecord<T> {
+public abstract class BaseModel<T> extends SugarRecord {
 
     public static <T extends BaseModel<?>> List<T> findAllAsList(Class<T> type) {
         Iterator<T> iterator = findAll(type);

@@ -98,7 +98,7 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         episodes.clear();
 
         episodes.addAll(Episode.findAll(podcast.getObjectId()));
-        checkEpisodesDownloadStatus();
+        CheckDownloadStatusByDownloadManager();
         adapter.notifyDataSetChanged();
     }
 
@@ -107,17 +107,17 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
         super.onResume();
         downloadManagerHelper = new DownloadManagerHelper(getActivity(), this);
         getActivity().registerReceiver(downloadManagerHelper.getBroadcastReceiver(), new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-        checkEpisodesDownloadStatus();
+        CheckDownloadStatusByDownloadManager();
     }
 
-    private void checkEpisodesDownloadStatus() {
+    private void CheckDownloadStatusByDownloadManager() {
         if (episodes == null)
             return;
 
         Timber.d("======================== Start Checking ======================");
         for (Episode episode : episodes)
             if (episode.getDownloadId() != null) {
-                Timber.d("checking episode %s: id is %s", episode.getTitle(), episode.getDownloadId());
+                Timber.d("DownloadManager ===> checking episode %s: id is %s", episode.getTitle(), episode.getDownloadId());
                 downloadManagerHelper.checkDownloadStatus(episode.getDownloadId(), this);
             }
         Timber.d("======================== End Checking ======================");
@@ -134,6 +134,8 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
 
     @Override
     public void onDownloadFailed(long downloadId) {
+        Timber.d("DownloadManager ===> File to download");
+
         Episode episode = getEpisode(downloadId);
         if (episode == null) {
             Timber.w("Couldn't find episode with this downloadId");
@@ -149,6 +151,8 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
 
     @Override
     public void onDownloadSuccess(long downloadId) {
+        Timber.d("DownloadManager ===> File is downloaded");
+
         Episode episode = getEpisode(downloadId);
         if (episode == null) {
             Timber.w("Couldn't find episode with this downloadId");

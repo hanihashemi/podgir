@@ -100,12 +100,17 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         mediaPlayer.setOnErrorListener(this);
         mediaPlayer.setWakeMode(App.getInstance().getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
         mediaPlayer.setOnCompletionListener(this);
-
     }
 
     @Override
     public void onPrepared(MediaPlayer player) {
-        player.start();
+        if (episode.getDuration() == null || episode.getDuration() <= 0)
+            player.start();
+        else {
+            player.seekTo(episode.getDuration());
+            player.start();
+        }
+
         if (handler == null) {
             handler = new Handler();
             handler.postDelayed(this, 100);
@@ -178,8 +183,11 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
                 showNotification();
                 mediaPlayer.start();
                 break;
-            case MediaPlayerAction.ACTION_CHANGE_POSITION:
+            case MediaPlayerAction.ACTION_CHANGE_POSITION_BY_PERCENT:
                 mediaPlayer.seekTo(new PlayerUtils().getProgressToTimer(action.getPositionPercent(), mediaPlayer.getDuration()));
+                break;
+            case MediaPlayerAction.ACTION_CHANGE_POSITION:
+                mediaPlayer.seekTo(action.getPosition());
                 break;
         }
     }

@@ -114,9 +114,11 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
             seekBar.setEnabled(true);
 
         play.setPlay(status.isPlay());
-        time.setText(playerUtils.getMilliSecondsToTimer(status.getCorrectTime()));
+        episode.setDuration(status.getCorrectTime());
+
+        time.setText(playerUtils.getMilliSecondsToTimer(episode.getDuration()));
         if (!seekBarTouched)
-            seekBar.setProgress(playerUtils.getProgressPercentage(status.getCorrectTime(), status.getTotalTime()));
+            seekBar.setProgress(playerUtils.getProgressPercentage(episode.getDuration(), status.getTotalTime()));
     }
 
     @Override
@@ -126,6 +128,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
             getActivity().startService(MediaPlayerService.getIntent(getActivity(), episode));
         } else {
             App.getInstance().getBus().post(new MediaPlayerAction(MediaPlayerAction.ACTION_PAUSE));
+            episode.save();
         }
     }
 
@@ -140,7 +143,7 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        App.getInstance().getBus().post(new MediaPlayerAction(MediaPlayerAction.ACTION_CHANGE_POSITION, seekBar.getProgress()));
+        App.getInstance().getBus().post(new MediaPlayerAction(MediaPlayerAction.ACTION_CHANGE_POSITION_BY_PERCENT, seekBar.getProgress()));
         seekBarTouched = false;
     }
 }
