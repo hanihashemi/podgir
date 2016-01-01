@@ -85,7 +85,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         this.parent = parent;
     }
 
-    private Episode getObjectDB() {
+    public Episode toDatabaseObject() {
         List<Episode> episodes = Episode.find(Episode.class, "OBJECT_ID=?", objectId);
         return episodes != null && episodes.size() == 1 ? episodes.get(0) : null;
     }

@@ -63,7 +63,9 @@ public class PlayerFragment extends BaseFragment implements AppPlayButton.PlayLi
 
     @Override
     protected void gatherArguments(Bundle bundle) {
-        episode = bundle.getParcelable(ARG_FEED);
+        Episode bundleEpisode = bundle.getParcelable(ARG_FEED);
+        assert bundleEpisode != null;
+        this.episode = bundleEpisode.toDatabaseObject();
     }
 
     @Override
