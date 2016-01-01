@@ -60,7 +60,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     }
 
     public static List<Episode> findAll(String parent) {
-        return Episode.find(Episode.class, "PARENT = ?", parent);
+        return Episode.find(Episode.class, "PARENT = ?", new String[]{parent}, "", "ID DESC", "");
     }
 
     public Integer getDuration() {
@@ -103,7 +103,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
 
         return new GsonRequest<>(
                 Request.Method.GET,
-                getHostUrl("classes/feed?order=-number&where=%s", argument),
+                getHostUrl("classes/feed?order=number&where=%s", argument),
                 null,
                 EpisodeResultResponse.class,
                 onSuccess,
