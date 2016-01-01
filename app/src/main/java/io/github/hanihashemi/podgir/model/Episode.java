@@ -95,7 +95,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     }
 
     public boolean isDownloaded() {
-        return getFile().exists();
+        return getFile().exists() && getDownloadId() == null;
     }
 
     public GsonRequest<EpisodeResultResponse> remoteFindAll(String parent, Response.Listener<EpisodeResultResponse> onSuccess, Response.ErrorListener onFailed) {

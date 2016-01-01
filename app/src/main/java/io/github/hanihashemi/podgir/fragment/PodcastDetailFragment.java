@@ -46,6 +46,7 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
 
             if (!episode.isDownloaded()) {
                 long downloadId = downloadManagerHelper.add(getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), getString(R.string.app_name_fa), episode.getObjectId(), episode.getUrl());
+//                long downloadId = downloadManagerHelper.add(getString(R.string.notification_download_title, podcast.getName(), episode.getTitle()), getString(R.string.app_name_fa), episode.getObjectId(), "http://cdn.p30download.com/?b=p30dl-ebook&f=Click.549.1394.10.06_p30download.com.zip");
                 episode.setDownloadId(downloadId);
                 episode.save();
                 adapter.notifyDataSetChanged();

@@ -24,7 +24,7 @@
             android:value="2" />
         <meta-data
             android:name="QUERY_LOG"
-            android:value="true" />
+            android:value="false" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="io.github.hanihashemi.podgir" />
@@ -64,6 +64,12 @@
         <receiver android:name=".receiver.MusicIntentReceiver">
             <intent-filter>
                 <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receiver.DownloadReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
         </receiver>
     </application>
