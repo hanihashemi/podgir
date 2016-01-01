@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,5 +173,12 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
             if (episode.getDownloadId() != null && episode.getDownloadId() == downloadId)
                 return episode;
         return null;
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        super.onErrorResponse(error);
+        episodes.clear();
+        adapter.notifyDataSetChanged();
     }
 }
