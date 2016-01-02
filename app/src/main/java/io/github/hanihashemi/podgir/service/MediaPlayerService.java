@@ -202,9 +202,14 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         switch (focusChange) {
             case AudioManager.AUDIOFOCUS_GAIN:
                 // resume playback
-                if (mediaPlayer == null) initMediaPlayer();
-                else if (!mediaPlayer.isPlaying()) mediaPlayer.start();
-                mediaPlayer.setVolume(1.0f, 1.0f);
+                if (mediaPlayer != null) {
+                    try {
+                        mediaPlayer.start();
+                        mediaPlayer.setVolume(1.0f, 1.0f);
+                    } catch (Exception ex) {
+                        Timber.w(ex, "AUDIOFOCUS_GAIN");
+                    }
+                }
                 break;
             case AudioManager.AUDIOFOCUS_LOSS:
                 // Lost focus for an unbounded amount of time: stop playback and release media player
