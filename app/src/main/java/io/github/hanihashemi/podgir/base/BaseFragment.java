@@ -12,7 +12,8 @@ import com.android.volley.VolleyError;
 
 import butterknife.ButterKnife;
 import io.github.hanihashemi.podgir.App;
-import io.github.hanihashemi.podgir.network.tool.VolleyErrorHandler;
+import io.github.hanihashemi.podgir.helper.SuperToastHelper;
+import io.github.hanihashemi.podgir.network.helper.VolleyErrorHandler;
 
 /**
  * Created by hani on 8/17/15.
@@ -41,7 +42,13 @@ public abstract class BaseFragment extends Fragment implements Response.ErrorLis
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        VolleyErrorHandler.getInstance().handle(getActivity(), error);
+        VolleyErrorHandler.getInstance().showProperMessage(error, new VolleyErrorHandler.Listener() {
+            @Override
+            public void onCatching(VolleyErrorHandler.ErrorModel error) {
+                if (error != null && BaseFragment.this.isVisible())
+                    new SuperToastHelper().show(error.message);
+            }
+        });
     }
 
     @Override

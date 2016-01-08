@@ -15,5 +15,6 @@ allprojects {
             dirs 'libs'
         }
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }

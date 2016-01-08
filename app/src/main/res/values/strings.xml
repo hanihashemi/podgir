@@ -11,10 +11,13 @@
 
     <!--Errors Messages-->
     <string name="no_internet_error">اینترنت نداری!</string>
-    <string name="server_response_problem">مشکل در ارتباط با سرور!</string>
+    <string name="server_problem">مشکل در سرور!</string>
     <string name="server_timeout_error">اتمام مهلت برای دسترسی به سرور!</string>
     <string name="error_dialog_title">مشکل</string>
     <string name="could_not_reach_server">سرور در دسترس نیست!</string>
+    <string name="server_unknown_problem">مشکل عجیب در ارتباط با سرور !!</string>
+    <string name="could_not_parse_server_response">پاسخ سرور قابل ترجمه نیست !</string>
+
     <string name="notification_download_title" formatted="false">دریافت %s - %s</string>
 
     <string name="podcast_detail_feed_downloaded">پخش</string>
