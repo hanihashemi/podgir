@@ -29,7 +29,7 @@
     <string name="downloaded">دانلود شده</string>
     <string name="play">پخش</string>
     <string name="notification_player_title">ذر حال پخش</string>
-    <string name="menu_refresh">بروز رسانی</string>
+    <string name="menu_refresh">تازه کن</string>
     <string name="player_serivce_error">این فایل قابل پخش نیست!</string>
     <string name="send_report">ارسال بازخورد</string>
     <string name="feedback_email">jhanihashemi@gmail.com</string>
