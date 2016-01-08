@@ -15,13 +15,13 @@ import io.github.hanihashemi.podgir.model.Podcast;
 /**
  * Created by hani on 8/18/15.
  */
-public class PodcastsRecyclerView extends RecyclerView.Adapter<PodcastViewHolder> {
+public class PodcastsAdapter extends RecyclerView.Adapter<PodcastViewHolder> {
 
     private List<Podcast> podcasts;
     private PodcastViewHolder.OnClick podcastOnClick;
     private Context context;
 
-    public PodcastsRecyclerView(Context context, List<Podcast> podcasts, PodcastViewHolder.OnClick podcastOnClick) {
+    public PodcastsAdapter(Context context, List<Podcast> podcasts, PodcastViewHolder.OnClick podcastOnClick) {
         this.podcasts = podcasts;
         this.podcastOnClick = podcastOnClick;
         this.context = context;

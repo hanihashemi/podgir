@@ -10,7 +10,7 @@ import java.util.List;
 import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.activity.PodcastDetailActivity;
-import io.github.hanihashemi.podgir.adapter.PodcastsRecyclerView;
+import io.github.hanihashemi.podgir.adapter.PodcastsAdapter;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastViewHolder;
 import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.model.Podcast;
@@ -38,7 +38,7 @@ public class PodcastFragment extends BaseSwipeFragment<PodcastResultResponse> im
         recyclerView.setLayoutManager(layoutManager);
 
         podcasts = new ArrayList<>();
-        adapter = new PodcastsRecyclerView(getActivity(), podcasts, this);
+        adapter = new PodcastsAdapter(getActivity(), podcasts, this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -65,6 +65,5 @@ public class PodcastFragment extends BaseSwipeFragment<PodcastResultResponse> im
 
     @Override
     protected void gatherArguments(Bundle bundle) {
-
     }
 }

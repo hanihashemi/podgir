@@ -17,10 +17,6 @@ public class PodcastViewHolder extends BaseViewHolder {
 
     private OnClick onClick;
 
-    public interface OnClick {
-        void onImageView(int position);
-    }
-
     public PodcastViewHolder(View itemView, OnClick onClick) {
         super(itemView);
         this.onClick = onClick;
@@ -28,6 +24,10 @@ public class PodcastViewHolder extends BaseViewHolder {
 
     @butterknife.OnClick(R.id.imageView)
     protected void onImageViewClick() {
-        onClick.onImageView(getPosition());
+        onClick.onImageView(getAdapterPosition());
+    }
+
+    public interface OnClick {
+        void onImageView(int position);
     }
 }
