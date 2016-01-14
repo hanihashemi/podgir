@@ -73,7 +73,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="@dimen/title" />
+            android:textSize="@dimen/font_large" />
 
         <io.github.hanihashemi.podgir.widget.AppTextView
             android:id="@+id/summary"
@@ -86,7 +86,7 @@
             android:maxLines="2"
             android:padding="10dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/text" />
+            android:textSize="@dimen/font_normal" />
 
         <ImageView
             android:id="@+id/image"

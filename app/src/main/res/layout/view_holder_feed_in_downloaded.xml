@@ -28,7 +28,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="222"
-            android:textSize="@dimen/text"
+            android:textSize="@dimen/font_normal"
             android:textStyle="bold" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="23123"
-            android:textSize="@dimen/text" />
+            android:textSize="@dimen/font_normal" />
 
     </LinearLayout>
 
