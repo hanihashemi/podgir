@@ -35,6 +35,7 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     private String parent;
     private Long downloadId;
     private Integer duration;
+    private Integer number;
     @Ignore
     @Exclude
     private Podcast podcast;
