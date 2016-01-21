@@ -2,6 +2,7 @@ package io.github.hanihashemi.podgir.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -36,6 +37,8 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
     private Long downloadId;
     private Integer duration;
     private Integer number;
+    private String day;
+    private String month;
     @Ignore
     @Exclude
     private Podcast podcast;
@@ -159,7 +162,20 @@ public class Episode extends BaseModel<Episode> implements Parcelable {
         dest.writeParcelable(this.podcast, 0);
     }
 
-    public Integer getNumber() {
-        return number;
+    public String getNumber() {
+        String number = String.valueOf(this.number);
+        if (!TextUtils.isEmpty(number))
+            return number + ":";
+        return "";
+    }
+
+    public String getMonth() {
+        if (TextUtils.isEmpty(month))
+            return "-";
+        return month;
+    }
+
+    public String getDay() {
+        return day;
     }
 }

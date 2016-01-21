@@ -18,7 +18,7 @@ import io.github.hanihashemi.podgir.App;
 import io.github.hanihashemi.podgir.R;
 import io.github.hanihashemi.podgir.activity.PlayerActivity;
 import io.github.hanihashemi.podgir.adapter.PodcastDetailAdapter;
-import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
+import io.github.hanihashemi.podgir.adapter.viewholder.EpisodeInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.base.BaseSwipeFragment;
 import io.github.hanihashemi.podgir.helper.DownloadManagerHelper;
 import io.github.hanihashemi.podgir.helper.DownloadManagerHelper.Listener;
@@ -40,7 +40,7 @@ public class PodcastDetailFragment extends BaseSwipeFragment<EpisodeResultRespon
     private List<Episode> episodes;
     private DownloadManagerHelper downloadManagerHelper;
 
-    private FeedInPodcastDetailViewHolder.OnClick feedOnClick = new FeedInPodcastDetailViewHolder.OnClick() {
+    private EpisodeInPodcastDetailViewHolder.OnClick feedOnClick = new EpisodeInPodcastDetailViewHolder.OnClick() {
         @Override
         public void onDownload(int position) {
             Episode episode = episodes.get(position - 1);

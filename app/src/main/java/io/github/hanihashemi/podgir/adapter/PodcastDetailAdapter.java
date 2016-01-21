@@ -9,7 +9,7 @@ import android.widget.Button;
 import java.util.List;
 
 import io.github.hanihashemi.podgir.R;
-import io.github.hanihashemi.podgir.adapter.viewholder.FeedInPodcastDetailViewHolder;
+import io.github.hanihashemi.podgir.adapter.viewholder.EpisodeInPodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.adapter.viewholder.PodcastDetailViewHolder;
 import io.github.hanihashemi.podgir.helper.PicassoHelper;
 import io.github.hanihashemi.podgir.model.Episode;
@@ -24,10 +24,10 @@ public class PodcastDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int VIEW_HOLDER_FEEDS = 1;
     private Podcast podcast;
     private List<Episode> episodes;
-    private FeedInPodcastDetailViewHolder.OnClick feedOnClick;
+    private EpisodeInPodcastDetailViewHolder.OnClick feedOnClick;
     private Context context;
 
-    public PodcastDetailAdapter(Context context, Podcast podcast, List<Episode> episodes, FeedInPodcastDetailViewHolder.OnClick feedOnClick) {
+    public PodcastDetailAdapter(Context context, Podcast podcast, List<Episode> episodes, EpisodeInPodcastDetailViewHolder.OnClick feedOnClick) {
         this.podcast = podcast;
         this.episodes = episodes;
         this.feedOnClick = feedOnClick;
@@ -38,7 +38,7 @@ public class PodcastDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_HOLDER_FEEDS:
-                return new FeedInPodcastDetailViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder_feed_in_podcast_detail, parent, false), feedOnClick);
+                return new EpisodeInPodcastDetailViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder_episode_in_podcast_detail, parent, false), feedOnClick);
             case VIEW_HOLDER_PODCAST_DETAIL:
                 return new PodcastDetailViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_holder_podcast_detail, parent, false));
         }
@@ -55,10 +55,13 @@ public class PodcastDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                 PicassoHelper.load(context, podcast.getImageUrl(), podcastHolder.imageView);
                 break;
             case VIEW_HOLDER_FEEDS:
-                FeedInPodcastDetailViewHolder feedHolder = (FeedInPodcastDetailViewHolder) holder;
+                EpisodeInPodcastDetailViewHolder episodeHolder = (EpisodeInPodcastDetailViewHolder) holder;
                 Episode episode = episodes.get(position - 1);
-                feedHolder.name.setText(episode.getTitle());
-                setDownloadButtonStatus(episode, feedHolder.download);
+                episodeHolder.name.setText(episode.getTitle());
+                episodeHolder.number.setText(episode.getNumber());
+                episodeHolder.day.setText(episode.getDay());
+                episodeHolder.month.setText(episode.getMonth());
+                setDownloadButtonStatus(episode, episodeHolder.download);
                 break;
         }
     }

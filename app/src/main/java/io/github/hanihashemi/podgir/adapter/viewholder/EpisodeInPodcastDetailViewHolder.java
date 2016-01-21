@@ -11,22 +11,28 @@ import io.github.hanihashemi.podgir.base.BaseViewHolder;
 /**
  * Created by hani on 8/25/15.
  */
-public class FeedInPodcastDetailViewHolder extends BaseViewHolder {
+public class EpisodeInPodcastDetailViewHolder extends BaseViewHolder {
     @Bind(R.id.name)
     public TextView name;
-    @Bind(R.id.button)
+    @Bind(R.id.download)
     public Button download;
+    @Bind(R.id.number)
+    public TextView number;
+    @Bind(R.id.day)
+    public TextView day;
+    @Bind(R.id.month)
+    public TextView month;
 
     private OnClick onClick;
 
-    public FeedInPodcastDetailViewHolder(View itemView, OnClick onClick) {
+    public EpisodeInPodcastDetailViewHolder(View itemView, OnClick onClick) {
         super(itemView);
         this.onClick = onClick;
     }
 
-    @butterknife.OnClick(R.id.button)
+    @butterknife.OnClick(R.id.download)
     protected void onClickDownload() {
-        onClick.onDownload(getPosition());
+        onClick.onDownload(getAdapterPosition());
     }
 
     public interface OnClick {

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     tools:ignore="RtlHardcoded">
 
     <LinearLayout
@@ -17,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_very_small"
             tools:text="21" />
 
         <TextView
@@ -25,22 +27,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/font_small"
+            android:textSize="@dimen/font_very_small"
             tools:text="بهمن" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/layout_date">
+        android:layout_marginLeft="10dp"
+        android:layout_toLeftOf="@id/download"
+        android:layout_toRightOf="@id/layout_date"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left" />
+            android:gravity="left"
+            android:textSize="@dimen/font_small"
+            tools:text="13" />
 
         <TextView
             android:id="@+id/name"
@@ -54,17 +67,9 @@
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:background="@color/divider" />
 </RelativeLayout>
