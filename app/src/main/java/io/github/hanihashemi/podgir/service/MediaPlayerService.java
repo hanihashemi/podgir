@@ -33,6 +33,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
     private boolean isRegistered;
     private Handler handler;
     private Episode episode;
+    private boolean isPlay;
 
     public static Intent getIntent(Context context, Episode episode) {
         Intent intent = new Intent(context, MediaPlayerService.class);
@@ -61,7 +62,6 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         try {
             mediaPlayer.setDataSource(this, Uri.parse(episode.getFile().getAbsolutePath()));
             mediaPlayer.prepareAsync();
-            showNotification();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -104,11 +104,11 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
 
     @Override
     public void onPrepared(MediaPlayer player) {
-        if (episode.getDuration() == null || episode.getDuration() <= 0)
-            player.start();
-        else {
+        if (episode.getDuration() == null || episode.getDuration() <= 0) {
+            play();
+        } else {
             player.seekTo(episode.getDuration());
-            player.start();
+            play();
         }
 
         if (handler == null) {
@@ -141,6 +141,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
             mediaPlayer.release();
             mediaPlayer = null;
         }
+        stopForeground(true);
     }
 
     @Override
@@ -171,8 +172,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
 
         switch (action.getCode()) {
             case MediaPlayerAction.ACTION_PAUSE:
-                stopForeground(true);
-                mediaPlayer.pause();
+                pause();
                 break;
             case MediaPlayerAction.ACTION_BACK_TEN_SECONDS:
                 int position = mediaPlayer.getCurrentPosition() - 10000;
@@ -180,8 +180,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
                 mediaPlayer.seekTo(position);
                 break;
             case MediaPlayerAction.ACTION_PLAY:
-                showNotification();
-                mediaPlayer.start();
+                play();
                 break;
             case MediaPlayerAction.ACTION_CHANGE_POSITION_BY_PERCENT:
                 mediaPlayer.seekTo(new PlayerUtils().getProgressToTimer(action.getPositionPercent(), mediaPlayer.getDuration()));
@@ -190,6 +189,18 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
                 mediaPlayer.seekTo(action.getPosition());
                 break;
         }
+    }
+
+    private void pause() {
+        stopForeground(true);
+        mediaPlayer.pause();
+        isPlay = false;
+    }
+
+    private void play() {
+        showNotification();
+        mediaPlayer.start();
+        isPlay = true;
     }
 
     @Override
@@ -202,9 +213,9 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
         switch (focusChange) {
             case AudioManager.AUDIOFOCUS_GAIN:
                 // resume playback
-                if (mediaPlayer != null) {
+                if (mediaPlayer != null && isPlay) {
                     try {
-                        mediaPlayer.start();
+                        play();
                         mediaPlayer.setVolume(1.0f, 1.0f);
                     } catch (Exception ex) {
                         Timber.w(ex, "AUDIOFOCUS_GAIN");
@@ -213,9 +224,8 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnPrepare
                 break;
             case AudioManager.AUDIOFOCUS_LOSS:
                 // Lost focus for an unbounded amount of time: stop playback and release media player
-                if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+                if (mediaPlayer.isPlaying()) pause();
                 releaseMediaPlayer();
-                stopForeground(true);
                 break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                 // Lost focus for a short time, but we have to stop
